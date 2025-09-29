@@ -1,0 +1,109 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+#primary{
+    background-color: blue;
+    color: white;
+    height: 89vh;
+    background-image: linear-gradient(90deg, rgba(0, 168, 168, 0.74) 35%, rgba(34, 48, 204, 0.35) 100%),url('../img/concierto_fondo.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;    
+}
+
+
+#nav1 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 20px 60px; 
+}
+
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo img {
+    width: 74px;
+    height: 60px;
+}
+
+.logo h1 {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 800;
+    font-size: 36px;
+    color: #FFFFFF;
+}
+
+
+.links {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.links a {
+    text-decoration: none;
+    color: white;
+    font-weight: 500;
+    font-size: 18px;
+}
+
+
+.btn-boleto {
+    padding: 10px 20px;
+    border: 2px solid white;
+    border-radius: 25px;
+    background: transparent;
+    color: white;
+    font-weight: 600;
+    transition: background 0.3s, color 0.3s;
+}
+
+.btn-boleto:hover {
+    background: white;
+    color: #3A7BD5;
+}
+
+
+#main{
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    text-align: center;
+    padding: 0 20px;
+    height: calc(80vh - 100px);
+}
+
+#image-container img{
+    position: absolute;
+    width: 712px;
+    height: 328px;
+    left: 78px;
+    top: 195px;
+}
+
+#text-container {
+    max-width: 600px;
+    margin-right: 15%;
+    color: white;
+}
+
+
+
+
+#secondary {
+    background-color: white;
+    color: white;
+    height: 100vh;
+}
+
