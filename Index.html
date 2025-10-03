@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="CSS/StyleHome.css">
 </head>
 <body>
+    <div class="wrapper">
     <section id="primary">
         <article>
             <nav id="nav1">
@@ -39,19 +40,88 @@
 
         </article>
     </section>
+    <div id="search-container">
+        <form action="Buscar.html" id="search">
+            <label>Buscar Evento</label>
+            <input type="text" placeholder="Buscar">
+            <label>Lugar</label>
+            <input id="location" type="text" list="Ubicaciones">
+            <datalist id="Ubicaciones">
+                <option value="San Salvador">
+                <option value="Santa Ana">
+                <option value="San Miguel">
+                <option value="La Libertad">
+                <option value="La Union">
+                <option value="Ahuachapan">
+                <option value="Sonsonate">
+                <option value="Chalatenango">
+                <option value="Cabanas">
+                <option value="Usulutan">
+                <option value="San Vicente">
+                <option value="La Paz">
+                <option value="Cuscatlan">
+                <option value="Morazan">
+                <option value="La Union">
+            </datalist>
+            <label>Fecha</label>
+            <input type="date">
+            <button type="submit">Buscar</button>
+        </form>
+    </div>
     <section id="secondary">
         <article>
-            <nav>
-                <ul>
-                    <li><a href="Home.html">Home</a></li>
-                    <li><a href="About.html">About</a></li>
-                    <li><a href="Contact.html">Contact</a></li>
-                    <li><a href="Login.html">Login</a></li>
-                    <li><a href="Register.html">Register</a></li>
-                </ul>
-            </nav>
+            <div>
+                <h1>Proximos conciertos</h1>
+                <form action="">
+                    <input type="text" list="Dias" placeholder="Buscar">
+                    <datalist id="Dias">
+                        <option value="Hoy">
+                        <option value="Mañana">
+                        <option value="Este fin de semana">
+                        <option value="Próximos 7 días">
+                        <option value="Próximos 30 días">
+                    </datalist>
+                    <input type="text" list="Categorias" placeholder="Categorías">
+                    <datalist id="Categorias">
+                        <option value="Música">
+                        <option value="Deportes">
+                        <option value="Teatro">
+                        <option value="Conferencias">
+                        <option value="Festivales">
+                        <option value="Niños y familia">
+                        <option value="Comedia">
+                        <option value="Arte y exposiciones">
+                        <option value="Eventos virtuales">
+                    </datalist>
+                </form>
+            </div>
         </article>
-
+        <div>
+            <h2>Eventos destacados</h2>
+            <div class="eventos_container">
+                <div class="evento">
+                    <img src="img/BB.png" alt="">
+                    <h3>Bad Bunny World Tour</h3>
+                    <p>San Salvador, El Salvador</p>
+                    <p>Fecha: 15 de Diciembre, 2024</p>
+                    <button>Comprar Boleto</button>
+                </div>
+                <div class="evento">
+                    <img src="img/Rammstein.png" alt="">
+                    <h3>Rammstein Live in Concert</h3>
+                    <p>San Salvador, El Salvador</p>
+                    <p>Fecha: 22 de Enero, 2025</p>
+                    <button>Comprar Boleto</button>
+                </div>
+                <div class="evento">
+                    <img src="img/TaylorSwift.png" alt="">
+                    <h3>Taylor Swift: The Eras Tour</h3>
+                    <p>San Salvador, El Salvador</p>
+                    <p>Fecha: 10 de Febrero, 2025</p>
+                    <button>Comprar Boleto</button>
+                </div>
+            </div>
     </section>
+    </div>
 </body>
 </html>

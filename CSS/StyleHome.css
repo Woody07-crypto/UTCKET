@@ -5,8 +5,11 @@
     font-family: 'Poppins', sans-serif;
 }
 
+.wrapper {
+    position: relative;
+}
+
 #primary{
-    background-color: blue;
     color: white;
     height: 89vh;
     background-image: linear-gradient(90deg, rgba(0, 168, 168, 0.74) 35%, rgba(34, 48, 204, 0.35) 100%),url('../img/concierto_fondo.jpeg');
@@ -100,10 +103,105 @@
 
 
 
+#search-container {
+    background: rgba(36, 37, 101, 1);
+    border-radius: 20px;
+    height: 60px;
+    width: 80%;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 10px;
+
+    position: absolute;
+    top: 100%; 
+    left: 50%;
+    transform: translate(-50%, -180%);
+    z-index: 3;
+}
+
+
 
 #secondary {
     background-color: white;
-    color: white;
+    color: black;
     height: 100vh;
 }
+
+#secondary article {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 150px;
+    border-bottom: 1px solid #ccc;
+}
+
+#secondary h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+#secondary form {
+    position: relative;
+}
+
+#secondary input[type="text"] {
+    width: 300px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+#secondary datalist {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background: white;
+    z-index: 10;
+}
+
+#secondary datalist option {
+    padding: 10px;
+    cursor: pointer;
+}
+
+#secondary datalist option:hover {
+    background: #f0f0f0;
+}
+
+
+div>h2{
+    text-align: center;
+    margin: 20px 0;
+    font-size: 28px;
+    color: #333;
+}
+
+.eventos_container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    padding: 20px;
+}
+
+
+.evento {
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    width: 200px;
+    padding: 10px;
+    text-align: center;
+}
+
+
+
+
+
 
