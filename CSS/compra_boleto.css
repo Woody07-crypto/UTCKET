@@ -1,11 +1,9 @@
-/* Sección principal */
 .compra-boletos {
     font-family: 'Segoe UI', Arial, sans-serif;
     padding: 30px;
     color: #1f6d84;
 }
 
-/* Cabecera */
 .cabecera-concierto {
     display: flex;
     gap: 20px;
@@ -33,14 +31,14 @@
     color: #444;
 }
 
-/* Contenido principal */
+
 .contenido-compra {
     display: flex;
     gap: 30px;
     justify-content: space-between;
 }
 
-/* Tarjetas */
+
 .card {
     flex: 1;
     background: #fff;
@@ -55,7 +53,7 @@
     color: #00a7a7;
 }
 
-/* Selectores */
+
 label {
     display: block;
     margin: 10px 0 5px;
@@ -74,7 +72,7 @@ select {
 }
 
 /* Botón comprar */
-.btn-comprar {
+/*.btn-comprar {
     display: block;
     width: 100%;
     padding: 14px;
@@ -86,13 +84,30 @@ select {
     border-radius: 30px;
     cursor: pointer;
     transition: 0.3s;
+}*/
+
+.btn-comprar {
+  display: inline-block;
+  padding: 12px 24px;
+  background: #00a896;
+  color: #fff;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: 0.3s ease;
+  text-align: center;
 }
+
+.btn-comprar:hover {
+  background: #028090;
+}
+
 
 .btn-comprar:hover {
     background: #008080;
 }
 
-/* Mapa */
+/* Localidades */
 .mapa-localidades img {
     width: 100%;
     border-radius: 10px;

@@ -19,15 +19,7 @@
       color: white;
     }
 
-    header h1 {
-      font-size: 24px;
-      font-weight: bold;
-    }
-
-    .menu {
-      font-size: 24px;
-      cursor: pointer;
-    }
+    header h1 { font-size: 24px; font-weight: bold; }
 
     .container {
       display: flex;
@@ -39,67 +31,23 @@
       box-shadow: 0 2px 6px rgba(0,0,0,0.2);
     }
 
-    .left-panel {
-      flex: 1;
-      font-size: 14px;
-      padding-right: 20px;
-      border-right: 1px solid #ddd;
-    }
+    .left-panel { flex: 1; font-size: 14px; padding-right: 20px; border-right: 1px solid #ddd; }
+    .right-panel { flex: 2; padding-left: 20px; }
 
-    .right-panel {
-      flex: 2;
-      padding-left: 20px;
-    }
+    label { display: block; margin: 8px 0 4px; font-weight: bold; font-size: 13px; }
+    input { width: 100%; padding: 6px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 4px; }
 
-    label {
-      display: block;
-      margin: 8px 0 4px;
-      font-weight: bold;
-      font-size: 13px;
-    }
+    .row { display: flex; gap: 10px; }
+    .row input { flex: 1; }
 
-    input {
-      width: 100%;
-      padding: 6px;
-      margin-bottom: 10px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-    }
+    .submit-btn { background-color: #00a8b5; color: white; font-size: 16px; border: none; border-radius: 5px; padding: 10px 15px; cursor: pointer; margin-top: 10px; }
+    .submit-btn:hover { background-color: #008c96; }
 
-    .row {
-      display: flex;
-      gap: 10px;
-    }
+    .total { font-size: 16px; font-weight: bold; margin: 10px 0; }
+    .comision { font-size: 14px; color: #555; }
 
-    .row input {
-      flex: 1;
-    }
-
-    .submit-btn {
-      background-color: #00a8b5;
-      color: white;
-      font-size: 16px;
-      border: none;
-      border-radius: 5px;
-      padding: 10px 15px;
-      cursor: pointer;
-      margin-top: 10px;
-    }
-
-    .submit-btn:hover {
-      background-color: #008c96;
-    }
-
-    .total {
-      font-size: 16px;
-      font-weight: bold;
-      margin: 10px 0;
-    }
-
-    .comision {
-      font-size: 14px;
-      color: #555;
-    }
+  
+    .localidad-flag { font-size: 14px; color: #00a8b5; margin-bottom: 8px; }
   </style>
 </head>
 <body>
@@ -110,10 +58,11 @@
   </header>
 
   <div class="container">
-    
     <div class="left-panel">
       <p><b>TOTAL (IVA INCLUIDO)</b></p>
       <p id="total" class="total">$0.00</p>
+
+      <p class="localidad-flag" id="localidadSeleccionada"></p>
 
       <p><b>TICKETS</b></p>
       <label>Cantidad de tickets</label>
@@ -172,5 +121,69 @@
     </div>
   </div>
 
+  <script>
+    function getParam(name) {
+      const params = new URLSearchParams(window.location.search);
+      return params.get(name);
+    }
+
+    function parseNumberFromString(s) {
+      if (!s) return NaN;
+      s = String(s).replace(/\s/g, '').replace(/\$/g, '').replace(/€/g, '').replace(/,/g, '.');
+      const m = s.match(/-?\d+(\.\d+)?/);
+      return m ? parseFloat(m[0]) : NaN;
+    }
+
+    function formatMoney(n) {
+      return '$' + n.toFixed(2);
+    }
+
+    function updateTotals(precio, cantidad) {
+      precio = Number(precio) || 0;
+      cantidad = Number(cantidad) || 0;
+      const subtotal = precio * cantidad;
+      const comision = subtotal * 0.05; 
+      const total = subtotal + comision;
+      document.getElementById('total').innerText = formatMoney(isFinite(total) ? total : 0);
+      document.getElementById('comision').innerText = formatMoney(isFinite(comision) ? comision : 0);
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      const localidadParam = getParam('localidad'); 
+      const precioParam = getParam('precio');       
+      const cantidadParam = getParam('cantidad');   
+      let precio = parseNumberFromString(precioParam);
+      if (isNaN(precio)) {
+        precio = parseNumberFromString(localidadParam);
+      }
+
+      let cantidad = parseInt(cantidadParam);
+      if (isNaN(cantidad)) cantidad = null;
+
+   
+      if (localidadParam) {
+        document.getElementById('localidadSeleccionada').textContent = 'Localidad: ' + decodeURIComponent(localidadParam);
+      }
+
+    
+      const cantidadInput = document.getElementById('cantidad');
+      if (cantidad) {
+        cantidadInput.value = cantidad;
+      }
+
+      
+      if (!isNaN(precio) && cantidad) {
+        updateTotals(precio, cantidad);
+      } else {
+   
+        updateTotals(0, 0);
+      }
+
+      cantidadInput.addEventListener('input', function() {
+        const v = parseInt(this.value) || 0;
+        updateTotals(isNaN(precio) ? 0 : precio, v);
+      });
+    });
+  </script>
 </body>
 </html>
