@@ -18,7 +18,6 @@
     background-repeat: no-repeat;    
 }
 
-
 #nav1 {
     display: flex;
     align-items: center;
@@ -26,7 +25,6 @@
     width: 100%;
     padding: 20px 60px; 
 }
-
 
 .logo {
     display: flex;
@@ -47,6 +45,15 @@
     color: #FFFFFF;
 }
 
+.menu__btn {
+    border: 1px solid white;
+    border-radius: 20px;
+    padding: 8px 16px;
+    background: transparent;
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+}
 
 .links {
     display: flex;
@@ -61,7 +68,6 @@
     font-size: 18px;
 }
 
-
 .btn-boleto {
     padding: 10px 20px;
     border: 2px solid white;
@@ -70,13 +76,13 @@
     color: white;
     font-weight: 600;
     transition: background 0.3s, color 0.3s;
+    white-space: nowrap;
 }
 
 .btn-boleto:hover {
     background: white;
     color: #3A7BD5;
 }
-
 
 #main{
     display: flex;
@@ -95,45 +101,113 @@
     top: 195px;
 }
 
+.btn {
+    display: inline-block;
+    padding: 12px 24px;
+    border-radius: 40px;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 16px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.btn--filled {
+    background-color: #00b8b8; 
+    color: white;
+    border: none;
+}
+
+.btn--filled:hover {
+    background-color: #009ea1;
+}
+
+.btn--outline {
+    background-color: transparent;
+    color: white;
+    border: 2px solid white;
+}
+
+.btn--outline:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+#text-container>h2{
+    margin-bottom: 20px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 50px;
+}
+
 #text-container {
     max-width: 600px;
     margin-right: 15%;
     color: white;
 }
 
-
-
 #search-container {
     background: rgba(36, 37, 101, 1);
     border-radius: 20px;
     height: 60px;
     width: 80%;
+    max-width: 1200px;
     color: white;
     display: flex;
     align-items: center;
     justify-content: space-around;
-    padding: 10px;
-
+    padding: 10px 20px;
     position: absolute;
     top: 100%; 
     left: 50%;
     transform: translate(-50%, -180%);
     z-index: 3;
+    box-sizing: border-box;
 }
 
+#search-container label {
+    font-size: 14px;
+    font-weight: 500;
+    white-space: nowrap;
+    margin-right: 8px;
+}
 
+#search-container input[type="text"],
+#search-container input[type="date"] {
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: none;
+    font-size: 14px;
+    flex: 1;
+    min-width: 120px;
+}
+
+#search-container button {
+    padding: 8px 20px;
+    border-radius: 8px;
+    background: #00b8b8;
+    color: white;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+#search-container button:hover {
+    background: #009ea1;
+}
 
 #secondary {
     background-color: white;
     color: black;
-    height: 100vh;
+    min-height: 100vh;
+    padding-bottom: 50px;
 }
 
 #secondary article {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 150px;
+    min-height: 150px;
+    padding: 20px;
     border-bottom: 1px solid #ccc;
 }
 
@@ -174,12 +248,42 @@
     background: #f0f0f0;
 }
 
+#Proximos_container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center; 
+    gap: 24px; 
+    margin: auto;
+    flex-wrap: wrap;
+    padding: 20px 30px;
+}
 
-div>h2{
+#Proximos_container h1 {
+    margin: 0;
+    font-size: 24px;
+    color: rgba(36, 37, 101, 1);
+}
+
+#Proximos_container form {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+#Proximos_container input {
+    padding: 10px 16px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    min-width: 150px;
+}
+
+#destacados{
+    color: rgba(36, 37, 101, 1);
     text-align: center;
-    margin: 20px 0;
-    font-size: 28px;
-    color: #333;
+    margin-top: 10px;
+    font-size: 24px;
 }
 
 .eventos_container {
@@ -238,4 +342,336 @@ div>h2{
 
 .evento button:hover {
     background: linear-gradient(90deg, #2230cc, #00a8a8);
+}
+
+/* MEDIA QUERIES PARA RESPONSIVE */
+
+/* Tablets y pantallas medianas (768px - 1024px) */
+@media (max-width: 1024px) {
+    #nav1 {
+        padding: 15px 30px;
+    }
+    
+    .logo img {
+        width: 50px;
+        height: 40px;
+    }
+    
+    .logo h1 {
+        font-size: 28px;
+    }
+    
+    .links {
+        gap: 20px;
+    }
+    
+    .links a {
+        font-size: 16px;
+    }
+    
+    #image-container img {
+        width: 500px;
+        height: 230px;
+        left: 40px;
+        top: 150px;
+    }
+    
+    #text-container>h2 {
+        font-size: 40px;
+    }
+    
+    #search-container {
+        width: 90%;
+        max-width: 1000px;
+        height: auto;
+        min-height: 60px;
+        flex-wrap: wrap;
+        gap: 15px;
+        padding: 15px 20px;
+        justify-content: center;
+    }
+    
+    #search-container label {
+        font-size: 13px;
+    }
+    
+    #search-container input[type="text"],
+    #search-container input[type="date"] {
+        min-width: 150px;
+        flex: 1 1 200px;
+    }
+    
+    #search-container button {
+        flex: 0 0 auto;
+        min-width: 100px;
+    }
+    
+    #Proximos_container {
+        padding: 15px 20px;
+        justify-content: center;
+    }
+    
+    #Proximos_container h1 {
+        font-size: 22px;
+        text-align: center;
+        width: 100%;
+    }
+    
+    #Proximos_container form {
+        justify-content: center;
+        width: 100%;
+    }
+    
+    .eventos_container {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+        padding: 20px;
+    }
+}
+
+/* Móviles y tablets pequeñas (menos de 768px) */
+@media (max-width: 768px) {
+    #nav1 {
+        padding: 15px 20px;
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+    
+    .logo {
+        gap: 8px;
+    }
+    
+    .logo img {
+        width: 40px;
+        height: 32px;
+    }
+    
+    .logo h1 {
+        font-size: 24px;
+    }
+    
+    .links {
+        gap: 15px;
+        flex-wrap: wrap;
+    }
+    
+    .links a {
+        font-size: 14px;
+    }
+    
+    .btn-boleto {
+        padding: 8px 16px;
+        font-size: 14px;
+    }
+    
+    #primary {
+        height: auto;
+        min-height: 100vh;
+        padding-bottom: 80px;
+    }
+    
+    /* CAMBIO PRINCIPAL: Imagen arriba del texto */
+    #main {
+        flex-direction: column;
+        justify-content: flex-start;
+        padding-top: 20px;
+        text-align: center;
+        height: auto;
+        min-height: 60vh;
+    }
+    
+    #image-container {
+        position: relative;
+        width: 100%;
+        order: 1;
+        margin-bottom: 20px;
+    }
+    
+    #image-container img {
+        position: relative;
+        left: 0;
+        top: 0;
+        width: 90%;
+        max-width: 400px;
+        height: auto;
+        margin: 0 auto;
+    }
+    
+    #text-container {
+        order: 2;
+        width: 100%;
+        margin-right: 0;
+        padding: 0 20px;
+    }
+    
+    #text-container>h2 {
+        font-size: 32px;
+        margin-top: 0;
+    }
+    
+    /* Formulario de búsqueda responsive */
+    #search-container {
+        position: relative;
+        transform: none;
+        width: 92%;
+        left: 0;
+        right: 0;
+        top: auto;
+        margin: 20px auto;
+        height: auto;
+        flex-direction: column;
+        gap: 12px;
+        padding: 20px 15px;
+        align-items: stretch;
+    }
+    
+    #search-container label {
+        font-size: 13px;
+        margin-right: 0;
+        margin-bottom: 5px;
+    }
+    
+    #search-container input[type="text"],
+    #search-container input[type="date"] {
+        width: 100%;
+        max-width: none;
+        min-width: auto;
+        padding: 10px 12px;
+    }
+    
+    #search-container button {
+        width: 100%;
+        padding: 12px;
+        margin-top: 5px;
+    }
+    
+    /* Sección secondary responsive */
+    #secondary {
+        min-height: auto;
+        padding-bottom: 30px;
+    }
+    
+    #secondary article {
+        min-height: 100px;
+        padding: 15px;
+    }
+    
+    #secondary input[type="text"] {
+        width: 100%;
+        max-width: 280px;
+    }
+    
+    /* Próximos conciertos responsive */
+    #Proximos_container {
+        flex-direction: column;
+        padding: 15px;
+        gap: 15px;
+    }
+    
+    #Proximos_container h1 {
+        font-size: 20px;
+        text-align: center;
+        width: 100%;
+    }
+    
+    #Proximos_container form {
+        width: 100%;
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    #Proximos_container input {
+        width: 100%;
+        min-width: auto;
+    }
+    
+    /* Eventos destacados responsive */
+    #destacados {
+        font-size: 20px;
+        padding: 0 15px;
+    }
+    
+    .eventos_container {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding: 20px 15px;
+    }
+    
+    .evento {
+        max-width: 100%;
+    }
+}
+
+/* Móviles pequeños (menos de 480px) */
+@media (max-width: 480px) {
+    #nav1 {
+        padding: 10px 15px;
+    }
+    
+    .logo img {
+        width: 35px;
+        height: 28px;
+    }
+    
+    .logo h1 {
+        font-size: 20px;
+    }
+    
+    .links {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .links a {
+        font-size: 13px;
+    }
+    
+    .btn-boleto {
+        padding: 6px 12px;
+        font-size: 13px;
+    }
+    
+    #text-container>h2 {
+        font-size: 26px;
+    }
+    
+    #image-container img {
+        max-width: 320px;
+    }
+    
+    .btn {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+    
+    #search-container {
+        width: 98%;
+        padding: 12px;
+    }
+    
+    #Proximos_container h1 {
+        font-size: 18px;
+    }
+    
+    #Proximos_container input {
+        font-size: 13px;
+        padding: 8px 12px;
+    }
+    
+    #destacados {
+        font-size: 18px;
+    }
+    
+    .evento h3 {
+        font-size: 18px;
+    }
+    
+    .evento p {
+        font-size: 13px;
+    }
+    
+    .evento button {
+        padding: 8px 16px;
+        font-size: 14px;
+    }
 }
