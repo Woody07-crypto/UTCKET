@@ -16,9 +16,11 @@
       color: white;
     }
 
-    header h1 {
-      font-size: 24px;
-      font-weight: bold;
+    header a {
+        font-size: 24px;
+        font-weight: bold;
+        color: white;
+        text-decoration: none;
     }
 
     .menu {
