@@ -1,572 +1,305 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
-}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
 
-.wrapper {
-    position: relative;
-    background-color: #f8f9fa;
-    min-height: 100vh;
-}
+        body {
+            background-color: #f5f5f5;
+            overflow-x: hidden;
+        }
 
-#primary {
-    color: white;
-    height: 20vh;
-    min-height: 150px;
-    background-image: linear-gradient(90deg, rgba(0, 168, 168, 0.74) 35%, rgba(34, 48, 204, 0.35) 100%), url('../img/concierto_fondo.jpeg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-}
+        .wrapper {
+            width: 100%;
+        }
 
-#nav1 {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    padding: 20px 60px;
-}
+        /* Navegación */
+        #primary {
+            background: linear-gradient(135deg, #00a8a8, #2230cc);
+            color: white;
+            padding: 0;
+        }
 
-.logo {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
+        #nav1 {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 60px;
+        }
 
-.logo img {
-    width: 74px;
-    height: 60px;
-}
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
 
-.logo h1 {
-    margin: 0;
-    font-family: 'Poppins', sans-serif;
-    font-weight: 800;
-    font-size: 36px;
-    color: #FFFFFF;
-}
+        .logo img {
+            width: 50px;
+            height: 40px;
+        }
 
-.links {
-    display: flex;
-    align-items: center;
-    gap: 30px;
-}
+        .logo h1 {
+            font-size: 28px;
+            font-weight: 800;
+        }
 
-.links a {
-    text-decoration: none;
-    color: white;
-    font-weight: 500;
-    font-size: 18px;
-    transition: color 0.3s ease;
-}
+        .links {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
 
-.links a:hover {
-    color: #00b8b8;
-}
+        .links a {
+            text-decoration: none;
+            color: white;
+            font-weight: 500;
+            font-size: 16px;
+            transition: opacity 0.3s;
+        }
 
-.links a.active {
-    color: #00b8b8;
-    font-weight: 600;
-}
+        .links a:hover, .links a.active {
+            opacity: 0.8;
+            text-decoration: underline;
+        }
 
-.btn-boleto {
-    padding: 10px 20px;
-    border: 2px solid white;
-    border-radius: 25px;
-    background: transparent;
-    color: white;
-    font-weight: 600;
-    transition: background 0.3s, color 0.3s;
-    white-space: nowrap;
-    cursor: pointer;
-}
+        .btn-boleto {
+            padding: 10px 20px;
+            border: 2px solid white;
+            border-radius: 25px;
+            background: transparent;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
 
-.btn-boleto:hover {
-    background: white;
-    color: #3A7BD5;
-}
+        .btn-boleto:hover {
+            background: white;
+            color: #2230cc;
+        }
 
-/*CALENDARIO*/
-.calendario-section {
-    padding: 3rem 2rem;
-    max-width: 1200px;
-    margin: 0 auto;
-    min-height: 80vh;
-}
+        /* Sección Calendario */
+        .calendario-section {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
 
-.calendario-header {
-    text-align: center;
-    margin-bottom: 3rem;
-}
+        .calendario-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
 
-.calendario-header h2 {
-    color: rgba(36, 37, 101, 1);
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-}
+        .calendario-header h2 {
+            font-size: 36px;
+            color: #2230cc;
+            margin-bottom: 10px;
+        }
 
-.calendario-header p {
-    color: #666;
-    font-size: 1.2rem;
-}
+        .calendario-header p {
+            font-size: 18px;
+            color: #666;
+        }
 
-/*BÚSQUEDA AVANZADA*/
-.busqueda-avanzada {
-    background: white;
-    padding: 2rem;
-    border-radius: 15px;
-    margin-bottom: 3rem;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-}
+        /* Búsqueda Avanzada */
+        .busqueda-avanzada {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 40px;
+        }
 
-.filtros {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1.5rem;
-    align-items: end;
-}
+        .filtros {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
 
-.filtro-group {
-    flex: 1;
-    min-width: 200px;
-}
+        .filtro-group {
+            display: flex;
+            flex-direction: column;
+        }
 
-.filtro-group label {
-    display: block;
-    margin-bottom: 0.5rem;
-    font-weight: 600;
-    color: rgba(36, 37, 101, 1);
-    font-size: 1rem;
-}
+        .filtro-group label {
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #333;
+            font-size: 14px;
+        }
 
-.filtro-group input {
-    width: 100%;
-    padding: 0.75rem 1rem;
-    border: 2px solid #e0e0e0;
-    border-radius: 8px;
-    font-size: 1rem;
-    transition: border-color 0.3s ease;
-}
+        .filtro-group input {
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
 
-.filtro-group input:focus {
-    border-color: #00b8b8;
-    outline: none;
-    box-shadow: 0 0 0 3px rgba(0, 184, 184, 0.1);
-}
+        .filtro-group input:focus {
+            outline: none;
+            border-color: #00a8a8;
+        }
 
-.filtro-botones {
-    display: flex;
-    gap: 1rem;
-    align-items: center;
-}
+        .filtro-botones {
+            display: flex;
+            gap: 10px;
+            align-items: flex-end;
+        }
 
-.btn-buscar, .btn-limpiar {
-    padding: 0.75rem 1.5rem;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 1rem;
-    font-weight: 600;
-    transition: all 0.3s ease;
-    white-space: nowrap;
-}
+        .btn-buscar, .btn-limpiar {
+            flex: 1;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 14px;
+        }
 
-.btn-buscar {
-    background: linear-gradient(90deg, #00a8a8, #2230cc);
-    color: white;
-}
+        .btn-buscar {
+            background: linear-gradient(135deg, #00a8a8, #2230cc);
+            color: white;
+        }
 
-.btn-buscar:hover {
-    background: linear-gradient(90deg, #009ea1, #1a25b8);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 168, 168, 0.3);
-}
+        .btn-buscar:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,168,168,0.4);
+        }
 
-.btn-limpiar {
-    background: #6c757d;
-    color: white;
-}
+        .btn-limpiar {
+            background: #f0f0f0;
+            color: #666;
+        }
 
-.btn-limpiar:hover {
-    background: #545b62;
-    transform: translateY(-2px);
-}
+        .btn-limpiar:hover {
+            background: #e0e0e0;
+        }
 
-/*RESULTADOS*/
-.resultados-calendario h3 {
-    color: rgba(36, 37, 101, 1);
-    font-size: 1.8rem;
-    margin-bottom: 2rem;
-    text-align: center;
-}
+        /* Resultados */
+        .resultados-calendario {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
 
-.eventos-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 2rem;
-}
+        .resultados-calendario h3 {
+            font-size: 24px;
+            color: #2230cc;
+            margin-bottom: 25px;
+        }
 
-.evento-card {
-    background: white;
-    border-radius: 15px;
-    padding: 1.5rem;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    transition: all 0.3s ease;
-    border: 1px solid #f0f0f0;
-}
+        .eventos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 25px;
+        }
 
-.evento-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-}
+        /* Card de Evento */
+        .evento-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
 
-.evento-card img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    border-radius: 10px;
-    margin-bottom: 1rem;
-}
+        .evento-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
 
-.evento-card h4 {
-    color: rgba(36, 37, 101, 1);
-    margin-bottom: 0.75rem;
-    font-size: 1.3rem;
-}
+        .evento-imagen {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+        }
 
-.evento-card p {
-    color: #666;
-    margin-bottom: 0.5rem;
-    font-size: 0.95rem;
-}
+        .evento-info {
+            padding: 20px;
+        }
 
-.evento-card .fecha {
-    color: #00b8b8;
-    font-weight: 600;
-}
+        .evento-titulo {
+            font-size: 20px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 10px;
+        }
 
-.evento-card .ubicacion {
-    color: #28a745;
-    font-weight: 500;
-}
+        .evento-detalles {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
 
-.evento-card .precio {
-    color: #dc3545;
-    font-weight: 600;
-    font-size: 1.1rem;
-}
+        .evento-detalle {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #666;
+            font-size: 14px;
+        }
 
-.btn-comprar {
-    background: linear-gradient(90deg, #00a8a8, #2230cc);
-    color: white;
-    padding: 0.75rem 1.5rem;
-    border: none;
-    border-radius: 25px;
-    cursor: pointer;
-    width: 100%;
-    margin-top: 1rem;
-    font-weight: 600;
-    font-size: 1rem;
-    transition: all 0.3s ease;
-}
+        .evento-precio {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: #00a8a8;
+            font-weight: 700;
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
 
-.btn-comprar:hover {
-    background: linear-gradient(90deg, #2230cc, #00a8a8);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 168, 168, 0.3);
-}
+        .evento-btn {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, #00a8a8, #2230cc);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
 
-.no-resultados {
-    text-align: center;
-    color: #666;
-    font-size: 1.2rem;
-    padding: 3rem;
-    grid-column: 1 / -1;
-}
+        .evento-btn:hover {
+            transform: scale(1.02);
+            box-shadow: 0 4px 12px rgba(0,168,168,0.4);
+        }
 
-/*(768px - 1024px)*/
-@media (max-width: 1024px) {
-    .calendario-section {
-        padding: 2rem 1.5rem;
-    }
-    
-    .calendario-header h2 {
-        font-size: 2.2rem;
-    }
-    
-    .filtros {
-        gap: 1rem;
-    }
-    
-    .filtro-group {
-        min-width: 180px;
-    }
-    
-    .eventos-grid {
-        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-        gap: 1.5rem;
-    }
-    
-    #nav1 {
-        padding: 15px 30px;
-    }
-    
-    .logo img {
-        width: 50px;
-        height: 40px;
-    }
-    
-    .logo h1 {
-        font-size: 28px;
-    }
-}
+        /* Responsive */
+        @media (max-width: 768px) {
+            #nav1 {
+                flex-direction: column;
+                padding: 20px;
+                gap: 15px;
+            }
 
-/*(576px - 768px)*/
-@media (max-width: 768px) {
-    #nav1 {
-        padding: 15px 20px;
-        flex-wrap: wrap;
-        gap: 15px;
-    }
-    
-    .logo {
-        gap: 8px;
-    }
-    
-    .logo img {
-        width: 40px;
-        height: 32px;
-    }
-    
-    .logo h1 {
-        font-size: 24px;
-    }
-    
-    .links {
-        gap: 15px;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-    
-    .links a {
-        font-size: 16px;
-    }
-    
-    .btn-boleto {
-        padding: 8px 16px;
-        font-size: 14px;
-    }
-    
-    .calendario-section {
-        padding: 1.5rem 1rem;
-    }
-    
-    .calendario-header h2 {
-        font-size: 1.8rem;
-    }
-    
-    .calendario-header p {
-        font-size: 1rem;
-    }
-    
-    .busqueda-avanzada {
-        padding: 1.5rem;
-    }
-    
-    .filtros {
-        flex-direction: column;
-        align-items: stretch;
-        gap: 1.2rem;
-    }
-    
-    .filtro-group {
-        min-width: 100%;
-    }
-    
-    .filtro-group label {
-        font-size: 0.95rem;
-    }
-    
-    .filtro-group input {
-        padding: 0.85rem 1rem;
-        font-size: 0.95rem;
-    }
-    
-    .filtro-botones {
-        flex-direction: column;
-        gap: 0.8rem;
-        margin-top: 0.5rem;
-    }
-    
-    .btn-buscar, .btn-limpiar {
-        width: 100%;
-        padding: 0.85rem;
-        font-size: 1rem;
-    }
-    
-    .eventos-grid {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-    }
-    
-    .evento-card {
-        padding: 1.25rem;
-    }
-    
-    .evento-card h4 {
-        font-size: 1.2rem;
-    }
-    
-    .resultados-calendario h3 {
-        font-size: 1.5rem;
-    }
-}
+            .links {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 15px;
+            }
 
-/*(-576px)*/
-@media (max-width: 576px) {
-    #nav1 {
-        padding: 12px 15px;
-        flex-direction: column;
-        gap: 12px;
-    }
-    
-    .logo {
-        justify-content: center;
-        width: 100%;
-    }
-    
-    .logo img {
-        width: 35px;
-        height: 28px;
-    }
-    
-    .logo h1 {
-        font-size: 22px;
-    }
-    
-    .links {
-        width: 100%;
-        justify-content: space-around;
-        gap: 10px;
-    }
-    
-    .links a {
-        font-size: 14px;
-        padding: 5px 0;
-    }
-    
-    .btn-boleto {
-        padding: 6px 12px;
-        font-size: 13px;
-        margin-top: 5px;
-    }
-    
-    #primary {
-        height: 25vh;
-        min-height: 180px;
-    }
-    
-    .calendario-section {
-        padding: 1rem 0.8rem;
-    }
-    
-    .calendario-header {
-        margin-bottom: 2rem;
-    }
-    
-    .calendario-header h2 {
-        font-size: 1.6rem;
-        margin-bottom: 0.5rem;
-    }
-    
-    .calendario-header p {
-        font-size: 0.9rem;
-    }
-    
-    .busqueda-avanzada {
-        padding: 1.2rem;
-        border-radius: 12px;
-        margin-bottom: 2rem;
-    }
-    
-    .filtro-group label {
-        font-size: 0.9rem;
-        margin-bottom: 0.3rem;
-    }
-    
-    .filtro-group input {
-        padding: 0.8rem;
-        font-size: 0.9rem;
-    }
-    
-    .resultados-calendario h3 {
-        font-size: 1.3rem;
-        margin-bottom: 1.5rem;
-    }
-    
-    .evento-card {
-        padding: 1rem;
-        border-radius: 12px;
-    }
-    
-    .evento-card img {
-        height: 160px;
-        border-radius: 8px;
-    }
-    
-    .evento-card h4 {
-        font-size: 1.1rem;
-        margin-bottom: 0.5rem;
-    }
-    
-    .evento-card p {
-        font-size: 0.85rem;
-        margin-bottom: 0.3rem;
-    }
-    
-    .btn-comprar {
-        padding: 0.7rem;
-        font-size: 0.9rem;
-        margin-top: 0.8rem;
-    }
-    
-    .no-resultados {
-        padding: 2rem 1rem;
-        font-size: 1rem;
-    }
-}
+            .calendario-header h2 {
+                font-size: 28px;
+            }
 
-/*(-400px)*/
-@media (max-width: 400px) {
-    .links {
-        flex-direction: column;
-        gap: 8px;
-    }
-    
-    .links a {
-        font-size: 13px;
-        padding: 4px 0;
-    }
-    
-    .calendario-header h2 {
-        font-size: 1.4rem;
-    }
-    
-    .busqueda-avanzada {
-        padding: 1rem;
-    }
-    
-    .filtro-group input {
-        padding: 0.7rem;
-    }
-    
-    .evento-card {
-        padding: 0.8rem;
-    }
-    
-    .evento-card img {
-        height: 140px;
-    }
-}
+            .filtros {
+                grid-template-columns: 1fr;
+            }
+
+            .filtro-botones {
+                flex-direction: column;
+            }
+
+            .eventos-grid {
+                grid-template-columns: 1fr;
+            }
+        }
