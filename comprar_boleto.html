@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Descripción para comprar boleto</title>
+    <link rel="stylesheet" href="CSS/compra_boleto.css">
+</head>
+
+<body>
+    <section class="compra-boletos">
+        <div class="cabecera-concierto">
+            <img src="img/Danny_Ocean_tour.png" alt="Banner del Concierto" class="banner">
+            <div class="info-cabecera">
+                <h2>Danny Ocean - El Salvador 2025</h2>
+                <p class="lugar">&#128205; Parque de pelota Saturnino Bengoa - San Salvador</p>
+                <p class="fecha"> Oct 10, 07:00 PM 2025</p>
+                <p class="edad">Evento para mayores de 12 años</p>
+            </div>
+        </div>
+
+        <div class="contenido-compra">
+            <div class="card seleccion-boletos">
+                <h3>Selecciona tus boletos</h3>
+                <p class="nota">Máximo 10 tickets por persona</p>
+
+                <label for="localidades">Localidades</label>
+                <select id="localidades">
+                    <option disabled selected>Seleccionar</option>
+                    <option>Ultra Fan - $120</option>
+                    <option>VIP - $75</option>
+                    <option>General - $50</option>
+                    <option>Butaca - $30</option>
+                </select>
+
+                <label for="cantidad">Cantidad</label>
+                <select id="cantidad">
+                    <option disabled selected>Seleccionar</option>
+                    <option>1 boleto</option>
+                    <option>2 boletos</option>
+                    <option>3 boletos</option>
+                    <option>4 boletos</option>
+                    <option>5 boletos</option>
+                    <option>6 boletos</option>
+                    <option>7 boletos</option>
+                    <option>8 boletos</option>
+                    <option>9 boletos</option>
+                    <option>10 boletos</option>
+                </select>
+
+                <!-- Botón como enlace -->
+                <a href="#" id="btnComprar" class="btn-comprar">Comprar</a>
+
+                <script>
+                    document.getElementById('btnComprar').addEventListener('click', function (e) {
+                        e.preventDefault();
+
+                        const localidadText = document.getElementById('localidades').value; 
+                        const cantidad = document.getElementById('cantidad').value; 
+
+                        if (!localidadText || !cantidad || localidadText === 'Seleccionar' || cantidad === 'Seleccionar') {
+                            alert('Selecciona localidad y cantidad.');
+                            return;
+                        }
+
+                        const precioMatch = localidadText.replace(/,/g, '.').match(/(\d+(\.\d+)?)/);
+                        const precio = precioMatch ? precioMatch[0] : '';
+
+                        const url = 'metodoDePago.html?localidad=' + encodeURIComponent(localidadText)
+                            + '&precio=' + encodeURIComponent(precio)
+                            + '&cantidad=' + encodeURIComponent(cantidad);
+
+                        window.location.href = url;
+                    });
+                </script>
+
+
+
+            </div>
+
+
+            <div class="card mapa-localidades">
+                <h3>Mapa del Evento</h3>
+                <img src="img/localidades_danny.png" alt="Mapa Localidades">
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>

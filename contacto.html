@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contacto</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="CSS/stylecontacto.css" />
+  <link rel="stylesheet" href="CSS/footer.css" />
+</head>
+<body>
+    <header class="site-header">
+        <div class="container nav">
+            <a class="brand" href="Index.html">
+                <img src="img/Ticket_icon.png" alt="UTCKET Logo" class="brand__icon">
+                <span class="brand__name">UTCKET</span>
+            </a>
+            
+            <nav class="menu">
+                <a href="Index.html" class="menu__link">Home</a>
+                <a href="Contacto.html" class="menu__link">Contacto</a>
+                <a href="#comprar" class="btn btn--outline">Comprar boleto</a>
+            </nav>
+        </div>
+    </header>
+    <section class="hero">
+        <img src="img/fondoNosotros.png" alt="Conciertos" class="hero__bg">
+        <div class="hero__overlay"></div>
+        <div class="container hero__content">
+            <h1 class="hero__title">Contáctanos</h1>
+            <p>¿Tienes preguntas o quieres más información? Completa el formulario y nos pondremos en contacto contigo.</p>
+        </div>
+    </section>
+
+    <section class="contacto">
+        <div class="container contacto__grid">
+            <form class="contacto__form" action="#" method="post">
+                <label for="nombre">Nombre completo</label>
+                <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required>
+                
+                <label for="telefono">Teléfono</label>
+                <input type="tel" id="telefono" name="telefono" placeholder="Tu número de teléfono">
+
+                <label for="correo">Correo electrónico</label>
+                <input type="email" id="correo" name="correo" placeholder="Tu correo" required>
+
+                <label for="mensaje">Mensaje</label>
+                <textarea id="mensaje" name="mensaje" rows="5" placeholder="Escribe tu mensaje aquí..." required></textarea>
+
+                <button type="submit" class="btn btn--primary">Enviar mensaje</button>
+            </form>
+            
+            <div class="contacto__info">
+                <h2>Información de contacto</h2>
+                <p>Puedes escribirnos o llamarnos directamente:</p>
+                <p><strong>Teléfono:</strong> <a href="tel:+50374793737">+(503) 74793737</a></p>
+                <p><strong>Email:</strong> <a href="mailto:info@utcket.com">info@utcket.com</a></p>
+                <p><strong>Dirección:</strong> Calle a Comasagua, Santa Tecla, La Libertad</p>
+            </div>
+            
+        </div>
+    </section>
+    <footer class="site-footer">
+        <div class="container footer-grid">
+            <div class="footer-brand">
+                <div class="footer-brand__row">
+                    <img src="img/Ticket_icon.png" alt="UTCKET" class="footer-brand__icon">
+                    <span class="footer-brand__name">UTCKET</span>
+                </div>
+                <p class="footer-brand__desc">Los mejores conciertos de la ciudad a tu alcance, más sencillo y fácil.</p>
+            </div>
+            
+            <div class="footer-col">
+                <h4 class="footer-col__title">Contacto</h4>
+                <p class="footer-col__text">
+                    <a href="tel:+50374793737">+(503) 74793737</a><br>
+                    <a href="mailto:info@utcket.com">info@utcket.com</a><br>
+                    Calle a Comasagua, Santa Tecla, La Libertad
+                </p>
+            </div>
+        </div>
+        
+        <hr class="footer-sep">
+        <div class="container">
+            <p class="footer-copy">Copyright © 2025 UTCKET EL SALVADOR, S.A. DE C.V.</p>
+        </div>
+    </footer>
+</body>
+</html>
+
