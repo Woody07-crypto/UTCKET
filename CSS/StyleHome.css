@@ -7,6 +7,7 @@
 
 .wrapper {
     position: relative;
+    overflow-x: hidden;
 }
 
 #primary{
@@ -431,9 +432,14 @@
 
 /* Móviles y tablets pequeñas (menos de 768px) */
 @media (max-width: 768px) {
+    html, body {
+        overflow-x: hidden;
+        max-width: 100%;
+    }
+    
     #nav1 {
-        padding: 15px 20px;
-        flex-wrap: wrap;
+        padding: 15px 15px;
+        flex-direction: column;
         gap: 15px;
     }
     
@@ -447,76 +453,92 @@
     }
     
     .logo h1 {
-        font-size: 24px;
+        font-size: 22px;
     }
     
     .links {
-        gap: 15px;
+        gap: 10px;
         flex-wrap: wrap;
+        justify-content: center;
+        width: 100%;
     }
     
     .links a {
         font-size: 14px;
     }
     
-    .btn-boleto {
-        padding: 8px 16px;
+    .menu__btn {
+        padding: 6px 12px;
         font-size: 14px;
     }
     
     #primary {
         height: auto;
-        min-height: 100vh;
-        padding-bottom: 80px;
+        min-height: 80vh;
+        padding-bottom: 20px;
     }
     
     /* CAMBIO PRINCIPAL: Imagen arriba del texto */
     #main {
         flex-direction: column;
-        justify-content: flex-start;
-        padding-top: 20px;
+        justify-content: center;
+        padding: 20px 15px 60px 15px;
         text-align: center;
         height: auto;
-        min-height: 60vh;
+        min-height: 50vh;
+        gap: 20px;
     }
     
     #image-container {
         position: relative;
         width: 100%;
         order: 1;
-        margin-bottom: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
     
     #image-container img {
-        position: relative;
-        left: 0;
-        top: 0;
-        width: 90%;
-        max-width: 400px;
+        position: relative !important;
+        left: 0 !important;
+        top: 0 !important;
+        width: 85%;
+        max-width: 350px;
         height: auto;
         margin: 0 auto;
+        display: block;
     }
     
     #text-container {
         order: 2;
         width: 100%;
-        margin-right: 0;
-        padding: 0 20px;
+        margin: 0;
+        padding: 0 15px;
     }
     
     #text-container>h2 {
-        font-size: 32px;
+        font-size: 28px;
         margin-top: 0;
+        margin-bottom: 15px;
+    }
+    
+    .btn {
+        display: block;
+        width: 100%;
+        max-width: 280px;
+        margin: 8px auto;
+        padding: 12px 20px;
+        font-size: 15px;
     }
     
     /* Formulario de búsqueda responsive */
     #search-container {
-        position: relative;
-        transform: none;
+        position: static !important;
+        transform: none !important;
         width: 92%;
-        left: 0;
-        right: 0;
-        top: auto;
+        left: auto !important;
+        right: auto !important;
+        top: auto !important;
         margin: 20px auto;
         height: auto;
         flex-direction: column;
@@ -525,10 +547,18 @@
         align-items: stretch;
     }
     
+    #search-container form {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        width: 100%;
+    }
+    
     #search-container label {
         font-size: 13px;
-        margin-right: 0;
-        margin-bottom: 5px;
+        margin: 0;
+        text-align: left;
+        display: block;
     }
     
     #search-container input[type="text"],
@@ -537,34 +567,37 @@
         max-width: none;
         min-width: auto;
         padding: 10px 12px;
+        font-size: 14px;
     }
     
     #search-container button {
         width: 100%;
         padding: 12px;
         margin-top: 5px;
+        font-size: 15px;
     }
     
     /* Sección secondary responsive */
     #secondary {
         min-height: auto;
         padding-bottom: 30px;
+        padding-top: 20px;
     }
     
     #secondary article {
         min-height: 100px;
-        padding: 15px;
+        padding: 15px 10px;
     }
     
     #secondary input[type="text"] {
         width: 100%;
-        max-width: 280px;
+        max-width: 100%;
     }
     
     /* Próximos conciertos responsive */
     #Proximos_container {
         flex-direction: column;
-        padding: 15px;
+        padding: 15px 10px;
         gap: 15px;
     }
     
@@ -588,7 +621,8 @@
     /* Eventos destacados responsive */
     #destacados {
         font-size: 20px;
-        padding: 0 15px;
+        padding: 15px 15px;
+        margin-top: 20px;
     }
     
     .eventos_container {
@@ -599,13 +633,14 @@
     
     .evento {
         max-width: 100%;
+        margin: 0 auto;
     }
 }
 
 /* Móviles pequeños (menos de 480px) */
 @media (max-width: 480px) {
     #nav1 {
-        padding: 10px 15px;
+        padding: 12px 10px;
     }
     
     .logo img {
@@ -620,33 +655,47 @@
     .links {
         width: 100%;
         justify-content: center;
+        gap: 8px;
     }
     
     .links a {
         font-size: 13px;
     }
     
-    .btn-boleto {
-        padding: 6px 12px;
+    .menu__btn {
+        padding: 5px 10px;
         font-size: 13px;
     }
     
     #text-container>h2 {
-        font-size: 26px;
+        font-size: 24px;
     }
     
     #image-container img {
-        max-width: 320px;
+        max-width: 300px !important;
+        width: 90% !important;
     }
     
     .btn {
-        padding: 10px 20px;
+        padding: 10px 18px;
         font-size: 14px;
+        max-width: 260px;
     }
     
     #search-container {
-        width: 98%;
-        padding: 12px;
+        width: 95%;
+        padding: 15px 12px;
+    }
+    
+    #search-container input[type="text"],
+    #search-container input[type="date"] {
+        font-size: 13px;
+        padding: 9px 10px;
+    }
+    
+    #search-container button {
+        font-size: 14px;
+        padding: 10px;
     }
     
     #Proximos_container h1 {
