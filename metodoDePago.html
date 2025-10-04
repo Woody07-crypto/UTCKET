@@ -8,6 +8,9 @@
       font-family: Arial, sans-serif;
       margin: 0;
       background-color: #f5f5f5;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
     }
 
     header {
@@ -29,6 +32,33 @@
       cursor: pointer;
     }
 
+    nav {
+      background: #007d85;
+      padding: 10px 20px;
+    }
+
+    nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      gap: 20px;
+    }
+
+    nav ul li {
+      display: inline;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: white;
+      font-weight: bold;
+    }
+
+    nav ul li a:hover {
+      text-decoration: underline;
+    }
+
     .container {
       display: flex;
       padding: 20px;
@@ -37,6 +67,7 @@
       max-width: 900px;
       border-radius: 10px;
       box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+      flex: 1;
     }
 
     .left-panel {
@@ -100,29 +131,50 @@
       font-size: 14px;
       color: #555;
     }
+
+    footer {
+      background: #00a8b5;
+      color: white;
+      text-align: center;
+      padding: 15px 10px;
+      margin-top: auto;
+    }
+
+    footer p {
+      margin: 5px 0;
+      font-size: 14px;
+    }
   </style>
 </head>
 <body>
 
+  
   <header>
     <h1>UTCKET</h1>
     <div class="menu">☰</div>
   </header>
 
+  
+  <nav>
+    <ul>
+      <li><a href="#">Inicio</a></li>
+      <li><a href="#">Eventos</a></li>
+      <li><a href="#">Mis Tickets</a></li>
+      <li><a href="#">Contacto</a></li>
+    </ul>
+  </nav>
+
+  
   <div class="container">
-    
     <div class="left-panel">
       <p><b>TOTAL (IVA INCLUIDO)</b></p>
       <p id="total" class="total">$0.00</p>
-
       <p><b>TICKETS</b></p>
       <label>Cantidad de tickets</label>
       <input type="number" id="cantidad" min="1" placeholder="Ej: 2">
-
       <br>
       <p><b>COMISIÓN</b> <span class="comision">(Cargo boletería: 5%)</span></p>
       <p id="comision">$0.00</p>
-
       <br>
       <p><b>CÓDIGO PROMOCIONAL</b></p>
       <input type="text" placeholder="Ingrese código">
@@ -142,7 +194,6 @@
 
       <label>Número tarjeta</label>
       <input type="text">
-
       <div class="row">
         <div>
           <label>Fecha expiración</label>
@@ -167,10 +218,17 @@
 
       <label>Documento identidad</label>
       <input type="text">
-
       <button class="submit-btn">Completar orden</button>
     </div>
   </div>
+  <footer>
+    <p>© 2025 UTCKET. Todos los derechos reservados.</p>
+    <p><a href="#" style="color:white; text-decoration:underline;">Política de Privacidad</a> | 
+       <a href="#" style="color:white; text-decoration:underline;">Términos y Condiciones</a></p>
+  </footer>
+
+ 
 
 </body>
 </html>
+
