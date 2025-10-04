@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendario de Eventos - UTCKET</title>
+    <link rel="stylesheet" href="CSS/calendario.css">
+</head>
+<body>
+    <div class="wrapper">
+        <section id="primary">
+            <article>
+                <nav id="nav1">
+                    <div class="logo">
+                        <img src="img/Ticket_icon.png" alt="Logo">
+                        <h1>UTCKET</h1>
+                    </div>
+                    <div class="links">
+                        <a href="index.html">Inicio</a>
+                        <a href="calendario.html" class="active">Calendario</a>
+                        <a href="nosotros.html">Nosotros</a>
+                        <a href="contacto.html">Contacto</a>
+                        <button class="btn-boleto">Comprar Boleto</button>
+                    </div>
+                </nav>
+            </article>
+        </section>
+
+        <!--PRINCIPAL-->
+        <section class="calendario-section">
+            <div class="calendario-header">
+                <h2>Calendario de Eventos</h2>
+                <p>Encuentra los mejores conciertos y eventos</p>
+            </div>
+            
+            <!--BUSQUEDA AVANZADA-->
+            <div class="busqueda-avanzada">
+                <form id="form-busqueda-calendario">
+                    <div class="filtros">
+                        <div class="filtro-group">
+                            <label for="fecha">📅 Fecha:</label>
+                            <input type="date" id="fecha" name="fecha">
+                        </div>
+                        
+                        <div class="filtro-group">
+                            <label for="ciudad">📍 Ciudad:</label>
+                            <input type="text" id="ciudad" list="ciudades" placeholder="Selecciona ciudad">
+                            <datalist id="ciudades">
+                                <option value="San Salvador">
+                                <option value="Santa Ana">
+                                <option value="San Miguel">
+                                <option value="La Libertad">
+                                <option value="Sonsonate">
+                                <option value="Ahuachapán">
+                                <option value="Chalatenango">
+                            </datalist>
+                        </div>
+                        
+                        <div class="filtro-group">
+                            <label for="artista">🎤 Artista:</label>
+                            <input type="text" id="artista" placeholder="Nombre del artista">
+                        </div>
+                        
+                        <div class="filtro-botones">
+                            <button type="submit" class="btn-buscar">Buscar Eventos</button>
+                            <button type="reset" class="btn-limpiar">Limpiar</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <!--RESULTADOS-->
+            <div class="resultados-calendario">
+                <h3>Eventos Encontrados</h3>
+                <div class="eventos-grid" id="eventos-lista">
+                    <!--JS-->
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="JS/calendario.js"></script>
+</body>
+</html>
