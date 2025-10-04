@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="CSS/calendario.css">
+    <title>Calendario de Eventos - UTCKET</title>
+</head>
+<body>
+    <div class="wrapper">
+        <section id="primary">
+            <article>
+                <nav id="nav1">
+                    <div class="logo">
+                        <img src="img/Ticket_icon.png" alt="Logo">
+                        <h1>UTCKET</h1>
+                    </div>
+                    <div class="links">
+                        <a href="index.html">Inicio</a>
+                        <a href="calendario.html" class="active">Calendario</a>
+                        <a href="nosotros.html">Nosotros</a>
+                        <a href="contacto.html">Contacto</a>
+                        <button class="btn-boleto">Comprar Boleto</button>
+                    </div>
+                </nav>
+            </article>
+        </section>
+
+        <section class="calendario-section">
+            <div class="calendario-header">
+                <h2>Calendario de Eventos</h2>
+                <p>Encuentra los mejores conciertos y eventos</p>
+            </div>
+            
+            <div class="busqueda-avanzada">
+                <form id="form-busqueda-calendario">
+                    <div class="filtros">
+                        <div class="filtro-group">
+                            <label for="fecha">📅 Fecha:</label>
+                            <input type="date" id="fecha" name="fecha">
+                        </div>
+                        
+                        <div class="filtro-group">
+                            <label for="ciudad">📍 Ciudad:</label>
+                            <input type="text" id="ciudad" list="ciudades" placeholder="Selecciona ciudad">
+                            <datalist id="ciudades">
+                                <option value="San Salvador">
+                                <option value="Santa Ana">
+                                <option value="San Miguel">
+                                <option value="La Libertad">
+                                <option value="Sonsonate">
+                                <option value="Ahuachapán">
+                                <option value="Chalatenango">
+                            </datalist>
+                        </div>
+                        
+                        <div class="filtro-group">
+                            <label for="artista">🎤 Artista:</label>
+                            <input type="text" id="artista" placeholder="Nombre del artista">
+                        </div>
+                        
+                        <div class="filtro-botones">
+                            <button type="submit" class="btn-buscar">Buscar Eventos</button>
+                            <button type="reset" class="btn-limpiar">Limpiar</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="resultados-calendario">
+                <h3>Eventos Encontrados</h3>
+                <div class="eventos-grid" id="eventos-lista">
+                    
+                    <!-- Card 1: Bad Bunny -->
+                    <div class="evento-card">
+                        <img src="img/badbunny_tour.png" alt="Bad Bunny" class="evento-imagen">
+                        <div class="evento-info">
+                            <h3 class="evento-titulo">Bad Bunny</h3>
+                            <div class="evento-detalles">
+                                <div class="evento-detalle">
+                                    📍 San Salvador - Estadio Cuscatlán
+                                </div>
+                                <div class="evento-detalle">
+                                    📅 14 de diciembre de 2024
+                                </div>
+                            </div>
+                            <div class="evento-precio">
+                                🔥 $75 - $250
+                            </div>
+                            <button class="evento-btn">Comprar Boleto</button>
+                        </div>
+                    </div>
+
+                    <!-- Card 2: Guns N' Roses -->
+                    <div class="evento-card">
+                        <img src="img/GunsRoses.png" alt="Guns N' Roses" class="evento-imagen">
+                        <div class="evento-info">
+                            <h3 class="evento-titulo">Guns N' Roses</h3>
+                            <div class="evento-detalles">
+                                <div class="evento-detalle">
+                                    📍 San Salvador - Estadio Mágico Gonzalez
+                                </div>
+                                <div class="evento-detalle">
+                                    📅 3 de octubre de 2025
+                                </div>
+                            </div>
+                            <div class="evento-precio">
+                                🔥 $90 - $300
+                            </div>
+                            <button class="evento-btn">Comprar Boleto</button>
+                        </div>
+                    </div>
+
+                    <!-- Card 3: Danny Ocean -->
+                    <div class="evento-card">
+                        <img src="img/Danny_Ocean_tour.png" alt="Danny Ocean" class="evento-imagen">
+                        <div class="evento-info">
+                            <h3 class="evento-titulo">Danny Ocean</h3>
+                            <div class="evento-detalles">
+                                <div class="evento-detalle">
+                                    📍 San Salvador - Parque de pelota Saturnino Bengoa
+                                </div>
+                                <div class="evento-detalle">
+                                    📅 9 de octubre de 2025
+                                </div>
+                            </div>
+                            <div class="evento-precio">
+                                🔥 $45 - $120
+                            </div>
+                            <button class="evento-btn">Comprar Boleto</button>
+                        </div>
+                    </div>
+
+                    <!-- Card 4: Coldplay -->
+                    <div class="evento-card">
+                        <img src="img/coldplay.jpg" alt="Coldplay" class="evento-imagen">
+                        <div class="evento-info">
+                            <h3 class="evento-titulo">Coldplay</h3>
+                            <div class="evento-detalles">
+                                <div class="evento-detalle">
+                                    📍 San Salvador - Estadio Cuscatlán
+                                </div>
+                                <div class="evento-detalle">
+                                    📅 20 de noviembre de 2025
+                                </div>
+                            </div>
+                            <div class="evento-precio">
+                                🔥 $100 - $350
+                            </div>
+                            <button class="evento-btn">Comprar Boleto</button>
+                        </div>
+                    </div>
+
+                    <!-- Card 5: Karol G -->
+                    <div class="evento-card">
+                        <img src="img/KarolG.png" alt="Karol G" class="evento-imagen">
+                        <div class="evento-info">
+                            <h3 class="evento-titulo">Karol G</h3>
+                            <div class="evento-detalles">
+                                <div class="evento-detalle">
+                                    📍 San Salvador - Estadio Cuscatlán
+                                </div>
+                                <div class="evento-detalle">
+                                    📅 15 de marzo de 2026
+                                </div>
+                            </div>
+                            <div class="evento-precio">
+                                🔥 $80 - $280
+                            </div>
+                            <button class="evento-btn">Comprar Boleto</button>
+                        </div>
+                    </div>
+
+                    <!-- Card 6: Maná -->
+                    <div class="evento-card">
+                        <img src="img/Mana.png" alt="Maná" class="evento-imagen">
+                        <div class="evento-info">
+                            <h3 class="evento-titulo">Maná</h3>
+                            <div class="evento-detalles">
+                                <div class="evento-detalle">
+                                    📍 San Salvador - Estadio Cuscatlán
+                                </div>
+                                <div class="evento-detalle">
+                                    📅 5 de abril de 2026
+                                </div>
+                            </div>
+                            <div class="evento-precio">
+                                🔥 $70 - $220
+                            </div>
+                            <button class="evento-btn">Comprar Boleto</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Funcionalidad de búsqueda
+        document.getElementById('form-busqueda-calendario').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Funcionalidad de búsqueda en desarrollo');
+        });
+
+        // Agregar funcionalidad a botones de compra
+        document.querySelectorAll('.evento-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                window.location.href = 'comprar_boleto.html';
+            });
+        });
+    </script>
+</body>
+</html>
