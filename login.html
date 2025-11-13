@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Login</title>
+</head>
+<body>
+    <h1>LOGIN</h1>
+    <form action="/login" method="post">
+        <label for="usuarios">Seleccione el tipo de usuario: </label>
+        <select id="tipo_de_usuario" name="tipo_de_usuario">
+            <option disabled selected>Seleccionar</option>
+            <option>Administrador</option>
+            <option>Empleado</option>
+            <option>Cliente</option>
+        </select>
+        <br><br>
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+        <br><br>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+        <br><br>
+        <button type="submit">Ingresar</button>
+</body>
+</html>

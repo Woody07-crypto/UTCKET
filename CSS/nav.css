@@ -1,0 +1,89 @@
+/* nav.css */
+.site-header {
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    background: linear-gradient(135deg, var(--c-teal), var(--c-indigo));
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 60px;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: var(--c-white);
+}
+
+.brand__icon {
+    width: 48px;
+    height: 48px;
+}
+
+.brand__name {
+    font-size: 28px;
+    font-weight: 800;
+    color: #fff;
+}
+
+.menu {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.menu__link {
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 500;
+    color: #f0fdfd;
+    transition: color 0.2s ease-in-out;
+}
+
+.menu__link:hover {
+    color: #d4f8f8;
+}
+
+.btn-nav {
+    padding: 8px 18px;
+    border: 2px solid #fff;
+    border-radius: 25px;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+
+.btn-nav:hover {
+    background: #fff;
+    color: var(--c-teal);
+}
+
+/* Responsive Nav */
+@media (max-width: 768px) {
+    .nav {
+        flex-direction: column;
+        gap: 15px;
+        padding: 15px 20px;
+    }
+
+    .menu {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .btn-nav {
+        border-radius: 10px;
+        width: 100%;
+        text-align: center;
+    }
+}
