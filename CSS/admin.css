@@ -1,0 +1,257 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Variables de colores */
+:root {
+    --c-teal: #00a8a8;
+    --c-indigo: #2230cc;
+    --c-white: #ffffff;
+    --c-gray-light: #f0f0f0;
+}
+
+/* Base styles for header structure */
+.admin-page .site-header {
+    position: relative;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    background-color: #1a3a5c;
+    border-top: 1px solid #000;
+    border-bottom: 1px solid #000;
+    box-shadow: none;
+}
+
+.admin-page .nav {
+    display: flex;
+    align-items: center;
+    padding: 0;
+    max-width: 100%;
+    margin: 0;
+    height: 80px;
+}
+
+.admin-page .brand {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+    gap: 0;
+    text-decoration: none;
+    color: #fff;
+}
+
+.admin-page .brand > div:first-child {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex: 1;
+    height: 100%;
+    padding-left: 40px;
+    border-right: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.admin-page .brand > div:last-child {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    height: 100%;
+    border-left: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.admin-page .brand__icon {
+    width: 40px;
+    height: 40px;
+    filter: brightness(0) saturate(100%) invert(67%) sepia(89%) saturate(1000%) hue-rotate(150deg) brightness(1.2);
+}
+
+.admin-page .brand__name {
+    font-size: 24px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+@media (max-width: 1024px) {
+    .admin-page .nav {
+        height: 70px;
+    }
+
+    .admin-page .brand > div:first-child {
+        padding-left: 30px;
+    }
+
+    .admin-page .brand__name {
+        font-size: 20px;
+    }
+
+    .admin-page .brand__icon {
+        width: 36px;
+        height: 36px;
+    }
+}
+
+@media (max-width: 768px) {
+    .admin-page .nav {
+        height: 60px;
+    }
+
+    .admin-page .brand > div:first-child {
+        padding-left: 15px;
+        gap: 8px;
+    }
+
+    .admin-page .brand__icon {
+        width: 32px;
+        height: 32px;
+    }
+
+    .admin-page .brand__name {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 480px) {
+    .admin-page .nav {
+        height: 55px;
+    }
+
+    .admin-page .brand > div:first-child {
+        padding-left: 10px;
+        gap: 6px;
+    }
+
+    .admin-page .brand__icon {
+        width: 28px;
+        height: 28px;
+    }
+
+    .admin-page .brand__name {
+        font-size: 16px;
+    }
+}
+
+
+
+.admin-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    background-color: #e8e8e8;
+    overflow: hidden;
+}
+
+.header-bar {
+    display: flex;
+    width: 100%;
+    background-color: #1a3a5c;
+    color: white;
+    height: 80px;
+}
+
+.header-section {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+.header-left {
+    border-right: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.header-right {
+    border-left: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.content-wrapper {
+    display: flex;
+    width: 100%;
+    min-height: 600px;
+    padding: 30px;
+    gap: 30px;
+}
+
+.section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.section-left {
+    align-items: flex-start;
+}
+
+.section-right {
+    align-items: flex-end;
+}
+
+
+.section-title {
+    font-size: 24px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    background-color: #ffffff;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    height: 50px;
+    width: 100%;
+    border: 1px solid #000000;
+    color: #000000;
+}
+
+.content-placeholder {
+    flex: 1;
+    width: 100%;
+    background-color: #000000;
+    border-radius: 8px;
+    min-height: 400px;
+}
+
+.btn-agregar {
+    background-color: #000000;
+    color: white;
+    border: none;
+    padding: 12px 40px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    align-self: center;
+}
+
+.btn-agregar:hover {
+    background-color: #000000;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .content-wrapper {
+        flex-direction: column;
+        padding: 20px;
+    }
+
+    .section-left,
+    .section-right {
+        align-items: center;
+    }
+
+    .header-bar {
+        height: 60px;
+    }
+
+    .header-section {
+        font-size: 18px;
+    }
+}
+

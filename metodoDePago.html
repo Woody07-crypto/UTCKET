@@ -10,21 +10,31 @@
   <link rel="stylesheet" href="CSS/footer.css">
 </head>
 <body>
-  <header class="site-header">
-    <div class="nav">
-      <a class="brand" href="index.html">
-        <img src="img/Ticket_icon.png" alt="UTCKET Logo" class="brand__icon">
-        <span class="brand__name">UTCKET</span>
-      </a>
-      <nav class="menu">
-        <a href="index.html" class="menu__link">Inicio</a>
-        <a href="calendario.html" class="menu__link">Calendario</a>
-        <a href="nosotros.html" class="menu__link">Nosotros</a>
-        <a href="contacto.html" class="menu__link">Contacto</a>
-        <a href="comprar_boleto.html" class="btn btn-nav">Comprar Boleto</a>
-      </nav>
-    </div>
-  </header>
+<header class="site-header">
+    <nav class="nav">
+        <a href="index.html" class="brand">
+            <img src="img/Ticket_icon.png" alt="UTCKET" class="brand__icon">
+            <span class="brand__name">UTCKET</span>
+        </a>
+        
+        <!-- Botón hamburguesa -->
+        <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <!-- Menú de navegación -->
+        <div class="menu" id="menu">
+            <a href="index.html" class="menu__link">Nosotros</a>
+            <a href="contacto.html" class="menu__link">Contacto</a>
+            <a href="login.html" class="btn-nav menu__link">Eventos</a>
+        </div>
+    </nav>
+    
+    <!-- Overlay para cerrar el menú al hacer clic fuera -->
+    <div class="menu-overlay" id="menuOverlay"></div>
+</header>
 
   <h1 class="payment-title">Finalizar Compra</h1>
 
