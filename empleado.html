@@ -5,14 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Panel de Empleado</title>
+
+    <!-- Tus estilos -->
     <link rel="stylesheet" href="CSS/empleado.css">
     <link rel="stylesheet" href="CSS/nav.css">
     <link rel="stylesheet" href="CSS/footer.css">
 </head>
 
 <body>
-
-    <!-- NAVBAR -->
     <header class="site-header">
         <nav class="nav">
             <a href="../index.html" class="brand">
@@ -47,7 +47,6 @@
     </header>
 
 
-
     <!-- LISTA DE CONCIERTOS -->
     <section class="contenedor">
         <h3>Conciertos Registrados</h3>
@@ -69,19 +68,56 @@
         </form>
     </section>
 
-    <!-- SCRIPTS DE FIREBASE -->
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
 
-    <!-- CONFIGURACIÓN -->
-    <script src="../firebase/firebase-config.js"></script>
+    <!-- SCRIPTS FIREBASE MODULAR (v9) -->
+    <script type="module">
+        /* ====================================
+           IMPORTAR LIBRERÍAS DE FIREBASE
+        ===================================== */
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+        import { getAuth } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+        import { getFirestore } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-    <!-- LÓGICA DEL EMPLEADO -->
-    <script src="empleado.js"></script>
+        /* ====================================
+           TRAER CONFIGURACIÓN PERSONAL
+        ===================================== */
+        import firebaseConfig from "../firebase/firebase-config.js";
 
-    <!--FOOTER-->
-   <footer class="site-footer">
+        /* ====================================
+           INICIALIZAR FIREBASE
+        ===================================== */
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        // Hacerlos accesibles para los otros scripts
+        window.auth = auth;
+        window.db = db;
+    </script>
+
+    <!-- MENÚ HAMBURGUESA -->
+    <script>
+        const menuToggle = document.getElementById("menuToggle");
+        const menu = document.getElementById("menu");
+        const overlay = document.getElementById("menuOverlay");
+
+        menuToggle.addEventListener("click", () => {
+            menu.classList.toggle("open");
+            overlay.classList.toggle("active");
+        });
+
+        overlay.addEventListener("click", () => {
+            menu.classList.remove("open");
+            overlay.classList.remove("active");
+        });
+    </script>
+
+    <!-- LÓGICA DEL EMPLEADO (CRUD, logout, verificar sesión, etc.) -->
+    <script type="module" src="empleado.js"></script>
+
+    
+    <!-- FOOTER -->
+    <footer class="site-footer">
         <div class="container footer-grid">
 
             <div class="footer-brand">
@@ -145,6 +181,6 @@
             <p class="footer-copy">Copyright © 2025 UTCKET EL SALVADOR, S.A. DE C.V.</p>
         </div>
     </footer>
-</body>
 
+</body>
 </html>
