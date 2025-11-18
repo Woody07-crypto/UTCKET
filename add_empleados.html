@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="CSS/agregar_admin.css">
+    <title>Agregar Conciertos</title>
+</head>
+<body class="admin-page">
+    <header class="site-header">
+        <nav class="nav">
+            <div class="brand">
+                <div class="brand-logo-container">
+                <img src="img/Ticket_icon.png" alt="UTCKET" class="brand__icon">
+                <span class="brand__name" id="nav_admin">UTCKET</span>
+                </div>
+                <div class="brand-admin-container">
+                <span class="brand__name" id="nav_admin">Administrador</span>
+                </div>
+            </div>
+        </nav>
+    </header>
+<div class="section section-left">
+    <h2 class="section-title">Agregar Nuevo Empleado</h2>
+    <form class="add-concert-form">
+        <div class="form-row">
+            <div class="form-group">
+                <label for="emp-first">Nombre del Empleado:</label>
+                <input type="text" id="emp-first" name="employee-name" placeholder="Ej: Juan" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="emp-last">Apellido del Empleado:</label>
+                <input type="text" id="emp-last" name="employee-lastName" placeholder="Ej: Pérez" required>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group">
+                <label for="emp-carnet">Carnet del Empleado:</label>
+                <input type="text" id="emp-carnet" name="employee-carnet" placeholder="Ej: EMP-12345" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="emp-password">Contraseña del Empleado:</label>
+                <input type="password" id="emp-password" name="employee-password" placeholder="Mínimo 8 caracteres" minlength="8" required>
+            </div>
+        </div>
+
+        <button type="submit" class="btn-agregar">Agregar Empleado</button>
+    </form>
+</div>
+</div>
+</body>
+</html>

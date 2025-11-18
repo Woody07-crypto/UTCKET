@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="CSS/agregar_admin.css">
+    <title>Agregar Conciertos</title>
+</head>
+<body class="admin-page">
+    <header class="site-header">
+        <nav class="nav">
+            <div class="brand">
+                <div class="brand-logo-container">
+                <img src="img/Ticket_icon.png" alt="UTCKET" class="brand__icon">
+                <span class="brand__name" id="nav_admin">UTCKET</span>
+                </div>
+                <div class="brand-admin-container">
+                <span class="brand__name" id="nav_admin">Administrador</span>
+                </div>
+            </div>
+        </nav>
+    </header>
+<div class="section section-left">
+    <h2 class="section-title">Agregar Nuevo Concierto</h2>
+    <form class="add-concert-form">
+        <div class="form-row">
+            <div class="form-group">
+                <label for="artist-name">Nombre del Artista:</label>
+                <input type="text" id="artist-name" name="artist-name" placeholder="Ej: Danny Ocean" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="concert-date">Fecha del Concierto:</label>
+                <input type="datetime-local" id="concert-date" name="concert-date" required>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="concert-venue">Lugar del Concierto:</label>
+            <input type="text" id="concert-venue" name="concert-venue" placeholder="Ej: Parque de pelota Saturnino Bengoa - San Salvador" required>
+        </div>
+
+        <div class="form-group">
+            <label for="venue-seats">Localidades (separadas por coma):</label>
+            <input type="text" id="venue-seats" name="venue-seats" placeholder="Ej: Ultra Fan, VIP, General" required>
+            <small class="instruccion" >Ingresa las localidades separadas por comas</small>
+        </div>
+
+        <div class="form-group">
+            <label for="ticket-quantity">Cantidad de Tickets (separados por coma):</label>
+            <input type="text" id="ticket-quantity" name="ticket-quantity" placeholder="Ej: 500, 100, 500, 300" required>
+            <small class="instruccion" >Cantidades correspondientes a cada localidad</small>
+        </div>
+
+        <div class="form-group">
+            <label for="ticket-prices">Precios (separados por coma):</label>
+            <input type="text" id="ticket-prices" name="ticket-prices" placeholder="Ej: 120, 75, 50, 30" required>
+            <small class="instruccion" >Precios correspondientes a cada localidad</small>
+        </div>
+
+        <button type="submit" class="btn-agregar">Agregar Concierto</button>
+    </form>
+</div>
+</div>
+</body>
+</html>
