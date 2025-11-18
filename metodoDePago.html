@@ -6,9 +6,10 @@
   <title>UTCKET - Pago de Tickets</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="CSS/base.css">
-  <link rel="stylesheet" href="CSS/nav.css">
+  <link rel="stylesheet" href="CSS/nav.css">  
   <link rel="stylesheet" href="CSS/footer.css">
   <link rel="stylesheet" href="CSS/metodopago.css">
+  
 </head>
 <body>
 <header class="site-header">
@@ -37,70 +38,55 @@
     <div class="menu-overlay" id="menuOverlay"></div>
 </header>
 
-  <h1 class="payment-title">Finalizar Compra</h1>
+  <div class="checkout-container">
 
-  <div class="payment-container">
-    <div class="left-panel">
-      <p><b>TOTAL (IVA INCLUIDO)</b></p>
-      <p id="total" class="total">$0.00</p>
-
-      <p><b>TICKETS</b></p>
-      <label>Cantidad de tickets</label>
-      <input type="number" id="cantidad" min="1" placeholder="Ej: 2">
-
-      <br>
-      <p><b>COMISIÓN</b> <span class="comision">(Cargo boletería: 5%)</span></p>
-      <p id="comision">$0.00</p>
-
-      <br>
-      <p><b>CÓDIGO PROMOCIONAL</b></p>
-      <input type="text" placeholder="Ingrese código">
+    <!-- TOTAL -->
+    <div class="total-box">
+        <h3>Total (IVA incluido)</h3>
+        <p class="total-amount">$0.00</p>
     </div>
 
-   
-    <div class="right-panel">
-      <div class="row">
-        <div>
-          <label>Titular tarjeta</label>
-          <input type="text" required>
-        </div>
-        <div>
-          <label>Apellido tarjeta</label>
-          <input type="text" required>
-        </div>
-      </div>
+    <h2>Finalizar Compra</h2>
 
-      <label>Número tarjeta</label>
-      <input type="text" required>
+    <h3>Tickets</h3>
+    <label>Cantidad de tickets</label>
+    <input type="number" >
 
-      <div class="row">
+    <h3>Código Promocional</h3>
+    <input type="text" placeholder="Ingrese código">
+
+    <h3>Información de Pago</h3>
+
+    <label>Titular tarjeta</label>
+    <input type="text">
+
+    <label>Apellido tarjeta</label>
+    <input type="text">
+
+    <label>Número tarjeta</label>
+    <input type="text">
+
+    <div class="short-group">
         <div>
-          <label>Fecha expiración</label>
-          <input type="text" placeholder="MM/AA" required>
+            <label>Expiración</label>
+            <input type="text" placeholder="MM/AA">
         </div>
         <div>
-          <label>Código seguridad</label>
-          <input type="text" required>
+            <label>Seguridad (CVC)</label>
+            <input type="text">
         </div>
-      </div>
-
-      <div class="row">
-        <div>
-          <label>Correo electrónico</label>
-          <input type="email" required>
-        </div>
-        <div>
-          <label>Teléfono</label>
-          <input type="tel" required>
-        </div>
-      </div>
-
-      <label>Documento identidad</label>
-      <input type="text" required>
-
-      <button class="submit-btn">Completar orden</button>
     </div>
-  </div>
+
+    <label>Correo electrónico</label>
+    <input type="email">
+
+    <label>Teléfono</label>
+    <input type="text">
+
+    <button>Completar orden</button>
+</div>
+
+
 
   <footer class="site-footer">
     <div class="container footer-grid">
@@ -164,5 +150,6 @@
       <p class="footer-copy">Copyright © 2025 UTCKET EL SALVADOR, S.A. DE C.V.</p>
     </div>
   </footer>
+  
 </body>
 </html>
