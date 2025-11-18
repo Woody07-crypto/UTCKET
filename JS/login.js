@@ -38,7 +38,7 @@ async function loginAdministrador(username, passwordNumber) {
   const q = query(
     colRef,
     where("Nombre", "==", username),
-    where("Contrasena", "==", passwordNumber)
+    where("Contraseña", "==", passwordNumber)
   );
 
   const snapshot = await getDocs(q);
@@ -54,13 +54,13 @@ async function loginEmpleado(username, passwordNumber) {
     q = query(
       colRef,
       where("Carnet", "==", Number(username)),
-      where("Contrasena", "==", passwordNumber)
+      where("Contraseña", "==", passwordNumber)
     );
   } else {
     q = query(
       colRef,
       where("Nombre", "==", username),
-      where("Contrasena", "==", passwordNumber)
+      where("Contraseña", "==", passwordNumber)
     );
   }
 
@@ -74,7 +74,7 @@ async function loginCliente(username, passwordNumber) {
   const q = query(
     colRef,
     where("Nombre", "==", username),
-    where("Contrasena", "==", passwordNumber)
+    where("Contraseña", "==", passwordNumber)
   );
 
   const snapshot = await getDocs(q);
