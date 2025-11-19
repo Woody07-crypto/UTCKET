@@ -1,14 +1,13 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Nosotros | UTCKET</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="CSS/estiloNosotros.css" />
-  <link rel="stylesheet" href="CSS/base.css">
-  <link rel="stylesheet" href="CSS/nav.css">
-  <link rel="stylesheet" href="CSS/footer.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="CSS/login.css">
+    <link rel="stylesheet" href="CSS/nav.css">
+    <link rel="stylesheet" href="CSS/footer.css">
+    <link rel="stylesheet" href="CSS/base.css">
+    <title>Login</title>
 </head>
 <body>
 <header class="site-header">
@@ -29,71 +28,42 @@
         <div class="menu" id="menu">
             <a href="index.html" class="menu__link">Nosotros</a>
             <a href="contacto.html" class="menu__link">Contacto</a>
-            <a href="login.html" class="btn-nav menu__link">Eventos</a>
         </div>
     </nav>
     
     <!-- Overlay para cerrar el menú al hacer clic fuera -->
     <div class="menu-overlay" id="menuOverlay"></div>
 </header>
-
-  <section class="hero">
-    <img src="img/fondoNosotros.png" alt="" class="hero__bg">
-    <div class="hero__overlay"></div>
-    <div class="container hero__content">
-      <h1 class="hero__title">¿Quiénes somos?</h1>
-      <div class="hero__actions">
-        <a id="comprar" href="#comprar" class="btn btn--primary">Comprar Ticket</a>
-        <a href="#leer-mas" class="btn btn--ghost">Leer más</a>
-      </div>
+    <div id="login_container">
+    <h1>Iniciar Sesión</h1>
+    <div id="form_container">
+    <form action="/login" method="post">
+        <div>
+        <label id="user" for="usuarios">Seleccione el tipo de usuario</label>
+        <select id="tipo_de_usuario" name="tipo_de_usuario">
+            <option disabled selected>Seleccionar</option>
+            <option>Administrador</option>
+            <option>Empleado</option>
+            <option>Cliente</option>
+        </select>
+        </div>
+        <div id="campos">
+        <div id="usuario">
+        <label  for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+        </div>
+        <div id="contra">
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+        </div>
+        </div>
+        <div>
+        <button id="button" type="submit">Ingresar</button>
+        </div>
+    </form>
     </div>
-  </section>
-
-  <section class="about-block">
-    <div class="container about-block__grid">
-      <div class="about-block__media">
-        <img src="img/IconoFamilia.png" alt="Personas" class="about-block__img">
-      </div>
-      <div class="about-block__info">
-        <h2 class="about-block__kicker">Desde 2025</h2>
-        <h4 class="about-block__text">Los mejores conciertos de la ciudad a tu alcance, más sencillo y fácil. UTCKET es el e-commerce de conciertos que conecta a los fans con los mejores eventos de la ciudad.</h4>
-        <a id="contacto" href="contacto.html" class="btn btn--primary">Contáctanos</a>
-      </div>
     </div>
-  </section>
-
-  <section class="reason">
-    <div class="container reason__inner">
-      <div>
-        <h2 class="reason__title">UTCKET nació porque tú lo pediste. </h2>
-        <h4 class="reason__subtitle">Desde 2025 facilitamos descubrir shows, comparar opciones y comprar boletos 100% oficiales con pago seguro y entrega inmediata en QR. Surgimos de la necesidad de ofrecer preventas, paquetes especiales y soporte cercano para que llegués a tu asiento sin filas ni complicaciones. Nuestro objetivo: hacer que cada concierto sea simple, rápido y confiable.</h4>
-      </div>
-      <a href="contacto.html" class="btn btn--primary">Contáctanos</a>
-    </div>
-  </section>
-
-  <section class="promo-carrusel">
-  <div class="container">
-    <div class="iciel-carrusel-grid">
-      <a href="#" class="iciel-carrusel-grid__item iciel-carrusel-grid__item--1"
-         style="background-image: url('img/promo-izquierda.jpg');"
-         role="img" aria-label="Promoción ICI izquierda">
-      </a>
-
-      <a href="#" class="iciel-carrusel-grid__item iciel-carrusel-grid__item--2"
-         style="background-image: url('img/promo-centro.jpg');"
-         role="img" aria-label="Promoción ICI centro">
-      </a>
-
-      <a href="#" class="iciel-carrusel-grid__item iciel-carrusel-grid__item--3"
-         style="background-image: url('img/promo-derecha.jpg');"
-         role="img" aria-label="Promoción ICI derecha">
-      </a>
-    </div>
-  </div>
-</section>
-
-  <footer class="site-footer">
+    <footer class="site-footer">
   <div class="container footer-grid">
 
     <div class="footer-brand">
@@ -157,5 +127,6 @@
     <p class="footer-copy">Copyright © 2025 UTCKET EL SALVADOR, S.A. DE C.V.</p>
   </div>
   </footer>
+  <script type="module" src="JS/login.js"></script>
 </body>
 </html>

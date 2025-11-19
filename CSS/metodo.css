@@ -1,0 +1,90 @@
+    .payment-container {
+      display: flex;
+      padding: 20px;
+      background: white;
+      margin: 40px auto;
+      max-width: 900px;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    }
+
+    .left-panel { 
+      flex: 1; 
+      font-size: 14px; 
+      padding-right: 20px; 
+      border-right: 1px solid #ddd; 
+    }
+    
+    .right-panel { 
+      flex: 2; 
+      padding-left: 20px; 
+    }
+
+    label { 
+      display: block; 
+      margin: 8px 0 4px; 
+      font-weight: bold; 
+      font-size: 13px; 
+    }
+    
+    input { 
+      width: 100%; 
+      padding: 10px; 
+      margin-bottom: 15px; 
+      border: 1px solid #ccc; 
+      border-radius: 4px; 
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .row { 
+      display: flex; 
+      gap: 10px; 
+    }
+    
+    .row input { 
+      flex: 1; 
+    }
+
+    .submit-btn { 
+      background-color: var(--c-teal); 
+      color: white; 
+      font-size: 16px; 
+      border: none; 
+      border-radius: 5px; 
+      padding: 12px 20px; 
+      cursor: pointer; 
+      margin-top: 10px; 
+      width: 100%;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 600;
+    }
+    
+    .submit-btn:hover { 
+      background-color: #008c96; 
+    }
+
+    .total { 
+      font-size: 24px; 
+      font-weight: bold; 
+      margin: 10px 0; 
+      color: var(--c-teal);
+    }
+    
+    .comision { 
+      font-size: 14px; 
+      color: #555; 
+    }
+
+    .localidad-flag { 
+      font-size: 14px; 
+      color: var(--c-teal); 
+      margin-bottom: 8px; 
+      font-weight: 600;
+    }
+    
+    .payment-title {
+      text-align: center;
+      color: var(--c-teal);
+      margin: 20px 0;
+      font-size: 28px;
+    }

@@ -6,23 +6,36 @@
   <title>Contacto</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="CSS/stylecontacto.css" />
-  <link rel="stylesheet" href="CSS/footer.css" />
+  <link rel="stylesheet" href="CSS/base.css">
+  <link rel="stylesheet" href="CSS/nav.css">
+  <link rel="stylesheet" href="CSS/footer.css">
 </head>
 <body>
-    <header class="site-header">
-        <div class="container nav">
-            <a class="brand" href="index.html">
-                <img src="img/Ticket_icon.png" alt="UTCKET Logo" class="brand__icon">
-                <span class="brand__name">UTCKET</span>
-            </a>
-            
-            <nav class="menu">
-                <a href="index.html" class="menu__link">Home</a>
-                <a href="contacto.html" class="menu__link">Contacto</a>
-                <a href="comprar_boleto.html" class="btn btn--outline">Comprar boleto</a>
-            </nav>
+<header class="site-header">
+    <nav class="nav">
+        <a href="index.html" class="brand">
+            <img src="img/Ticket_icon.png" alt="UTCKET" class="brand__icon">
+            <span class="brand__name">UTCKET</span>
+        </a>
+        
+        <!-- Botón hamburguesa -->
+        <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <!-- Menú de navegación -->
+        <div class="menu" id="menu">
+            <a href="index.html" class="menu__link">Nosotros</a>
+            <a href="contacto.html" class="menu__link">Contacto</a>
+            <a href="login.html" class="btn-nav menu__link">Eventos</a>
         </div>
-    </header>
+    </nav>
+    
+    <!-- Overlay para cerrar el menú al hacer clic fuera -->
+    <div class="menu-overlay" id="menuOverlay"></div>
+</header>
     <section class="hero">
         <img src="img/fondoNosotros.png" alt="Conciertos" class="hero__bg">
         <div class="hero__overlay"></div>

@@ -5,31 +5,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UTCKET</title>
     <link rel="stylesheet" href="CSS/StyleHome.css">
+    <link rel="stylesheet" href="CSS/base.css">
+    <link rel="stylesheet" href="CSS/nav.css">
     <link rel="stylesheet" href="CSS/footer.css">
 </head>
 <body>
     <div class="wrapper">
     <section id="primary">
         <article>
-            <nav id="nav1">
-                <div class="logo">
-                    <img src="img/Ticket_icon.png" alt="Logo">
-                    <h1>UTCKET</h1>
-                </div>
-                <div class="links">
-                    <a href="index.html">Inicio</a>
-                    <a href="calendario.html">Calendario</a>
-                    <a href="nosotros.html">Nosotros</a>
-                    <a href="contacto.html" class="menu__link">Contacto</a>
-                    <a id="btn_compra" class="menu__link menu__btn" href="comprar_boleto.html">Comprar boleto</a>
-                </div>
-            </nav>
+<header class="site-header">
+    <nav class="nav">
+        <a href="index.html" class="brand">
+            <img src="img/Ticket_icon.png" alt="UTCKET" class="brand__icon">
+            <span class="brand__name">UTCKET</span>
+        </a>
+        
+        <!-- Botón hamburguesa -->
+        <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <!-- Menú de navegación -->
+        <div class="menu" id="menu">
+            <a href="index.html" class="menu__link">Nosotros</a>
+            <a href="contacto.html" class="menu__link">Contacto</a>
+            <a href="login.html" class="btn-nav menu__link">Eventos</a>
+        </div>
+    </nav>
+    
+    <!-- Overlay para cerrar el menú al hacer clic fuera -->
+    <div class="menu-overlay" id="menuOverlay"></div>
+</header>
 
             <section id="main">
                 <div id="image-container">
                     <img src="img/Badbunny.png" alt="">
                 </div>
                 <div id="text-container">
+                    <h3 class="tour-title">Bad Bunny DTMF Tour en El Salvador</h3>
                     <h2>San Salvador</h2>
                     <a href="comprar_boleto.html" class="btn btn--filled">Comprar Ticket</a>
                     <a href="#leer-mas" class="btn btn--outline">Leer más</a>

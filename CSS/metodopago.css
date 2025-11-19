@@ -1,0 +1,124 @@
+/* CONTENEDOR */
+.checkout-container {
+    max-width: 500px;
+    margin: 40px auto;
+    padding: 25px;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    font-family: 'Inter', sans-serif;
+}
+
+/* TITULOS */
+.checkout-container h2 {
+    font-size: 26px;
+    margin-bottom: 20px;
+    font-weight: 700;
+    color: #111;
+}
+
+.checkout-container h3 {
+    margin-top: 25px;
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+}
+
+/* TOTAL */
+.total-box {
+    background: #f8f9fa;
+    padding: 18px 20px;
+    border-radius: 12px;
+    margin-bottom: 25px;
+    border: 1px solid #e3e3e3;
+}
+
+.total-box h3 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 700;
+    color: #111;
+}
+
+.total-amount {
+    font-size: 28px;
+    font-weight: 800;
+    margin-top: 5px;
+    color: #1f2937;
+}
+
+/* LABELS */
+.checkout-container label {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 6px;
+    font-weight: 600;
+    color: #444;
+}
+
+/* INPUTS */
+.checkout-container input {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid #d6d6d6;
+    border-radius: 10px;
+    font-size: 14px;
+    margin-bottom: 15px;
+    outline: none;
+    transition: all .2s ease;
+}
+
+.checkout-container input:focus {
+    border-color: #4e73df;
+    box-shadow: 0 0 5px rgba(78,115,223,0.3);
+}
+
+/* INPUTS CORTOS */
+.short-group {
+    display: flex;
+    gap: 10px;
+}
+
+.short-group input {
+    flex: 1;
+}
+
+/* BOTÓN */
+.checkout-container button {
+    width: 100%;
+    padding: 14px;
+    background: #111827;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: .2s ease;
+}
+
+.checkout-container button:hover {
+    background: #374151;
+}
+
+/* RESPONSIVE */
+@media (max-width: 480px) {
+    .checkout-container {
+        margin: 20px;
+        padding: 20px;
+    }
+
+.error-msg {
+    color: #e11d48;
+    font-size: 13px;
+    margin-top: 4px;
+}
+
+.input-error {
+    border: 1px solid #e11d48 !important;
+    background: #ffeef1 !important;
+}
+
+}
+
+

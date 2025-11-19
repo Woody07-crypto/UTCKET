@@ -1,0 +1,252 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Variables de colores */
+:root {
+    --c-teal: #00a8a8;
+    --c-indigo: #2230cc;
+    --c-white: #ffffff;
+    --c-gray-light: #f0f0f0;
+}
+
+/* Base styles for header structure */
+.admin-page .site-header {
+    position: relative;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    background-color: var(--c-teal);
+}
+
+.admin-page .nav {
+    display: flex;
+    align-items: center;
+    padding: 0;
+    max-width: 100%;
+    margin: 0;
+    height: 80px;
+}
+
+.admin-page .brand {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    gap: 12px;
+    text-decoration: none;
+    color: #fff;
+}
+
+.admin-page .brand > div:first-child {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    flex: 1;
+    height: 100%;
+    padding-left: 0;
+    border-right: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.admin-page .brand > div:last-child {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    height: 100%;
+    border-left: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.admin-page .brand__icon {
+    width: 40px;
+    height: 40px;
+    filter: brightness(0) saturate(100%) invert(67%) sepia(89%) saturate(1000%) hue-rotate(150deg) brightness(1.2);
+}
+
+.admin-page .brand__name {
+    font-size: 24px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+
+
+@media (max-width: 1024px) {
+    .admin-page .nav {
+        height: 70px;
+    }
+
+    .admin-page .brand > div:first-child {
+        padding-left: 0;
+    }
+
+    .admin-page .brand__name {
+        font-size: 20px;
+    }
+
+    .admin-page .brand__icon {
+        width: 36px;
+        height: 36px;
+    }
+}
+
+@media (max-width: 768px) {
+    .admin-page .nav {
+        height: 60px;
+    }
+
+    .admin-page .brand > div:first-child {
+        padding-left: 0;
+        gap: 8px;
+    }
+
+    .admin-page .brand__icon {
+        width: 32px;
+        height: 32px;
+    }
+
+    .admin-page .brand__name {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 480px) {
+    .admin-page .nav {
+        height: 55px;
+    }
+
+    .admin-page .brand > div:first-child {
+        padding-left: 0;
+        gap: 6px;
+    }
+
+    .admin-page .brand__icon {
+        width: 28px;
+        height: 28px;
+    }
+
+    .admin-page .brand__name {
+        font-size: 16px;
+    }
+}
+
+
+
+/* Estilos para el formulario */
+.section-title {
+    font-size: 28px;
+    font-weight: 700;
+    color: #1a3a5c;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.add-concert-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 8px;
+}
+
+.add-concert-form label {
+    font-weight: 600;
+    color: #1a3a5c;
+    font-size: 14px;
+    margin-bottom: 5px;
+    display: block;
+}
+
+.add-concert-form input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    background-color: #fff;
+}
+
+.add-concert-form input:focus {
+    outline: none;
+    border-color: var(--c-teal);
+    box-shadow: 0 0 0 3px rgba(0, 168, 168, 0.1);
+}
+
+.add-concert-form input::placeholder {
+    color: #999;
+    font-size: 13px;
+}
+
+.add-concert-form small {
+    color: #666;
+    font-size: 12px;
+    margin-top: -15px;
+    display: block;
+}
+
+.add-concert-form .btn-agregar {
+    margin-top: 10px;
+    width: fit-content;
+}
+
+/* Organizar campos en fila (para formularios compactos) */
+.form-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    width: 100%;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.add-concert-form .instruccion {
+    font-size: 12px;
+    color: #888;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+.add-concert-form .btn-agregar {
+    background-color: var(--c-teal);
+    color: var(--c-white);
+    text-align: center;
+    border: none;
+    padding: 12px 40px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin: 0 auto;
+    display: block; 
+}
+
+.add-concert-form .btn-agregar:hover {
+    background-color: var(--c-indigo);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .add-concert-form {
+        padding: 20px;
+    }
+    
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+}
+
