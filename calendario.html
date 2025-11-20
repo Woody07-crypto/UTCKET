@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="CSS/base.css">
     <link rel="stylesheet" href="CSS/nav.css">
     <link rel="stylesheet" href="CSS/footer.css">
+    <link rel="stylesheet" href="CSS/SeccionCarrusel.css" />
     <title>Calendario de Eventos - UTCKET</title>
 </head>
 <body>
@@ -207,6 +208,26 @@
             </div>
         </section>
     </div>
+     <section class="promo-carrusel">
+  <div class="container">
+    <div class="iciel-carrusel-grid">
+      <a href="#" class="iciel-carrusel-grid__item iciel-carrusel-grid__item--1"
+         style="background-image: url('img/imaArte4.webp');"
+         role="img" aria-label="Promoción ICI izquierda">
+      </a>
+
+      <a href="#" class="iciel-carrusel-grid__item iciel-carrusel-grid__item--2"
+         style="background-image: url('img/imaArte5.webp');"
+         role="img" aria-label="Promoción ICI centro">
+      </a>
+
+      <a href="#" class="iciel-carrusel-grid__item iciel-carrusel-grid__item--3"
+         style="background-image: url('img/imaArte3.png');"
+         role="img" aria-label="Promoción ICI derecha">
+      </a>
+    </div>
+  </div>
+</section>
     <footer class="site-footer">
   <div class="container footer-grid">
 
@@ -271,6 +292,20 @@
     <p class="footer-copy">Copyright © 2025 UTCKET EL SALVADOR, S.A. DE C.V.</p>
   </div>
   </footer>
-  <script src="JS/menu.js"></script>
+
+  <!-- Firebase SDK -->
+<script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-firestore.js"></script>
+
+
+<script src="JS/firebaseConfig.js"></script>
+
+<!-- Lógica del menú -->
+<script src="JS/menu.js"></script>
+
+
+<script src="JS/calendario.js"></script>
+
+
 </body>
 </html>
