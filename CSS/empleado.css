@@ -54,7 +54,6 @@ button {
     cursor: pointer;
 }
 
-/* Panel del empleado */
 .panel-container {
     padding: 2rem;
     max-width: 800px;
@@ -84,7 +83,7 @@ button {
     margin-top: 1rem;
 }
 
-/* Botón de Logout */
+
 .menu__logout {
     background: darkblue;
     border: none;
@@ -99,4 +98,173 @@ button {
 
 .menu__logout:hover {
     background: #e63939;
+}
+
+/* GRID de cards */
+.cards-conciertos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+    gap: 25px;
+    padding: 20px 0;
+}
+
+/* Card */
+.card-concierto {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+    transition: 0.25s ease;
+    border: 1px solid #eee;
+}
+
+.card-concierto:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.18);
+}
+
+/* Texto */
+.card-concierto p {
+    font-size: 15px;
+    margin: 6px 0;
+}
+
+.card-concierto strong {
+    color: #2b2b2b;
+}
+
+/* Botones */
+.card-btns {
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.btn-editar, .btn-eliminar {
+    border: none;
+    padding: 8px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.btn-editar {
+    background: #007bff;
+    color: white;
+}
+
+.btn-eliminar {
+    background: #ff3b3b;
+    color: white;
+}
+
+/* formulario*/ 
+.form-card {
+    background: #ffffff;
+    border-radius: 14px;
+    padding: 25px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+    margin-top: 25px;
+}
+
+
+.form-title {
+    text-align: center;
+    font-size: 22px;
+    margin-bottom: 20px;
+    font-weight: bold;
+    color: #1d3557;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 20px;
+}
+
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group.full {
+    grid-column: 1 / -1;
+}
+
+
+.form-group label {
+    margin-bottom: 6px;
+    font-weight: bold;
+    color: #333;
+}
+
+.form-group input {
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #bbb;
+    transition: 0.2s;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #1d3557;
+    box-shadow: 0 0 5px rgba(29,53,87,0.3);
+}
+
+.btn-guardar.full {
+    grid-column: 1 / -1;
+    background-color: #1d3557;
+    color: white;
+    font-size: 16px;
+    padding: 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    border: none;
+    margin-top: 10px;
+}
+
+.btn-guardar.full:hover {
+       background: linear-gradient(90deg, #00a8a8, #2230cc);
+}
+
+/* Conciertos registrados*/
+
+.eventos_container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 20px;
+}
+
+.evento {
+    background: #fff;
+    padding: 15px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+    text-align: center;
+}
+
+.evento img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.evento h3 {
+    margin: 10px 0;
+}
+
+.evento button {
+    background: #1d3557;
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.evento button:hover {
+    background: #16324f;
 }
