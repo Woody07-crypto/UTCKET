@@ -1,4 +1,3 @@
-
 import {
     collection,
     addDoc,
@@ -19,16 +18,19 @@ const auth = window.auth;
 const db = window.db;
 
 
-
+// =============================================
+//        1. VERIFICAR SESIÓN DEL EMPLEADO
+// =============================================
 onAuthStateChanged(auth, (user) => {
     if (!user) {
-        
         window.location.href = "../login.html";
     }
 });
 
 
-
+// =============================================
+//             2. CERRAR SESIÓN
+// =============================================
 document.getElementById("logoutBtn").addEventListener("click", async () => {
     try {
         await signOut(auth);
@@ -39,29 +41,39 @@ document.getElementById("logoutBtn").addEventListener("click", async () => {
 });
 
 
-
+// =============================================
+//      3. CRUD - COLECCIÓN: Conciertos
+// =============================================
 const listaConciertos = document.getElementById("lista-conciertos");
 const form = document.getElementById("formConcierto");
 
-let idEditando = null; 
+let idEditando = null;
 
 
+// =============================================
+//   LEER Y MOSTRAR CONCIERTOS EN TIEMPO REAL
+// =============================================
+onSnapshot(collection(db, "Conciertos"), (snapshot) => {
 
-onSnapshot(collection(db, "conciertos"), (snapshot) => {
-    listaConciertos.innerHTML = ""; 
+    listaConciertos.innerHTML = ""; // LIMPIA
 
-    snapshot.forEach((docu) => {
-        const concierto = docu.data();
-        const id = docu.id;
+    snapshot.forEach((documento) => {
+        const c = documento.data();
+        const id = documento.id;
 
+    
         const card = document.createElement("div");
-        card.classList.add("fila-concierto");
+        card.classList.add("evento");
+
         card.innerHTML = `
-            <p><strong>Artista:</strong> ${concierto.artista}</p>
-            <p><strong>Fecha:</strong> ${concierto.fecha}</p>
-            <p><strong>Lugar:</strong> ${concierto.lugar}</p>
-            <p><strong>Localidades:</strong> ${concierto.localidades}</p>
-            <p><strong>Precio:</strong> $${concierto.precio}</p>
+            <img src="../img/default_concierto.png" alt="Imagen concierto">
+
+            <h3>${c.artista}</h3>
+
+            <p>📍 ${c.lugar}</p>
+            <p>Fecha: ${c.fecha}</p>
+            <p>Localidades: ${c.localidades}</p>
+            <p>Precio: $${c.precio}</p>
 
             <button class="btn-editar" data-id="${id}">Editar</button>
             <button class="btn-eliminar" data-id="${id}">Eliminar</button>
@@ -74,46 +86,49 @@ onSnapshot(collection(db, "conciertos"), (snapshot) => {
 });
 
 
-
+// =============================================
+//    ACTIVAR BOTONES EDITAR / ELIMINAR
+// =============================================
 function activarBotones() {
+
     // EDITAR
     document.querySelectorAll(".btn-editar").forEach((btn) => {
         btn.addEventListener("click", async (e) => {
             const id = e.target.dataset.id;
 
+            const snap = await getDocs(collection(db, "Conciertos"));
+            snap.forEach((docu) => {
+                if (docu.id === id) {
+                    const c = docu.data();
+                    form.artista.value = c.artista;
+                    form.fecha.value = c.fecha;
+                    form.lugar.value = c.lugar;
+                    form.localidades.value = c.localidades;
+                    form.precio.value = c.precio;
 
-            const snapshot = await getDocs(collection(db, "conciertos"));
-            snapshot.forEach((documento) => {
-                if (documento.id === id) {
-                    const datos = documento.data();
-
-
-                    form.artista.value = datos.artista;
-                    form.fecha.value = datos.fecha;
-                    form.lugar.value = datos.lugar;
-                    form.localidades.value = datos.localidades;
-                    form.precio.value = datos.precio;
-
-                    idEditando = id; 
+                    idEditando = id;
                 }
             });
         });
     });
 
 
+    // ELIMINAR
     document.querySelectorAll(".btn-eliminar").forEach((btn) => {
         btn.addEventListener("click", async (e) => {
             const id = e.target.dataset.id;
 
-            if (confirm("¿Eliminar este concierto?")) {
-                await deleteDoc(doc(db, "conciertos", id));
+            if (confirm("¿Seguro que quieres eliminar este concierto?")) {
+                await deleteDoc(doc(db, "Conciertos", id));
             }
         });
     });
 }
 
 
-
+// =============================================
+//     AGREGAR / EDITAR CONCIERTO
+// =============================================
 form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
@@ -126,18 +141,14 @@ form.addEventListener("submit", async (e) => {
     };
 
     try {
-
         if (idEditando) {
- 
-            await updateDoc(doc(db, "conciertos", idEditando), concierto);
+            await updateDoc(doc(db, "Conciertos", idEditando), concierto);
             idEditando = null;
-
         } else {
-
-            await addDoc(collection(db, "conciertos"), concierto);
+            await addDoc(collection(db, "Conciertos"), concierto);
         }
 
-        form.reset(); // limpiar formulario
+        form.reset();
 
     } catch (error) {
         console.error("Error al guardar:", error);
