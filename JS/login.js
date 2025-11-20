@@ -126,7 +126,7 @@ form.addEventListener("submit", async (e) => {
     } else if (tipo === "Cliente") {
       esValido = await loginCliente(username, passwordNumber);
       if (esValido) {
-        window.location.href = "index.html";
+        window.location.href = "home.html";
         return;
       }
     }
