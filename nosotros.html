@@ -92,6 +92,117 @@
       <a href="contacto.html" class="btn btn--primary">Contáctanos</a>
     </div>
   </section>
+<section class="team-section" aria-labelledby="team-heading">
+  <div class="team-wrap">
+    <h2 id="team-heading" class="team-title">Sesión de Miembros · Desarrollo Web 1</h2>
+    <p class="team-subtitle">Ing. Guillermo Calderon</p>
+
+    <div class="team-grid" role="list">
+      <article class="member-card" role="listitem">
+        <span class="avatar" aria-hidden="true">IV</span>
+        <div class="info">
+          <h3 class="name">Iván Alessandro Vázquez</h3>
+          <p class="role">Miembro</p>
+        </div>
+      </article>
+
+      <article class="member-card" role="listitem">
+        <span class="avatar" aria-hidden="true">AM</span>
+        <div class="info">
+          <h3 class="name">Ariana Marcela Martínez</h3>
+          <p class="role">Miembro</p>
+        </div>
+      </article>
+
+      <article class="member-card" role="listitem">
+        <span class="avatar" aria-hidden="true">YC</span>
+        <div class="info">
+          <h3 class="name">Juleysi Carballo</h3>
+          <p class="role">Miembro</p>
+        </div>
+      </article>
+
+      <article class="member-card" role="listitem">
+        <span class="avatar" aria-hidden="true">DA</span>
+        <div class="info">
+          <h3 class="name">Diego Alberto Años</h3>
+          <p class="role">Miembro</p>
+        </div>
+      </article>
+
+      <article class="member-card" role="listitem">
+        <span class="avatar" aria-hidden="true">AC</span>
+        <div class="info">
+          <h3 class="name">Alejandro Javier Cruz</h3>
+          <p class="role">Miembro</p>
+        </div>
+      </article>
+
+      <article class="member-card" role="listitem">
+        <span class="avatar" aria-hidden="true">DC</span>
+        <div class="info">
+          <h3 class="name">Diego Fernando Castro</h3>
+          <p class="role">Miembro</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<style>
+  .team-section{
+    --deep:#101EAE;
+    --blue:#1DA4D9;
+    --ice:#E7F0FF;
+    --card:#FFFFFF;
+    --ink:#1E2A55;
+    --shadow:0 18px 46px rgba(16,30,174,.12);
+    --radius:18px;
+    background: radial-gradient(1000px 240px at 50% -40%, rgba(29,164,217,.22), transparent 70%), #fff;
+    padding: clamp(28px,6vw,64px) 0;
+    color:var(--ink);
+  }
+  .team-wrap{width:min(1200px,92%);margin-inline:auto}
+  .team-title{
+    margin:0 0 8px;
+    font-weight:900;
+    font-size:clamp(22px,4.4vw,36px);
+    background:linear-gradient(135deg,#0F1C5C, #1DA4D9 55%, #66CBE8);
+    -webkit-background-clip:text;background-clip:text;color:transparent
+  }
+  .team-subtitle{
+    margin:0 0 22px;
+    font-size:clamp(14px,2vw,18px);
+    color:#3A4D8C
+  }
+  .team-grid{
+    display:grid;
+    grid-template-columns:repeat(1,minmax(0,1fr));
+    gap:clamp(12px,2.6vw,20px)
+  }
+  @media (min-width:600px){ .team-grid{grid-template-columns:repeat(2,minmax(0,1fr))} }
+  @media (min-width:992px){ .team-grid{grid-template-columns:repeat(3,minmax(0,1fr))} }
+
+  .member-card{
+    display:flex;align-items:center;gap:14px;
+    padding:18px;
+    background:linear-gradient(180deg,#fff 0%,#fbfdff 100%) padding-box,
+              linear-gradient(135deg,#8AD8F0 0%, #1DA4D9 40%, #101EAE 100%) border-box;
+    border:1px solid transparent;border-radius:var(--radius);
+    box-shadow:var(--shadow);
+    transition:transform .15s ease, box-shadow .15s ease
+  }
+  .member-card:hover{transform:translateY(-2px);box-shadow:0 22px 56px rgba(16,30,174,.16)}
+  .avatar{
+    --s:68px;width:var(--s);height:var(--s);border-radius:50%;
+    display:grid;place-items:center;color:#fff;font-weight:900;font-size:22px;letter-spacing:.02em;
+    background:radial-gradient(120% 120% at 30% 20%, #BDEBFA 0%, #74CDEF 35%, #1DA4D9 55%, #101EAE 100%);
+    border:2px solid #fff;box-shadow:0 10px 24px rgba(16,30,174,.18);user-select:none
+  }
+  .info{min-width:0}
+  .name{margin:0 0 4px;font-weight:800;font-size:clamp(16px,2.4vw,20px);color:#0F1C5C}
+  .role{margin:0;color:#3A4D8C;font-size:14px}
+</style>
 
   <section class="promo-carrusel">
   <div class="container">
