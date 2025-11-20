@@ -18,9 +18,7 @@ const auth = window.auth;
 const db = window.db;
 
 
-// =============================================
-//        1. VERIFICAR SESIÓN DEL EMPLEADO
-// =============================================
+
 onAuthStateChanged(auth, (user) => {
     if (!user) {
         window.location.href = "../login.html";
@@ -28,9 +26,7 @@ onAuthStateChanged(auth, (user) => {
 });
 
 
-// =============================================
-//             2. CERRAR SESIÓN
-// =============================================
+
 document.getElementById("logoutBtn").addEventListener("click", async () => {
     try {
         await signOut(auth);
@@ -41,21 +37,17 @@ document.getElementById("logoutBtn").addEventListener("click", async () => {
 });
 
 
-// =============================================
-//      3. CRUD - COLECCIÓN: Conciertos
-// =============================================
+
 const listaConciertos = document.getElementById("lista-conciertos");
 const form = document.getElementById("formConcierto");
 
 let idEditando = null;
 
 
-// =============================================
-//   LEER Y MOSTRAR CONCIERTOS EN TIEMPO REAL
-// =============================================
+
 onSnapshot(collection(db, "Conciertos"), (snapshot) => {
 
-    listaConciertos.innerHTML = ""; // LIMPIA
+    listaConciertos.innerHTML = ""; 
 
     snapshot.forEach((documento) => {
         const c = documento.data();
@@ -86,12 +78,10 @@ onSnapshot(collection(db, "Conciertos"), (snapshot) => {
 });
 
 
-// =============================================
-//    ACTIVAR BOTONES EDITAR / ELIMINAR
-// =============================================
+
 function activarBotones() {
 
-    // EDITAR
+    
     document.querySelectorAll(".btn-editar").forEach((btn) => {
         btn.addEventListener("click", async (e) => {
             const id = e.target.dataset.id;
@@ -113,7 +103,7 @@ function activarBotones() {
     });
 
 
-    // ELIMINAR
+    
     document.querySelectorAll(".btn-eliminar").forEach((btn) => {
         btn.addEventListener("click", async (e) => {
             const id = e.target.dataset.id;
@@ -126,9 +116,7 @@ function activarBotones() {
 }
 
 
-// =============================================
-//     AGREGAR / EDITAR CONCIERTO
-// =============================================
+
 form.addEventListener("submit", async (e) => {
     e.preventDefault();
 

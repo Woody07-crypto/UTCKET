@@ -3,28 +3,24 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     const db = window.db;
 
-    // ===============================
-    //   ELEMENTOS DEL MENÚ
-    // ===============================
+  
     const menuToggle = document.querySelector(".menu-toggle");
     const menu = document.querySelector(".menu");
     const menuOverlay = document.querySelector(".menu-overlay");
 
-    // ABRIR MENÚ
+    
     menuToggle.addEventListener("click", () => {
         menu.classList.add("menu-open");
         menuOverlay.classList.add("overlay-open");
     });
 
-    // CERRAR MENÚ
+    
     menuOverlay.addEventListener("click", () => {
         menu.classList.remove("menu-open");
         menuOverlay.classList.remove("overlay-open");
     });
 
-    // ===============================
-    //   ELEMENTOS DEL CALENDARIO
-    // ===============================
+
     const eventosLista = document.getElementById("eventos-lista");
     const formBusqueda = document.getElementById("form-busqueda-calendario");
 
@@ -32,9 +28,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     const fLugar = document.getElementById("lugar");
     const fFecha = document.getElementById("fecha");
 
-    // ===============================
-    //   CARGAR EVENTOS DESDE FIRESTORE
-    // ===============================
+
     let todosLosEventos = [];
 
     async function cargarEventos() {
@@ -54,11 +48,9 @@ document.addEventListener("DOMContentLoaded", async function () {
         }
     }
 
-    cargarEventos(); // Ejecutar al inicio
+    cargarEventos(); 
 
-    // ===============================
-    //   MOSTRAR EVENTOS
-    // ===============================
+
     function mostrarEventos(lista) {
         eventosLista.innerHTML = "";
 
@@ -85,29 +77,27 @@ document.addEventListener("DOMContentLoaded", async function () {
         });
     }
 
-    // ===============================
-    //   FILTRAR EVENTOS
-    // ===============================
+  
     function filtrarEventos(e) {
         e.preventDefault();
 
         let filtrados = todosLosEventos;
 
-        // ARTISTA
+    
         if (fArtista.value.trim() !== "") {
             filtrados = filtrados.filter(e =>
                 e.artista.toLowerCase().includes(fArtista.value.trim().toLowerCase())
             );
         }
 
-        // LUGAR
+        
         if (fLugar.value.trim() !== "") {
             filtrados = filtrados.filter(e =>
                 e.lugar.toLowerCase().includes(fLugar.value.trim().toLowerCase())
             );
         }
 
-        // FECHA EXACTA
+        
         if (fFecha.value !== "") {
             const fechaHTML = new Date(fFecha.value + "T00:00:00");
 
