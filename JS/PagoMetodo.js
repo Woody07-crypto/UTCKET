@@ -1,6 +1,4 @@
-// =========================
-//   LECTURA DE URL
-// =========================
+
 function getParams() {
     const urlParams = new URLSearchParams(window.location.search);
     return {
@@ -12,18 +10,14 @@ function getParams() {
 
 const data = getParams();
 
-// =========================
-//   ELEMENTOS DEL DOM
-// =========================
+
 const totalAmount = document.querySelector(".total-amount");
 const cantidadInput = document.querySelector("input[type='number']");
 
 // Si la cantidad viene desde la URL, ponerla en el input
 if (data.cantidad) cantidadInput.value = data.cantidad;
 
-// =========================
-//   CALCULAR TOTAL
-// =========================
+
 function calcularTotal() {
     const cantidad = parseInt(cantidadInput.value) || 1;
     const subtotal = data.precio * cantidad;
@@ -38,9 +32,7 @@ calcularTotal();
 // Recalcular cuando el usuario cambia la cantidad
 cantidadInput.addEventListener("input", calcularTotal);
 
-// =========================
-//   VALIDAR FORMULARIO
-// =========================
+
 const botonPagar = document.querySelector("button");
 
 botonPagar.addEventListener("click", function (e) {
@@ -57,9 +49,7 @@ botonPagar.addEventListener("click", function (e) {
     alert("Compra realizada con éxito. ¡Gracias por su compra!");
 });
 
-// =========================
-//   MENÚ HAMBURGUESA
-// =========================
+
 const menuToggle = document.getElementById("menuToggle");
 const menu = document.getElementById("menu");
 const overlay = document.getElementById("menuOverlay");

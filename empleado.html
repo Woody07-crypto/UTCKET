@@ -20,40 +20,39 @@
                 <span class="brand__name">UTCKET</span>
             </a>
 
-            <!-- Título del panel -->
+
             <span class="panel-title">Panel de Empleado</span>
 
-            <!-- Botón hamburguesa -->
+
             <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">
                 <span></span>
                 <span></span>
                 <span></span>
             </button>
 
-            <!-- Menú de navegación -->
+
             <div class="menu" id="menu">
                 <a href="../index.html" class="menu__link">Inicio</a>
                 <a href="admin-empleado.html" class="menu__link">Conciertos</a>
 
-                <!-- Botón de salir -->
+
                 <button id="logoutBtn" class="menu__link btn-salir">
                     Cerrar sesión
                 </button>
             </div>
         </nav>
 
-        <!-- Overlay -->
+
         <div class="menu-overlay" id="menuOverlay"></div>
     </header>
 
 
-    <!-- LISTA DE CONCIERTOS -->
+
     <section class="contenedor">
         <h3>Conciertos Registrados</h3>
         <div id="lista-conciertos" class="tabla-conciertos"></div>
     </section>
 
-    <!-- FORMULARIO PARA AGREGAR / EDITAR -->
     <section class="contenedor">
         <h3>Agregar / Editar Concierto</h3>
 
@@ -69,33 +68,26 @@
     </section>
 
 
-    <!-- SCRIPTS FIREBASE MODULAR (v9) -->
+
     <script type="module">
-        /* ====================================
-           IMPORTAR LIBRERÍAS DE FIREBASE
-        ===================================== */
+
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
         import { getAuth } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
         import { getFirestore } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-        /* ====================================
-           TRAER CONFIGURACIÓN PERSONAL
-        ===================================== */
+
         import firebaseConfig from "../firebase/firebase-config.js";
 
-        /* ====================================
-           INICIALIZAR FIREBASE
-        ===================================== */
+
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
         const db = getFirestore(app);
 
-        // Hacerlos accesibles para los otros scripts
+
         window.auth = auth;
         window.db = db;
     </script>
 
-    <!-- MENÚ HAMBURGUESA -->
     <script>
         const menuToggle = document.getElementById("menuToggle");
         const menu = document.getElementById("menu");
@@ -112,11 +104,11 @@
         });
     </script>
 
-    <!-- LÓGICA DEL EMPLEADO (CRUD, logout, verificar sesión, etc.) -->
+
     <script type="module" src="empleado.js"></script>
 
     
-    <!-- FOOTER -->
+
     <footer class="site-footer">
         <div class="container footer-grid">
 

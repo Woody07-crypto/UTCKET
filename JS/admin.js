@@ -17,7 +17,7 @@ async function cargarConciertos() {
             return;
         }
         
-        container.innerHTML = ''; // Limpiar contenedor
+        container.innerHTML = '';
         
         querySnapshot.forEach((docSnapshot) => {
             const concierto = docSnapshot.data();
@@ -46,7 +46,7 @@ async function cargarEmpleados() {
             return;
         }
         
-        container.innerHTML = ''; // Limpiar contenedor
+        container.innerHTML = ''; 
         
         querySnapshot.forEach((docSnapshot) => {
             const empleado = docSnapshot.data();
@@ -66,7 +66,7 @@ function crearTarjetaConcierto(id, concierto) {
     const card = document.createElement('div');
     card.className = 'concierto-card';
     
-    // Manejar arrays de localidades y cantidades
+    
     let localidadesHTML = '';
     if (concierto.Localidades && Array.isArray(concierto.Localidades)) {
         concierto.Localidades.forEach((localidad, index) => {
@@ -118,7 +118,7 @@ function formatearFecha(fecha) {
     if (!fecha) return 'N/A';
     
     try {
-        // Si es un Timestamp de Firestore
+        
         if (fecha.seconds) {
             const date = new Date(fecha.seconds * 1000);
             return date.toLocaleDateString('es-ES', { 
@@ -130,7 +130,7 @@ function formatearFecha(fecha) {
             });
         }
         
-        // Si es una cadena de fecha
+        
         const date = new Date(fecha);
         return date.toLocaleDateString('es-ES', { 
             year: 'numeric', 
@@ -166,14 +166,14 @@ window.eliminarEmpleado = async function(id) {
     try {
         await deleteDoc(doc(db, 'Empleado', id));
         alert('Empleado eliminado exitosamente');
-        cargarEmpleados(); // Recargar lista
+        cargarEmpleados(); 
     } catch (error) {
         console.error('Error al eliminar empleado:', error);
         alert('❌ Error al eliminar empleado: ' + error.message);
     }
 }
 
-// Cargar datos al iniciar
+
 console.log("⏳ Esperando DOMContentLoaded...");
 document.addEventListener('DOMContentLoaded', () => {
     console.log("DOM cargado, iniciando carga de datos...");

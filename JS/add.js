@@ -3,7 +3,7 @@ import { collection, addDoc, serverTimestamp } from "https://www.gstatic.com/fir
 
 console.log("add.js cargado correctamente");
 
-// ==================== AGREGAR CONCIERTO ====================
+
 const formConcierto = document.getElementById('form-concierto');
 
 if (formConcierto) {
@@ -27,7 +27,7 @@ if (formConcierto) {
             const cantidades = cantidadesRaw.split(',').map(s => parseInt(s.trim())).filter(n => !isNaN(n));
             const precios = preciosRaw.split(',').map(s => parseFloat(s.trim())).filter(n => !isNaN(n));
             
-            // Validaciones
+            
             if (!artista || !fecha || !lugar) {
                 alert('❌ Por favor completa todos los campos obligatorios');
                 return;
@@ -43,7 +43,7 @@ if (formConcierto) {
                 return;
             }
             
-            // Crear objeto del concierto con los nombres exactos de Firebase
+            
             const conciertoData = {
                 Artista: artista,
                 Fecha: fecha,
@@ -56,16 +56,16 @@ if (formConcierto) {
             
             console.log("Datos a enviar:", conciertoData);
             
-            // Agregar a Firestore
+            
             const docRef = await addDoc(collection(db, 'Conciertos'), conciertoData);
             
             console.log("Concierto agregado con ID:", docRef.id);
             alert('¡Concierto agregado exitosamente!');
             
-            // Limpiar formulario
+           
             this.reset();
             
-            // Opcional: Redirigir a la página de admin después de 1 segundo
+            
             setTimeout(() => {
                 window.location.href = 'admin.html';
             }, 1000);
@@ -77,7 +77,7 @@ if (formConcierto) {
     });
 }
 
-// ==================== AGREGAR EMPLEADO ====================
+
 const formEmpleado = document.getElementById('form-empleado');
 
 if (formEmpleado) {
@@ -88,13 +88,13 @@ if (formEmpleado) {
         console.log("Intentando agregar empleado...");
         
         try {
-            // Obtener valores del formulario
+            
             const nombre = document.getElementById('emp-first').value.trim();
             const apellido = document.getElementById('emp-last').value.trim();
             const carnet = document.getElementById('emp-carnet').value.trim();
             const password = document.getElementById('emp-password').value;
             
-            // Validaciones
+            
             if (!nombre || !apellido || !carnet || !password) {
                 alert('❌ Por favor completa todos los campos');
                 return;
@@ -105,27 +105,27 @@ if (formEmpleado) {
                 return;
             }
             
-            // Crear objeto del empleado con los nombres exactos de Firebase
+            
             const empleadoData = {
                 Nombre: nombre,
                 Apellido: apellido,
                 Carnet: carnet,
-                Password: password, // En producción, deberías encriptar esto
+                Password: password, 
                 fechaCreacion: serverTimestamp()
             };
             
-            console.log("Datos a enviar:", { ...empleadoData, Password: '****' }); // No mostrar password en log
+            console.log("Datos a enviar:", { ...empleadoData, Password: '****' }); 
             
-            // Agregar a Firestore
+            
             const docRef = await addDoc(collection(db, 'Empleado'), empleadoData);
             
             console.log("Empleado agregado con ID:", docRef.id);
             alert('¡Empleado agregado exitosamente!');
             
-            // Limpiar formulario
+            
             this.reset();
             
-            // Opcional: Redirigir a la página de admin después de 1 segundo
+            
             setTimeout(() => {
                 window.location.href = 'admin.html';
             }, 1000);

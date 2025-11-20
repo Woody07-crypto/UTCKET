@@ -1,6 +1,4 @@
-// =============================================
-//            IMPORTS FIREBASE v9
-// =============================================
+
 import {
     collection,
     addDoc,
@@ -16,25 +14,21 @@ import {
     signOut
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
-// auth y db vienen desde HTML (window.auth/db)
+
 const auth = window.auth;
 const db = window.db;
 
 
-// =============================================
-//        1. VERIFICAR SESIÓN DEL EMPLEADO
-// =============================================
+
 onAuthStateChanged(auth, (user) => {
     if (!user) {
-        // Si no hay usuario autenticado → fuera
+        
         window.location.href = "../login.html";
     }
 });
 
 
-// =============================================
-//             2. CERRAR SESIÓN
-// =============================================
+
 document.getElementById("logoutBtn").addEventListener("click", async () => {
     try {
         await signOut(auth);
@@ -45,20 +39,16 @@ document.getElementById("logoutBtn").addEventListener("click", async () => {
 });
 
 
-// =============================================
-//      3. CRUD - COLECCIÓN: CONCIERTOS
-// =============================================
+
 const listaConciertos = document.getElementById("lista-conciertos");
 const form = document.getElementById("formConcierto");
 
-let idEditando = null; // si NO es null → estamos editando
+let idEditando = null; 
 
 
-// =============================================
-//      LEER Y MOSTRAR CONCIERTOS EN TIEMPO REAL
-// =============================================
+
 onSnapshot(collection(db, "conciertos"), (snapshot) => {
-    listaConciertos.innerHTML = ""; // limpiar antes de renderizar
+    listaConciertos.innerHTML = ""; 
 
     snapshot.forEach((docu) => {
         const concierto = docu.data();
@@ -84,35 +74,33 @@ onSnapshot(collection(db, "conciertos"), (snapshot) => {
 });
 
 
-// =============================================
-//    ACTIVAR BOTONES EDITAR Y ELIMINAR
-// =============================================
+
 function activarBotones() {
     // EDITAR
     document.querySelectorAll(".btn-editar").forEach((btn) => {
         btn.addEventListener("click", async (e) => {
             const id = e.target.dataset.id;
 
-            // obtener datos actuales
+
             const snapshot = await getDocs(collection(db, "conciertos"));
             snapshot.forEach((documento) => {
                 if (documento.id === id) {
                     const datos = documento.data();
 
-                    // llenar formulario
+
                     form.artista.value = datos.artista;
                     form.fecha.value = datos.fecha;
                     form.lugar.value = datos.lugar;
                     form.localidades.value = datos.localidades;
                     form.precio.value = datos.precio;
 
-                    idEditando = id; // activar modo edición
+                    idEditando = id; 
                 }
             });
         });
     });
 
-    // ELIMINAR
+
     document.querySelectorAll(".btn-eliminar").forEach((btn) => {
         btn.addEventListener("click", async (e) => {
             const id = e.target.dataset.id;
@@ -125,9 +113,7 @@ function activarBotones() {
 }
 
 
-// =============================================
-//             AGREGAR / EDITAR
-// =============================================
+
 form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
@@ -142,16 +128,12 @@ form.addEventListener("submit", async (e) => {
     try {
 
         if (idEditando) {
-            // =============================
-            //         EDITAR
-            // =============================
+ 
             await updateDoc(doc(db, "conciertos", idEditando), concierto);
             idEditando = null;
 
         } else {
-            // =============================
-            //        AGREGAR NUEVO
-            // =============================
+
             await addDoc(collection(db, "conciertos"), concierto);
         }
 
