@@ -1,66 +1,76 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="CSS/agregar_admin.css">
-    <title>Agregar Conciertos</title>
+    <link rel="stylesheet" href="CSS/admin.css">
+    <title>Agregar Concierto</title>
 </head>
 <body class="admin-page">
     <header class="site-header">
         <nav class="nav">
             <div class="brand">
                 <div class="brand-logo-container">
-                <img src="img/Ticket_icon.png" alt="UTCKET" class="brand__icon">
-                <span class="brand__name" id="nav_admin">UTCKET</span>
+                    <img src="img/Ticket_icon.png" alt="UTCKET" class="brand__icon">
+                    <span class="brand__name">UTCKET</span>
                 </div>
                 <div class="brand-admin-container">
-                <span class="brand__name" id="nav_admin">Administrador</span>
+                    <span class="brand__name">Administrador</span>
                 </div>
             </div>
         </nav>
     </header>
-<div class="section section-left">
-    <h2 class="section-title">Agregar Nuevo Concierto</h2>
-    <form class="add-concert-form">
-        <div class="form-row">
-            <div class="form-group">
-                <label for="artist-name">Nombre del Artista:</label>
-                <input type="text" id="artist-name" name="artist-name" placeholder="Ej: Danny Ocean" required>
+
+    <div class="admin-container">
+        <div class="content-wrapper">
+            <div class="section section-left" style="width: 100%; align-items: center;">
+                <h2 class="section-title">Agregar Nuevo Concierto</h2>
+                <form id="form-concierto" style="width: 100%; max-width: 900px; background: white; padding: 30px; border-radius: 10px; display: flex; flex-direction: column; gap: 20px;">
+                    
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                        <div>
+                            <label for="artist-name" style="display: block; font-weight: 600; margin-bottom: 8px; color: #1a3a5c;">Nombre del Artista:</label>
+                            <input type="text" id="artist-name" name="artist-name" placeholder="Ej: Danny Ocean" required style="width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 6px; font-size: 14px;">
+                        </div>
+                        
+                        <div>
+                            <label for="concert-date" style="display: block; font-weight: 600; margin-bottom: 8px; color: #1a3a5c;">Fecha del Concierto:</label>
+                            <input type="datetime-local" id="concert-date" name="concert-date" required style="width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 6px; font-size: 14px;">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label for="concert-venue" style="display: block; font-weight: 600; margin-bottom: 8px; color: #1a3a5c;">Lugar del Concierto:</label>
+                        <input type="text" id="concert-venue" name="concert-venue" placeholder="Ej: Parque de pelota Saturnino Bengoa - San Salvador" required style="width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 6px; font-size: 14px;">
+                    </div>
+
+                    <div>
+                        <label for="venue-seats" style="display: block; font-weight: 600; margin-bottom: 8px; color: #1a3a5c;">Localidades (separadas por coma):</label>
+                        <input type="text" id="venue-seats" name="venue-seats" placeholder="Ej: Ultra Fan, VIP, General" required style="width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 6px; font-size: 14px;">
+                        <small style="display: block; color: #888; font-size: 12px; margin-top: 5px;">Ingresa las localidades separadas por comas</small>
+                    </div>
+
+                    <div>
+                        <label for="ticket-quantity" style="display: block; font-weight: 600; margin-bottom: 8px; color: #1a3a5c;">Cantidad de Tickets (separados por coma):</label>
+                        <input type="text" id="ticket-quantity" name="ticket-quantity" placeholder="Ej: 500, 100, 500, 300" required style="width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 6px; font-size: 14px;">
+                        <small style="display: block; color: #888; font-size: 12px; margin-top: 5px;">Cantidades correspondientes a cada localidad</small>
+                    </div>
+
+                    <div>
+                        <label for="ticket-prices" style="display: block; font-weight: 600; margin-bottom: 8px; color: #1a3a5c;">Precios (separados por coma):</label>
+                        <input type="text" id="ticket-prices" name="ticket-prices" placeholder="Ej: 120, 75, 50, 30" required style="width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 6px; font-size: 14px;">
+                        <small style="display: block; color: #888; font-size: 12px; margin-top: 5px;">Precios correspondientes a cada localidad</small>
+                    </div>
+
+                    <div style="display: flex; gap: 10px; justify-content: center; margin-top: 20px;">
+                        <button type="submit" class="btn-agregar">Agregar Concierto</button>
+                        <button type="button" class="btn-agregar" onclick="window.location.href='admin.html'" style="background-color: #6c757d;">Cancelar</button>
+                    </div>
+                </form>
             </div>
-            
-            <div class="form-group">
-                <label for="concert-date">Fecha del Concierto:</label>
-                <input type="datetime-local" id="concert-date" name="concert-date" required>
-            </div>
         </div>
+    </div>
 
-        <div class="form-group">
-            <label for="concert-venue">Lugar del Concierto:</label>
-            <input type="text" id="concert-venue" name="concert-venue" placeholder="Ej: Parque de pelota Saturnino Bengoa - San Salvador" required>
-        </div>
-
-        <div class="form-group">
-            <label for="venue-seats">Localidades (separadas por coma):</label>
-            <input type="text" id="venue-seats" name="venue-seats" placeholder="Ej: Ultra Fan, VIP, General" required>
-            <small class="instruccion" >Ingresa las localidades separadas por comas</small>
-        </div>
-
-        <div class="form-group">
-            <label for="ticket-quantity">Cantidad de Tickets (separados por coma):</label>
-            <input type="text" id="ticket-quantity" name="ticket-quantity" placeholder="Ej: 500, 100, 500, 300" required>
-            <small class="instruccion" >Cantidades correspondientes a cada localidad</small>
-        </div>
-
-        <div class="form-group">
-            <label for="ticket-prices">Precios (separados por coma):</label>
-            <input type="text" id="ticket-prices" name="ticket-prices" placeholder="Ej: 120, 75, 50, 30" required>
-            <small class="instruccion" >Precios correspondientes a cada localidad</small>
-        </div>
-
-        <button type="submit" class="btn-agregar">Agregar Concierto</button>
-    </form>
-</div>
-</div>
+    <script type="module" src="JS/add.js"></script>
 </body>
 </html>

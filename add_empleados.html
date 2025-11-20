@@ -1,55 +1,65 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="CSS/agregar_admin.css">
-    <title>Agregar Conciertos</title>
+    <link rel="stylesheet" href="CSS/admin.css">
+    <title>Agregar Empleado</title>
 </head>
 <body class="admin-page">
     <header class="site-header">
         <nav class="nav">
             <div class="brand">
                 <div class="brand-logo-container">
-                <img src="img/Ticket_icon.png" alt="UTCKET" class="brand__icon">
-                <span class="brand__name" id="nav_admin">UTCKET</span>
+                    <img src="img/Ticket_icon.png" alt="UTCKET" class="brand__icon">
+                    <span class="brand__name">UTCKET</span>
                 </div>
                 <div class="brand-admin-container">
-                <span class="brand__name" id="nav_admin">Administrador</span>
+                    <span class="brand__name">Administrador</span>
                 </div>
             </div>
         </nav>
     </header>
-<div class="section section-left">
-    <h2 class="section-title">Agregar Nuevo Empleado</h2>
-    <form class="add-concert-form">
-        <div class="form-row">
-            <div class="form-group">
-                <label for="emp-first">Nombre del Empleado:</label>
-                <input type="text" id="emp-first" name="employee-name" placeholder="Ej: Juan" required>
-            </div>
-            
-            <div class="form-group">
-                <label for="emp-last">Apellido del Empleado:</label>
-                <input type="text" id="emp-last" name="employee-lastName" placeholder="Ej: Pérez" required>
+
+    <div class="admin-container">
+        <div class="content-wrapper">
+            <div class="section section-left" style="width: 100%; align-items: center;">
+                <h2 class="section-title">Agregar Nuevo Empleado</h2>
+                <form id="form-empleado" style="width: 100%; max-width: 800px; background: white; padding: 30px; border-radius: 10px; display: flex; flex-direction: column; gap: 20px;">
+                    
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                        <div>
+                            <label for="emp-first" style="display: block; font-weight: 600; margin-bottom: 8px; color: #1a3a5c;">Nombre del Empleado:</label>
+                            <input type="text" id="emp-first" name="employee-name" placeholder="Ej: Juan" required style="width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 6px; font-size: 14px;">
+                        </div>
+                        
+                        <div>
+                            <label for="emp-last" style="display: block; font-weight: 600; margin-bottom: 8px; color: #1a3a5c;">Apellido del Empleado:</label>
+                            <input type="text" id="emp-last" name="employee-lastName" placeholder="Ej: Pérez" required style="width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 6px; font-size: 14px;">
+                        </div>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                        <div>
+                            <label for="emp-carnet" style="display: block; font-weight: 600; margin-bottom: 8px; color: #1a3a5c;">Carnet del Empleado:</label>
+                            <input type="text" id="emp-carnet" name="employee-carnet" placeholder="Ej: EMP-12345" required style="width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 6px; font-size: 14px;">
+                        </div>
+                        
+                        <div>
+                            <label for="emp-password" style="display: block; font-weight: 600; margin-bottom: 8px; color: #1a3a5c;">Contraseña del Empleado:</label>
+                            <input type="password" id="emp-password" name="employee-password" placeholder="Mínimo 8 caracteres" minlength="8" required style="width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 6px; font-size: 14px;">
+                        </div>
+                    </div>
+
+                    <div style="display: flex; gap: 10px; justify-content: center; margin-top: 20px;">
+                        <button type="submit" class="btn-agregar">Agregar Empleado</button>
+                        <button type="button" class="btn-agregar" onclick="window.location.href='admin.html'" style="background-color: #6c757d;">Cancelar</button>
+                    </div>
+                </form>
             </div>
         </div>
+    </div>
 
-        <div class="form-row">
-            <div class="form-group">
-                <label for="emp-carnet">Carnet del Empleado:</label>
-                <input type="text" id="emp-carnet" name="employee-carnet" placeholder="Ej: EMP-12345" required>
-            </div>
-            
-            <div class="form-group">
-                <label for="emp-password">Contraseña del Empleado:</label>
-                <input type="password" id="emp-password" name="employee-password" placeholder="Mínimo 8 caracteres" minlength="8" required>
-            </div>
-        </div>
-
-        <button type="submit" class="btn-agregar">Agregar Empleado</button>
-    </form>
-</div>
-</div>
+    <script type="module" src="JS/add.js"></script>
 </body>
 </html>

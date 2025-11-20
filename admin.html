@@ -11,11 +11,11 @@
         <nav class="nav">
             <div class="brand">
                 <div class="brand-logo-container">
-                <img src="img/Ticket_icon.png" alt="UTCKET" class="brand__icon">
-                <span class="brand__name" id="nav_admin">UTCKET</span>
+                    <img src="img/Ticket_icon.png" alt="UTCKET" class="brand__icon">
+                    <span class="brand__name">UTCKET</span>
                 </div>
                 <div class="brand-admin-container">
-                <span class="brand__name" id="nav_admin">Administrador</span>
+                    <span class="brand__name">Administrador</span>
                 </div>
             </div>
         </nav>
@@ -25,17 +25,26 @@
         <div class="content-wrapper">
             <div class="section section-left">
                 <h2 class="section-title">Conciertos Actuales</h2>
-                <div class="content-placeholder"></div>
-                <button class="btn-agregar">Agregar</button>
+                <div id="conciertos-lista" class="content-placeholder">
+                    <p class="loading-message">Cargando conciertos...</p>
+                </div>
+                <button class="btn-agregar" onclick="window.location.href='add_conciertos.html'">
+                    Agregar
+                </button>
             </div>
 
             <div class="section section-right">
                 <h2 class="section-title">Empleados Actuales</h2>
-                <div class="content-placeholder"></div>
-                <button class="btn-agregar">Agregar</button>
+                <div id="empleados-lista" class="content-placeholder">
+                    <p class="loading-message">Cargando empleados...</p>
+                </div>
+                <button class="btn-agregar" onclick="window.location.href='add_empleados.html'">
+                    Agregar
+                </button>
             </div>
         </div>
     </div>
-
+    
+    <script type="module" src="JS/admin.js"></script>
 </body>
 </html>

@@ -255,3 +255,129 @@
     }
 }
 
+
+/* Estilos para las listas de contenido */
+.content-placeholder {
+    flex: 1;
+    width: 100%;
+    background-color: #ffffff;
+    border: 2px solid #d4c296;
+    border-radius: 10px;
+    min-height: 400px;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.loading-message {
+    text-align: center;
+    color: #666;
+    padding: 40px;
+    font-size: 16px;
+}
+
+.empty-message {
+    text-align: center;
+    color: #999;
+    padding: 40px;
+    font-size: 16px;
+}
+
+/* Tarjetas de conciertos */
+.concierto-card {
+    background-color: #ffffff;
+    border: 2px solid var(--c-teal);
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 15px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.concierto-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 168, 168, 0.2);
+}
+
+.concierto-card h3 {
+    color: var(--c-teal);
+    margin-bottom: 15px;
+    font-size: 20px;
+    border-bottom: 2px solid var(--c-teal);
+    padding-bottom: 10px;
+}
+
+.concierto-card p {
+    margin: 8px 0;
+    color: #333;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.concierto-card strong {
+    color: #1a3a5c;
+    font-weight: 600;
+}
+
+/* Tarjetas de empleados */
+.empleado-card {
+    background-color: #ffffff;
+    border: 2px solid var(--c-teal);
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 15px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.empleado-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 168, 168, 0.2);
+}
+
+.empleado-card h3 {
+    color: var(--c-teal);
+    margin-bottom: 15px;
+    font-size: 18px;
+    border-bottom: 2px solid var(--c-teal);
+    padding-bottom: 10px;
+}
+
+.empleado-card p {
+    margin: 8px 0;
+    color: #333;
+    font-size: 14px;
+}
+
+.empleado-card strong {
+    color: #1a3a5c;
+    font-weight: 600;
+}
+
+/* Botón eliminar */
+.btn-eliminar {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    margin-top: 15px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-eliminar:hover {
+    background-color: #c82333;
+}
+
+/* Estilo para las localidades dentro de la tarjeta */
+.localidad-item {
+    margin: 5px 0;
+    padding: 10px;
+    background: var(--c-gray-light);
+    border-radius: 6px;
+    border-left: 3px solid var(--c-teal);
+}
+
+.localidad-item strong {
+    color: var(--c-teal);
+}
