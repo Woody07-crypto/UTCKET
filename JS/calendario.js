@@ -1,3 +1,17 @@
+// add.js - Versión corregida con todos los imports
+import { db } from './firebase-config.js';
+import { 
+    collection, 
+    addDoc, 
+    getDocs, 
+    deleteDoc, 
+    doc, 
+    serverTimestamp 
+} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+console.log("add.js cargado correctamente");
+
+
 document.addEventListener("DOMContentLoaded", async function () {
     console.log("🎯 Calendario iniciado correctamente.");
 

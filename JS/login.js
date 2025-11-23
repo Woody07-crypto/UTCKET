@@ -102,23 +102,64 @@ function initializeAuthUI() {
     });
   }
 
-  // Función para determinar el tipo de usuario
-  async function determineUserType(email) {
+  // Función para determinar el tipo de usuario basado en UID
+  async function determineUserTypeByUID(uid) {
     try {
-      console.log("🔍 Buscando tipo de usuario para:", email);
-      const emailLower = email.toLowerCase();
+      console.log("🔍 Buscando tipo de usuario por UID:", uid);
       
-      // 1. Buscar en Administradores (usa "Correo" con mayúscula)
-      // Obtener TODOS los documentos y buscar manualmente
+      // 1. Buscar en Administradores por UID
       const adminSnapshot = await getDocs(collection(db, "Administradores"));
       console.log("📊 Total documentos en Administradores:", adminSnapshot.size);
       
       for (const docSnap of adminSnapshot.docs) {
         const data = docSnap.data();
-        console.log("📧 Comparando con:", data.Correo);
+        console.log("🆔 UID en Admin:", data.UID);
+        
+        if (data.UID === uid) {
+          console.log("✅ Usuario es Administrador - Match por UID!");
+          return "Administrador";
+        }
+      }
+
+      // 2. Buscar en Empleado por UID
+      const empleadoSnapshot = await getDocs(collection(db, "Empleado"));
+      console.log("📊 Total documentos en Empleado:", empleadoSnapshot.size);
+      
+      for (const docSnap of empleadoSnapshot.docs) {
+        const data = docSnap.data();
+        console.log("🆔 UID en Empleado:", data.UID);
+        
+        if (data.UID === uid) {
+          console.log("✅ Usuario es Empleado - Match por UID!");
+          return "Empleado";
+        }
+      }
+
+      // 3. Si no está en ninguna colección, es Cliente por defecto
+      console.log("⚠️ UID no encontrado en Administradores ni Empleado, asignando Cliente");
+      return "Cliente";
+
+    } catch (error) {
+      console.error("❌ Error determinando tipo de usuario:", error);
+      return "Cliente";
+    }
+  }
+
+  // Función legacy para determinar tipo por email (mantener como fallback)
+  async function determineUserType(email) {
+    try {
+      console.log("🔍 Buscando tipo de usuario para:", email);
+      const emailLower = email.toLowerCase();
+      
+      // 1. Buscar en Administradores
+      const adminSnapshot = await getDocs(collection(db, "Administradores"));
+      console.log("📊 Total documentos en Administradores:", adminSnapshot.size);
+      
+      for (const docSnap of adminSnapshot.docs) {
+        const data = docSnap.data();
         
         if (data.Correo && data.Correo.toLowerCase() === emailLower) {
-          console.log("✅ Usuario es Administrador - Match encontrado!");
+          console.log("✅ Usuario es Administrador - Match por email!");
           return "Administrador";
         }
       }
@@ -129,35 +170,23 @@ function initializeAuthUI() {
       
       for (const docSnap of empleadoSnapshot.docs) {
         const data = docSnap.data();
-        if (data.email && data.email.toLowerCase() === emailLower) {
-          console.log("✅ Usuario es Empleado");
+        
+        // Verificar ambos campos posibles: "email" o "Correo"
+        const empleadoEmail = data.email || data.Correo;
+        
+        if (empleadoEmail && empleadoEmail.toLowerCase() === emailLower) {
+          console.log("✅ Usuario es Empleado - Match por email!");
           return "Empleado";
         }
       }
 
-      // 3. Buscar en Cliente (si existe esa colección)
-      try {
-        const clienteSnapshot = await getDocs(collection(db, "Cliente"));
-        console.log("📊 Total documentos en Cliente:", clienteSnapshot.size);
-        
-        for (const docSnap of clienteSnapshot.docs) {
-          const data = docSnap.data();
-          if (data.email && data.email.toLowerCase() === emailLower) {
-            console.log("✅ Usuario es Cliente");
-            return "Cliente";
-          }
-        }
-      } catch (e) {
-        console.log("⚠️ Colección Cliente no existe");
-      }
-
-      // 4. Por defecto, es Cliente
+      // 3. Por defecto, es Cliente
       console.log("⚠️ No se encontró en ninguna colección, asignando Cliente por defecto");
       return "Cliente";
 
     } catch (error) {
       console.error("❌ Error determinando tipo de usuario:", error);
-      return "Cliente"; // Por defecto
+      return "Cliente";
     }
   }
 
@@ -165,37 +194,66 @@ function initializeAuthUI() {
   async function verifyCredentialsInFirestore(email, password) {
     try {
       console.log("🔍 Verificando credenciales en Firestore para:", email);
+      const emailLower = email.toLowerCase();
       
       // Buscar en Administradores
-      const adminQuery = query(
-        collection(db, "Administradores"),
-        where("Correo", "==", email),
-        where("Contraseña", "==", Number(password))
-      );
-      const adminSnapshot = await getDocs(adminQuery);
-      if (!adminSnapshot.empty) {
-        console.log("✅ Credenciales válidas en Administradores");
-        return { 
-          type: "Administrador", 
-          data: adminSnapshot.docs[0].data(),
-          docId: adminSnapshot.docs[0].id 
-        };
+      const adminSnapshot = await getDocs(collection(db, "Administradores"));
+      console.log("📊 Verificando en Administradores...");
+      
+      for (const docSnap of adminSnapshot.docs) {
+        const data = docSnap.data();
+        console.log("🔑 Comparando:", {
+          correo: data.Correo,
+          contraseña: data.Contraseña,
+          passwordIngresado: password
+        });
+        
+        if (data.Correo && data.Correo.toLowerCase() === emailLower) {
+          // Verificar contraseña (puede ser número o string)
+          if (data.Contraseña == password || data.Contraseña === Number(password)) {
+            console.log("✅ Credenciales válidas en Administradores");
+            return { 
+              type: "Administrador", 
+              data: data,
+              docId: docSnap.id 
+            };
+          } else {
+            console.log("❌ Email correcto pero contraseña incorrecta");
+          }
+        }
       }
 
       // Buscar en Empleado
-      const empleadoQuery = query(
-        collection(db, "Empleado"),
-        where("email", "==", email),
-        where("Contraseña", "==", Number(password))
-      );
-      const empleadoSnapshot = await getDocs(empleadoQuery);
-      if (!empleadoSnapshot.empty) {
-        console.log("✅ Credenciales válidas en Empleado");
-        return { 
-          type: "Empleado", 
-          data: empleadoSnapshot.docs[0].data(),
-          docId: empleadoSnapshot.docs[0].id
-        };
+      const empleadoSnapshot = await getDocs(collection(db, "Empleado"));
+      console.log("📊 Verificando en Empleado...");
+      
+      for (const docSnap of empleadoSnapshot.docs) {
+        const data = docSnap.data();
+        
+        // Verificar ambos campos posibles: "email" o "Correo"
+        const empleadoEmail = data.email || data.Correo;
+        
+        console.log("🔑 Comparando Empleado:", {
+          correo: empleadoEmail,
+          contraseña: data.Contraseña || data.password,
+          passwordIngresado: password
+        });
+        
+        if (empleadoEmail && empleadoEmail.toLowerCase() === emailLower) {
+          // Verificar contraseña (puede ser número o string, y en diferentes campos)
+          const empleadoPassword = data.Contraseña || data.password;
+          
+          if (empleadoPassword == password || empleadoPassword === Number(password)) {
+            console.log("✅ Credenciales válidas en Empleado");
+            return { 
+              type: "Empleado", 
+              data: data,
+              docId: docSnap.id
+            };
+          } else {
+            console.log("❌ Email correcto pero contraseña incorrecta en Empleado");
+          }
+        }
       }
 
       console.log("❌ No se encontraron credenciales válidas");
@@ -291,10 +349,11 @@ function initializeAuthUI() {
         userCredential = await signInWithEmailAndPassword(auth, email, password);
         const user = userCredential.user;
         console.log("✅ Usuario autenticado con Firebase Auth:", user.email);
+        console.log("🆔 UID del usuario:", user.uid);
 
-        // Determinar tipo de usuario
-        userType = await determineUserType(email);
-        console.log("👤 Tipo de usuario detectado:", userType);
+        // Determinar tipo de usuario POR UID (más seguro)
+        userType = await determineUserTypeByUID(user.uid);
+        console.log("👤 Tipo de usuario detectado por UID:", userType);
         
         showMessage(`¡Bienvenido!`, "success", "auth-messages");
         
@@ -319,11 +378,29 @@ function initializeAuthUI() {
             // Migrar usuario a Firebase Auth
             try {
               console.log("📦 Migrando usuario a Firebase Auth...");
+              
+              // Si el usuario tiene UID en Firestore, intentar vincularlo
+              if (firestoreCredentials.uid) {
+                console.log("🆔 Usuario tiene UID en Firestore:", firestoreCredentials.uid);
+                // Este usuario YA DEBERÍA existir en Firebase Auth con este UID
+                // Intentar autenticarse de nuevo (probablemente la contraseña está mal)
+                showMessage("Usuario existe. Verifica tu contraseña o usa 'Olvidé mi contraseña'.", "error", "auth-messages");
+                return;
+              }
+              
+              // Si no tiene UID, crear nuevo usuario en Firebase Auth
               userCredential = await createUserWithEmailAndPassword(auth, email, password);
               const user = userCredential.user;
+              console.log("✅ Usuario creado en Firebase Auth con UID:", user.uid);
               
               await updateProfile(user, {
                 displayName: firestoreCredentials.data.Nombre || email.split('@')[0]
+              });
+
+              // Actualizar el UID en Firestore
+              await setDoc(doc(db, firestoreCredentials.type === "Administrador" ? "Administradores" : "Empleado", firestoreCredentials.docId), {
+                ...firestoreCredentials.data,
+                UID: user.uid // Agregar el UID generado
               });
 
               await setDoc(doc(db, "Users", user.uid), {
@@ -467,6 +544,7 @@ function initializeAuthUI() {
   onAuthStateChanged(auth, async (user) => {
     if (user) {
       console.log("👤 Usuario ya autenticado:", user.email);
+      console.log("🆔 UID:", user.uid);
       
       // Solo redirigir si estamos en la página de login
       const currentPage = window.location.pathname;
@@ -474,7 +552,8 @@ function initializeAuthUI() {
       
       if (isLoginPage) {
         console.log("📄 Estamos en página de login, redirigiendo...");
-        const userType = await determineUserType(user.email);
+        // Usar UID para determinar tipo de usuario (más seguro)
+        const userType = await determineUserTypeByUID(user.uid);
         redirectBasedOnUserType(userType);
       } else {
         console.log("📄 No estamos en login, manteniendo en página actual");

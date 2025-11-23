@@ -1,65 +1,195 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="CSS/admin.css">
-    <title>Agregar Empleado</title>
+    <title>Gestión de Empleados - UTCKET</title>
 </head>
-<body class="admin-page">
+
+<body>
+    <!-- Header -->
     <header class="site-header">
         <nav class="nav">
             <div class="brand">
-                <div class="brand-logo-container">
-                    <img src="img/Ticket_icon.png" alt="UTCKET" class="brand__icon">
-                    <span class="brand__name">UTCKET</span>
-                </div>
-                <div class="brand-admin-container">
-                    <span class="brand__name">Administrador</span>
-                </div>
+                <svg class="brand__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="2" y="4" width="20" height="16" rx="2" />
+                    <path d="M2 10h20" />
+                </svg>
+                <span>UTCKET</span>
             </div>
+            <button class="btn-back" onclick="window.location.href='admin.html'">
+                ← Volver al Dashboard
+            </button>
         </nav>
     </header>
 
-    <div class="admin-container">
-        <div class="content-wrapper">
-            <div class="section section-left" style="width: 100%; align-items: center;">
-                <h2 class="section-title">Agregar Nuevo Empleado</h2>
-                <form id="form-empleado" style="width: 100%; max-width: 800px; background: white; padding: 30px; border-radius: 10px; display: flex; flex-direction: column; gap: 20px;">
-                    
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
-                        <div>
-                            <label for="emp-first" style="display: block; font-weight: 600; margin-bottom: 8px; color: #1a3a5c;">Nombre del Empleado:</label>
-                            <input type="text" id="emp-first" name="employee-name" placeholder="Ej: Juan" required style="width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 6px; font-size: 14px;">
-                        </div>
-                        
-                        <div>
-                            <label for="emp-last" style="display: block; font-weight: 600; margin-bottom: 8px; color: #1a3a5c;">Apellido del Empleado:</label>
-                            <input type="text" id="emp-last" name="employee-lastName" placeholder="Ej: Pérez" required style="width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 6px; font-size: 14px;">
-                        </div>
-                    </div>
+    <!-- Page Header -->
+    <div class="page-header">
+        <h1 class="page-title">Gestión de Empleados</h1>
+        <p class="page-subtitle">Administra el personal y sus permisos</p>
+    </div>
 
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
-                        <div>
-                            <label for="emp-carnet" style="display: block; font-weight: 600; margin-bottom: 8px; color: #1a3a5c;">Carnet del Empleado:</label>
-                            <input type="text" id="emp-carnet" name="employee-carnet" placeholder="Ej: EMP-12345" required style="width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 6px; font-size: 14px;">
-                        </div>
-                        
-                        <div>
-                            <label for="emp-password" style="display: block; font-weight: 600; margin-bottom: 8px; color: #1a3a5c;">Contraseña del Empleado:</label>
-                            <input type="password" id="emp-password" name="employee-password" placeholder="Mínimo 8 caracteres" minlength="8" required style="width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 6px; font-size: 14px;">
-                        </div>
-                    </div>
-
-                    <div style="display: flex; gap: 10px; justify-content: center; margin-top: 20px;">
-                        <button type="submit" class="btn-agregar">Agregar Empleado</button>
-                        <button type="button" class="btn-agregar" onclick="window.location.href='admin.html'" style="background-color: #6c757d;">Cancelar</button>
-                    </div>
-                </form>
-            </div>
+    <!-- Toolbar -->
+    <div class="toolbar">
+        <div class="toolbar-group">
+            <input type="search" class="search-input" placeholder="Buscar empleados...">
+            <select class="filter-select">
+                <option>Todos los empleados</option>
+                <option>Activos</option>
+                <option>Inactivos</option>
+            </select>
         </div>
     </div>
 
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Empleados Grid -->
+        <div class="empleados-grid" id="empleados-lista">
+            <!-- Los empleados se cargarán aquí dinámicamente -->
+            <div class="loading-message">Cargando empleados...</div>
+        </div>
+
+        <!-- Add Form Section -->
+        <div class="form-section">
+            <h2 class="form-title">Agregar Nuevo Empleado</h2>
+            <form id="form-empleado">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="emp-first" class="form-label">Nombre del Empleado</label>
+                        <input type="text" id="emp-first" class="form-input" placeholder="Ej: Juan" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="emp-last" class="form-label">Apellido del Empleado</label>
+                        <input type="text" id="emp-last" class="form-input" placeholder="Ej: Pérez" required>
+                    </div>
+                </div>
+
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="emp-carnet" class="form-label">Carnet del Empleado</label>
+                        <input type="text" id="emp-carnet" class="form-input" placeholder="Ej: EMP-12345" required>
+                        <small class="form-hint">Identificador único del empleado</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="emp-puesto" class="form-label">Puesto</label>
+                        <input type="text" id="emp-puesto" class="form-input" placeholder="Ej: Supervisor de Ventas"
+                            required>
+                    </div>
+                </div>
+
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="emp-email" class="form-label">Email</label>
+                        <input type="email" id="emp-email" class="form-input" placeholder="empleado@utcket.com"
+                            required>
+                    </div>
+                    <div class="form-group">
+                        <label for="emp-password" class="form-label">Contraseña</label>
+                        <input type="password" id="emp-password" class="form-input" placeholder="Mínimo 8 caracteres"
+                            minlength="8" required>
+                        <small class="form-hint">Debe tener al menos 8 caracteres</small>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn-submit">Agregar Empleado</button>
+                    <button type="button" class="btn-cancel" onclick="document.getElementById('form-empleado').reset()">
+                        Limpiar Formulario
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- Modal de Edición -->
+    <div id="editModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2 class="modal-title" id="modal-title">Editar</h2>
+
+            <form id="edit-form">
+                <!-- Campos para concierto -->
+                <div id="concierto-fields" style="display: none;">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="edit-artist-name" class="form-label">Nombre del Artista</label>
+                            <input type="text" id="edit-artist-name" class="form-input" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="edit-concert-date" class="form-label">Fecha y Hora</label>
+                            <input type="datetime-local" id="edit-concert-date" class="form-input" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="edit-concert-venue" class="form-label">Lugar</label>
+                        <input type="text" id="edit-concert-venue" class="form-input" required>
+                    </div>
+
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="edit-venue-seats" class="form-label">Localidades</label>
+                            <input type="text" id="edit-venue-seats" class="form-input" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="edit-ticket-quantity" class="form-label">Cantidad de Tickets</label>
+                            <input type="text" id="edit-ticket-quantity" class="form-input" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="edit-ticket-prices" class="form-label">Precios</label>
+                        <input type="text" id="edit-ticket-prices" class="form-input" required>
+                    </div>
+                </div>
+
+                <!-- Campos para empleado -->
+                <div id="empleado-fields" style="display: none;">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="edit-emp-first" class="form-label">Nombre</label>
+                            <input type="text" id="edit-emp-first" class="form-input" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="edit-emp-last" class="form-label">Apellido</label>
+                            <input type="text" id="edit-emp-last" class="form-input" required>
+                        </div>
+                    </div>
+
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="edit-emp-carnet" class="form-label">Carnet</label>
+                            <input type="text" id="edit-emp-carnet" class="form-input" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="edit-emp-puesto" class="form-label">Puesto</label>
+                            <input type="text" id="edit-emp-puesto" class="form-input" required>
+                        </div>
+                    </div>
+
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="edit-emp-email" class="form-label">Email</label>
+                            <input type="email" id="edit-emp-email" class="form-input" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="edit-emp-password" class="form-label">Nueva Contraseña (opcional)</label>
+                            <input type="password" id="edit-emp-password" class="form-input"
+                                placeholder="Dejar vacío para mantener la actual">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="btn-cancelar" onclick="cancelarEdicion()">Cancelar</button>
+                    <button type="submit" class="btn-actualizar">Actualizar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script type="module" src="JS/edit.js"></script>
     <script type="module" src="JS/add.js"></script>
 </body>
 </html>
