@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Panel de Empleado</title>
 
-
     <link rel="stylesheet" href="CSS/empleado.css">
     <link rel="stylesheet" href="CSS/nav.css">
     <link rel="stylesheet" href="CSS/footer.css">
@@ -15,14 +14,12 @@
 <body>
     <header class="site-header">
         <nav class="nav">
-            <a href="../index.html" class="brand">
+            <a href="index.html" class="brand">
                 <img src="img/Ticket_icon.png" alt="UTCKET" class="brand__icon">
                 <span class="brand__name">UTCKET</span>
             </a>
 
-
             <span class="panel-title">Panel de Empleado</span>
-
 
             <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">
                 <span></span>
@@ -30,18 +27,15 @@
                 <span></span>
             </button>
 
-
             <div class="menu" id="menu">
-                <a href="../index.html" class="menu__link">Inicio</a>
-                <a href="admin-empleado.html" class="menu__link">Conciertos</a>
-
+                <a href="index.html" class="menu__link">Inicio</a>
+                <a href="empleado.html" class="menu__link">Conciertos</a>
 
                 <button id="logoutBtn" class="menu__link btn-salir">
                     Cerrar sesión
                 </button>
             </div>
         </nav>
-
 
         <div class="menu-overlay" id="menuOverlay"></div>
     </header>
@@ -50,7 +44,7 @@
         <h3>Conciertos Registrados</h3>
         <div class="eventos_container" id="lista-conciertos"></div>
     </section>
-    
+
     <section class="contenedor form-card">
         <h3 class="form-title">Agregar / Editar Concierto</h3>
 
@@ -63,7 +57,7 @@
 
             <div class="form-group">
                 <label for="fecha">Fecha</label>
-                <input type="date" id="fecha" required>
+                <input type="date" id="fecha">
             </div>
 
             <div class="form-group">
@@ -73,12 +67,12 @@
 
             <div class="form-group">
                 <label for="localidades">Localidades</label>
-                <input type="number" id="localidades" required>
+                <input type="number" id="localidades" disabled placeholder="(solo lectura por ahora)">
             </div>
 
             <div class="form-group">
                 <label for="precio">Precio ($)</label>
-                <input type="number" id="precio" required>
+                <input type="number" id="precio" disabled placeholder="(solo lectura por ahora)">
             </div>
 
             <div class="form-group full">
@@ -89,28 +83,6 @@
             <button type="submit" class="btn-guardar full">Guardar</button>
         </form>
     </section>
-
-
-
-
-    <script type="module">
-
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-        import { getAuth } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-        import { getFirestore } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-
-
-        import firebaseConfig from "../firebase/firebase-config.js";
-
-
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
-        const db = getFirestore(app);
-
-
-        window.auth = auth;
-        window.db = db;
-    </script>
 
     <script>
         const menuToggle = document.getElementById("menuToggle");
@@ -128,10 +100,7 @@
         });
     </script>
 
-
-    <script type="module" src="empleado.js"></script>
-
-
+    <script type="module" src="JS/empleado.js"></script>
 
     <footer class="site-footer">
         <div class="container footer-grid">

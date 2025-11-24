@@ -3,30 +3,32 @@ import {
     onSnapshot,
     doc,
     updateDoc
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+import { auth, db } from "./firebase-config.js";
 
 import {
     onAuthStateChanged,
     signOut
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-
-const auth = window.auth;
-const db = window.db;
+} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
 onAuthStateChanged(auth, (user) => {
     if (!user) {
-        window.location.href = "../login.html";
+        window.location.href = "login.html";
     }
 });
 
-document.getElementById("logoutBtn").addEventListener("click", async () => {
-    try {
-        await signOut(auth);
-        window.location.href = "../login.html";
-    } catch (error) {
-        console.error("Error al cerrar sesión:", error);
-    }
-});
+const logoutBtn = document.getElementById("logoutBtn");
+if (logoutBtn) {
+    logoutBtn.addEventListener("click", async () => {
+        try {
+            await signOut(auth);
+            window.location.href = "login.html";
+        } catch (error) {
+            console.error("Error al cerrar sesión:", error);
+        }
+    });
+}
 
 const listaConciertos = document.getElementById("lista-conciertos");
 const form = document.getElementById("formConcierto");
@@ -38,9 +40,7 @@ const inputLocalidades = document.getElementById("localidades");
 const inputPrecio = document.getElementById("precio");
 const inputImagen = document.getElementById("imagen");
 
-let idEditando = null;      
-let datosOriginales = null; 
-
+let idEditando = null;
 
 function formatearFechaMostrar(fecha) {
     if (!fecha) return "Sin fecha";
@@ -64,59 +64,42 @@ function formatearFechaMostrar(fecha) {
     }
 }
 
-function formatearFechaInput(fecha) {
-    if (!fecha) return "";
+if (listaConciertos) {
+    onSnapshot(collection(db, "Conciertos"), (snapshot) => {
+        listaConciertos.innerHTML = "";
 
-    try {
-        let d;
-        if (fecha.seconds) {
-            d = new Date(fecha.seconds * 1000);
-        } else {
-            d = new Date(fecha);
-        }
+        snapshot.forEach((documento) => {
+            const c = documento.data();
+            const id = documento.id;
 
-        return d.toISOString().slice(0, 10);
-    } catch {
-        return "";
-    }
-}
+            const artista = c.Artista || c.artista || "Sin artista";
+            const lugar = c.Lugar || c.lugar || "Sin lugar";
+            const fecha = c.Fecha || c.fecha;
+            const fechaTexto = formatearFechaMostrar(fecha);
 
-onSnapshot(collection(db, "Conciertos"), (snapshot) => {
-    if (!listaConciertos) return;
+            const imagen =
+                c.Imagen ||
+                c.imagen ||
+                c.imagenUrl ||
+                "img/concierto_fondo.jpeg";
 
-    listaConciertos.innerHTML = "";
+            const card = document.createElement("div");
+            card.classList.add("evento");
 
-    snapshot.forEach((documento) => {
-        const c = documento.data();
-        const id = documento.id;
+            card.innerHTML = `
+                <img src="${imagen}" alt="${artista}">
+                <h3>${artista}</h3>
+                <p>📍 ${lugar}</p>
+                <p>Fecha: ${fechaTexto}</p>
+                <button class="btn-editar" data-id="${id}">Editar</button>
+            `;
 
-        const artista = c.Artista || c.artista || "Sin artista";
-        const lugar = c.Lugar || c.lugar || "Sin lugar";
-        const fecha = c.Fecha || c.fecha;
-        const fechaTexto = formatearFechaMostrar(fecha);
+            listaConciertos.appendChild(card);
+        });
 
-        const imagen =
-            c.Imagen ||
-            c.imagen ||
-            c.imagenUrl ||
-            "../img/concierto_fondo.jpeg"; // fallback
-
-        const card = document.createElement("div");
-        card.classList.add("evento");
-
-        card.innerHTML = `
-            <img src="${imagen}" alt="${artista}">
-            <h3>${artista}</h3>
-            <p>📍 ${lugar}</p>
-            <p>Fecha: ${fechaTexto}</p>
-            <button class="btn-editar" data-id="${id}">Editar</button>
-        `;
-
-        listaConciertos.appendChild(card);
+        activarBotonesEditar();
     });
-
-    activarBotonesEditar();
-});
+}
 
 function activarBotonesEditar() {
     const botones = document.querySelectorAll(".btn-editar");
@@ -126,74 +109,72 @@ function activarBotonesEditar() {
             const card = e.target.closest(".evento");
             const id = e.target.dataset.id;
 
-            
             cargarConciertoDesdeTarjeta(id, card);
         });
     });
 }
 
 function cargarConciertoDesdeTarjeta(id, card) {
-    const nombre = card.querySelector("h3")?.textContent || "";
-    const lugarTexto = card.querySelector("p:nth-of-type(1)")?.textContent || "";
-    const fechaTexto = card.querySelector("p:nth-of-type(2)")?.textContent || "";
-    const imgSrc = card.querySelector("img")?.src || "";
-
     idEditando = id;
 
+    const nombre = card.querySelector("h3")?.textContent || "";
+    const lugarTexto = card.querySelector("p:nth-of-type(1)")?.textContent || "";
+    const imgSrc = card.querySelector("img")?.src || "";
+
     inputArtista.value = nombre;
-
     inputLugar.value = lugarTexto.replace("📍", "").trim();
-
     inputFecha.value = "";
-
     inputLocalidades.value = "";
     inputPrecio.value = "";
     inputImagen.value = imgSrc;
 
     form.scrollIntoView({ behavior: "smooth" });
 }
-form.addEventListener("submit", async (e) => {
-    e.preventDefault();
 
-    if (!idEditando) {
-        alert("Primero selecciona un concierto dando clic en el botón 'Editar'.");
-        return;
-    }
+if (form) {
+    form.addEventListener("submit", async (e) => {
+        e.preventDefault();
 
-    const artista = inputArtista.value.trim();
-    const lugar = inputLugar.value.trim();
-    const fecha = inputFecha.value; // viene en formato YYYY-MM-DD
-    const imagen = inputImagen.value.trim();
-
-    if (!artista || !lugar) {
-        alert("Por favor completa al menos Artista y Lugar.");
-        return;
-    }
-
-    try {
-        const docRef = doc(db, "Conciertos", idEditando);
-
-        const dataActualizada = {
-            Artista: artista,
-            Lugar: lugar
-        };
-
-        if (fecha) {
-            dataActualizada.Fecha = fecha;
+        if (!idEditando) {
+            alert("Primero selecciona un concierto dando clic en el botón 'Editar'.");
+            return;
         }
 
-        if (imagen) {
-            dataActualizada.Imagen = imagen;
+        const artista = inputArtista.value.trim();
+        const lugar = inputLugar.value.trim();
+        const fecha = inputFecha.value; // YYYY-MM-DD
+        const imagen = inputImagen.value.trim();
+
+        if (!artista || !lugar) {
+            alert("Por favor completa al menos Artista y Lugar.");
+            return;
         }
 
-        await updateDoc(docRef, dataActualizada);
+        try {
+            const docRef = doc(db, "Conciertos", idEditando);
 
-        alert("Concierto actualizado correctamente ✅");
+            const dataActualizada = {
+                Artista: artista,
+                Lugar: lugar
+            };
 
-        idEditando = null;
-        form.reset();
-    } catch (error) {
-        console.error("Error al actualizar concierto:", error);
-        alert("Ocurrió un error al actualizar el concierto.");
-    }
-});
+            if (fecha) {
+                dataActualizada.Fecha = fecha;
+            }
+
+            if (imagen) {
+                dataActualizada.Imagen = imagen;
+            }
+
+            await updateDoc(docRef, dataActualizada);
+
+            alert("Concierto actualizado correctamente ✅");
+
+            idEditando = null;
+            form.reset();
+        } catch (error) {
+            console.error("Error al actualizar concierto:", error);
+            alert("Ocurrió un error al actualizar el concierto.");
+        }
+    });
+}
