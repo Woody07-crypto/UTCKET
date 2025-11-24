@@ -1,11 +1,8 @@
 import {
     collection,
-    addDoc,
-    getDocs,
     onSnapshot,
-    updateDoc,
-    deleteDoc,
-    doc
+    doc,
+    updateDoc
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 import {
@@ -13,19 +10,14 @@ import {
     signOut
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
-
 const auth = window.auth;
 const db = window.db;
-
-
 
 onAuthStateChanged(auth, (user) => {
     if (!user) {
         window.location.href = "../login.html";
     }
 });
-
-
 
 document.getElementById("logoutBtn").addEventListener("click", async () => {
     try {
@@ -36,109 +28,172 @@ document.getElementById("logoutBtn").addEventListener("click", async () => {
     }
 });
 
-
-
 const listaConciertos = document.getElementById("lista-conciertos");
 const form = document.getElementById("formConcierto");
 
-let idEditando = null;
+const inputArtista = document.getElementById("artista");
+const inputFecha = document.getElementById("fecha");
+const inputLugar = document.getElementById("lugar");
+const inputLocalidades = document.getElementById("localidades");
+const inputPrecio = document.getElementById("precio");
+const inputImagen = document.getElementById("imagen");
+
+let idEditando = null;      
+let datosOriginales = null; 
 
 
+function formatearFechaMostrar(fecha) {
+    if (!fecha) return "Sin fecha";
+
+    try {
+        let d;
+
+        if (fecha.seconds) {
+            d = new Date(fecha.seconds * 1000);
+        } else {
+            d = new Date(fecha);
+        }
+
+        return d.toLocaleDateString("es-SV", {
+            day: "2-digit",
+            month: "2-digit",
+            year: "numeric"
+        });
+    } catch {
+        return fecha.toString();
+    }
+}
+
+function formatearFechaInput(fecha) {
+    if (!fecha) return "";
+
+    try {
+        let d;
+        if (fecha.seconds) {
+            d = new Date(fecha.seconds * 1000);
+        } else {
+            d = new Date(fecha);
+        }
+
+        return d.toISOString().slice(0, 10);
+    } catch {
+        return "";
+    }
+}
 
 onSnapshot(collection(db, "Conciertos"), (snapshot) => {
+    if (!listaConciertos) return;
 
-    listaConciertos.innerHTML = ""; 
+    listaConciertos.innerHTML = "";
 
     snapshot.forEach((documento) => {
         const c = documento.data();
         const id = documento.id;
 
-    
+        const artista = c.Artista || c.artista || "Sin artista";
+        const lugar = c.Lugar || c.lugar || "Sin lugar";
+        const fecha = c.Fecha || c.fecha;
+        const fechaTexto = formatearFechaMostrar(fecha);
+
+        const imagen =
+            c.Imagen ||
+            c.imagen ||
+            c.imagenUrl ||
+            "../img/concierto_fondo.jpeg"; // fallback
+
         const card = document.createElement("div");
         card.classList.add("evento");
 
         card.innerHTML = `
-            <img src="../img/default_concierto.png" alt="Imagen concierto">
-
-            <h3>${c.artista}</h3>
-
-            <p>📍 ${c.lugar}</p>
-            <p>Fecha: ${c.fecha}</p>
-            <p>Localidades: ${c.localidades}</p>
-            <p>Precio: $${c.precio}</p>
-
+            <img src="${imagen}" alt="${artista}">
+            <h3>${artista}</h3>
+            <p>📍 ${lugar}</p>
+            <p>Fecha: ${fechaTexto}</p>
             <button class="btn-editar" data-id="${id}">Editar</button>
-            <button class="btn-eliminar" data-id="${id}">Eliminar</button>
         `;
 
         listaConciertos.appendChild(card);
     });
 
-    activarBotones();
+    activarBotonesEditar();
 });
 
+function activarBotonesEditar() {
+    const botones = document.querySelectorAll(".btn-editar");
 
-
-function activarBotones() {
-
-    
-    document.querySelectorAll(".btn-editar").forEach((btn) => {
-        btn.addEventListener("click", async (e) => {
+    botones.forEach((btn) => {
+        btn.addEventListener("click", (e) => {
+            const card = e.target.closest(".evento");
             const id = e.target.dataset.id;
 
-            const snap = await getDocs(collection(db, "Conciertos"));
-            snap.forEach((docu) => {
-                if (docu.id === id) {
-                    const c = docu.data();
-                    form.artista.value = c.artista;
-                    form.fecha.value = c.fecha;
-                    form.lugar.value = c.lugar;
-                    form.localidades.value = c.localidades;
-                    form.precio.value = c.precio;
-
-                    idEditando = id;
-                }
-            });
-        });
-    });
-
-
-    
-    document.querySelectorAll(".btn-eliminar").forEach((btn) => {
-        btn.addEventListener("click", async (e) => {
-            const id = e.target.dataset.id;
-
-            if (confirm("¿Seguro que quieres eliminar este concierto?")) {
-                await deleteDoc(doc(db, "Conciertos", id));
-            }
+            
+            cargarConciertoDesdeTarjeta(id, card);
         });
     });
 }
 
+function cargarConciertoDesdeTarjeta(id, card) {
+    const nombre = card.querySelector("h3")?.textContent || "";
+    const lugarTexto = card.querySelector("p:nth-of-type(1)")?.textContent || "";
+    const fechaTexto = card.querySelector("p:nth-of-type(2)")?.textContent || "";
+    const imgSrc = card.querySelector("img")?.src || "";
 
+    idEditando = id;
 
+    inputArtista.value = nombre;
+
+    inputLugar.value = lugarTexto.replace("📍", "").trim();
+
+    inputFecha.value = "";
+
+    inputLocalidades.value = "";
+    inputPrecio.value = "";
+    inputImagen.value = imgSrc;
+
+    form.scrollIntoView({ behavior: "smooth" });
+}
 form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    const concierto = {
-        artista: form.artista.value,
-        fecha: form.fecha.value,
-        lugar: form.lugar.value,
-        localidades: Number(form.localidades.value),
-        precio: Number(form.precio.value)
-    };
+    if (!idEditando) {
+        alert("Primero selecciona un concierto dando clic en el botón 'Editar'.");
+        return;
+    }
+
+    const artista = inputArtista.value.trim();
+    const lugar = inputLugar.value.trim();
+    const fecha = inputFecha.value; // viene en formato YYYY-MM-DD
+    const imagen = inputImagen.value.trim();
+
+    if (!artista || !lugar) {
+        alert("Por favor completa al menos Artista y Lugar.");
+        return;
+    }
 
     try {
-        if (idEditando) {
-            await updateDoc(doc(db, "Conciertos", idEditando), concierto);
-            idEditando = null;
-        } else {
-            await addDoc(collection(db, "Conciertos"), concierto);
+        const docRef = doc(db, "Conciertos", idEditando);
+
+        const dataActualizada = {
+            Artista: artista,
+            Lugar: lugar
+        };
+
+        if (fecha) {
+            dataActualizada.Fecha = fecha;
         }
 
-        form.reset();
+        if (imagen) {
+            dataActualizada.Imagen = imagen;
+        }
 
+        await updateDoc(docRef, dataActualizada);
+
+        alert("Concierto actualizado correctamente ✅");
+
+        idEditando = null;
+        form.reset();
     } catch (error) {
-        console.error("Error al guardar:", error);
+        console.error("Error al actualizar concierto:", error);
+        alert("Ocurrió un error al actualizar el concierto.");
     }
 });
