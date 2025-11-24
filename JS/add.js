@@ -183,7 +183,7 @@ function crearTarjetaConcierto(id, concierto) {
     return card;
 }
 
-//  FUNCIONES UTILITARIAS 
+// FUNCIONES UTILITARIAS 
 
 // Formatear fecha
 function formatearFecha(fecha) {
@@ -217,7 +217,7 @@ function formatearFecha(fecha) {
     }
 }
 
-//  FUNCIONES DE ELIMINACIÓN 
+// FUNCIONES DE ELIMINACIÓN 
 
 // Eliminar concierto
 window.eliminarConcierto = async function(id) {
@@ -247,7 +247,7 @@ window.eliminarEmpleado = async function(id) {
     }
 }
 
-// FORMULARIO DE CONCIERTO - actualizado IVAN HASTA CONSOLE.LOG
+// FORMULARIO DE CONCIERTO - actualizado IVAN HASTA CONSOLE.LOG - ACTUALIZADO CON CAMPO IMAGEN
 
 const formConcierto = document.getElementById('form-concierto');
 
@@ -263,10 +263,10 @@ if (formConcierto) {
             const artista = document.getElementById('artist-name').value.trim();
             const fecha = document.getElementById('concert-date').value;
             const lugar = document.getElementById('concert-venue').value.trim();
+            const imagen = document.getElementById('concert-image').value.trim(); // NUEVO CAMPO
             const localidadesRaw = document.getElementById('venue-seats').value;
             const cantidadesRaw = document.getElementById('ticket-quantity').value;
             const preciosRaw = document.getElementById('ticket-prices').value;
-            const imagen = document.getElementById('concert-image').value.trim(); // 👈 NUEVO
 
             // Validaciones básicas
             if (!artista || !fecha || !lugar || !localidadesRaw || !cantidadesRaw || !preciosRaw || !imagen) {
@@ -297,9 +297,17 @@ if (formConcierto) {
                 Localidades: localidades,
                 Cantidad: cantidades,
                 Precios: precios,
-                Imagen: imagen,                 // 👈 aquí guardamos la ruta/URL
+                Imagen: imagen,                 
                 fechaCreacion: serverTimestamp()
             };
+            
+            // Agregar imagen solo si se proporcionó
+            if (imagen) {
+                conciertoData.Imagen = imagen;
+            } else {
+                // Imagen por defecto basada en el artista
+                conciertoData.Imagen = obtenerImagenPorDefecto(artista);
+            }
 
             console.log("Datos a enviar:", conciertoData);
 
@@ -323,6 +331,29 @@ if (formConcierto) {
             alert('❌ Error al agregar concierto: ' + error.message);
         }
     });
+}
+
+// Función para obtener imagen por defecto
+function obtenerImagenPorDefecto(artista) {
+    const artistaLower = artista.toLowerCase();
+    
+    if (artistaLower.includes('bad bunny')) {
+        return 'img/badbunny_tour.png';
+    } else if (artistaLower.includes('guns') || artistaLower.includes('roses')) {
+        return 'img/GunsRoses.png';
+    } else if (artistaLower.includes('danny') || artistaLower.includes('ocean')) {
+        return 'img/Danny_Ocean_tour.png';
+    } else if (artistaLower.includes('coldplay')) {
+        return 'img/coldplay.jpg';
+    } else if (artistaLower.includes('karol')) {
+        return 'img/KarolG.png';
+    } else if (artistaLower.includes('maná') || artistaLower.includes('mana')) {
+        return 'img/Mana.png';
+    } else if (artistaLower.includes('raul') || artistaLower.includes('alejandro')) {
+        return 'img/badbunny.png';
+    } else {
+        return 'img/placeholder.jpg';
+    }
 }
 
 // FORMULARIO DE EMPLEADO 
@@ -388,7 +419,6 @@ if (formEmpleado) {
         }
     });
 }
-
 
 // Inicializar
 document.addEventListener('DOMContentLoaded', () => {

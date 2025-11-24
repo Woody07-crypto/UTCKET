@@ -12,32 +12,32 @@
 </head>
 <body>
     <div class="wrapper">
-<header class="site-header">
-    <nav class="nav">
-        <a href="index.html" class="brand">
-            <img src="img/Ticket_icon.png" alt="UTCKET" class="brand__icon">
-            <span class="brand__name">UTCKET</span>
-        </a>
-        
-        <!-- Botón hamburguesa -->
-        <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
+        <header class="site-header">
+            <nav class="nav">
+                <a href="index.html" class="brand">
+                    <img src="img/Ticket_icon.png" alt="UTCKET" class="brand__icon">
+                    <span class="brand__name">UTCKET</span>
+                </a>
+                
+                <!-- Botón hamburguesa -->
+                <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
 
-        <!-- Menú de navegación -->
-        <div class="menu" id="menu">
-            <a href="index.html" class="menu__link">Home</a>
-            <a href="nosotros.html" class="menu__link">Nosotros</a>
-            <a href="contacto.html" class="menu__link">Contacto</a>
-            <a href="login.html" class="btn-nav menu__link">Eventos</a>
-        </div>
-    </nav>
-    
-    <!-- Overlay para cerrar el menú al hacer clic fuera -->
-    <div class="menu-overlay" id="menuOverlay"></div>
-</header>
+                <!-- Menú de navegación -->
+                <div class="menu" id="menu">
+                    <a href="index.html" class="menu__link">Home</a>
+                    <a href="nosotros.html" class="menu__link">Nosotros</a>
+                    <a href="contacto.html" class="menu__link">Contacto</a>
+                    <a href="login.html" class="btn-nav menu__link">Eventos</a>
+                </div>
+            </nav>
+            
+            <!-- Overlay para cerrar el menú al hacer clic fuera -->
+            <div class="menu-overlay" id="menuOverlay"></div>
+        </header>
 
         <section class="calendario-section">
             <div class="calendario-header">
@@ -49,12 +49,12 @@
                 <form id="form-busqueda-calendario">
                     <div class="filtros">
                         <div class="filtro-group">
-                            <label for="fecha">📅 Fecha:</label>
+                            <label for="fecha">Fecha:</label>
                             <input type="date" id="fecha" name="fecha">
                         </div>
                         
                         <div class="filtro-group">
-                            <label for="ciudad">📍 Ciudad:</label>
+                            <label for="ciudad">Ciudad:</label>
                             <input type="text" id="ciudad" list="ciudades" placeholder="Selecciona ciudad">
                             <datalist id="ciudades">
                                 <option value="San Salvador">
@@ -68,7 +68,7 @@
                         </div>
                         
                         <div class="filtro-group">
-                            <label for="artista">🎤 Artista:</label>
+                            <label for="artista">Artista:</label>
                             <input type="text" id="artista" placeholder="Nombre del artista">
                         </div>
                         
@@ -83,229 +83,97 @@
             <div class="resultados-calendario">
                 <h3>Eventos Encontrados</h3>
                 <div class="eventos-grid" id="eventos-lista">
-                    
-                    <!-- Card 1: Bad Bunny -->
-                    <div class="evento-card">
-                        <img src="img/badbunny_tour.png" alt="Bad Bunny" class="evento-imagen">
-                        <div class="evento-info">
-                            <h3 class="evento-titulo">Bad Bunny</h3>
-                            <div class="evento-detalles">
-                                <div class="evento-detalle">
-                                    📍 San Salvador - Estadio Cuscatlán
-                                </div>
-                                <div class="evento-detalle">
-                                    📅 14 de diciembre de 2024
-                                </div>
-                            </div>
-                            <div class="evento-precio">
-                                🔥 $75 - $250
-                            </div>
-                            <button class="evento-btn">Comprar Boleto</button>
-                        </div>
-                    </div>
-
-                    <!-- Card 2: Guns N' Roses -->
-                    <div class="evento-card">
-                        <img src="img/GunsRoses.png" alt="Guns N' Roses" class="evento-imagen">
-                        <div class="evento-info">
-                            <h3 class="evento-titulo">Guns N' Roses</h3>
-                            <div class="evento-detalles">
-                                <div class="evento-detalle">
-                                    📍 San Salvador - Estadio Mágico Gonzalez
-                                </div>
-                                <div class="evento-detalle">
-                                    📅 3 de octubre de 2025
-                                </div>
-                            </div>
-                            <div class="evento-precio">
-                                🔥 $90 - $300
-                            </div>
-                            <button class="evento-btn">Comprar Boleto</button>
-                        </div>
-                    </div>
-
-                    <!-- Card 3: Danny Ocean -->
-                    <div class="evento-card">
-                        <img src="img/Danny_Ocean_tour.png" alt="Danny Ocean" class="evento-imagen">
-                        <div class="evento-info">
-                            <h3 class="evento-titulo">Danny Ocean</h3>
-                            <div class="evento-detalles">
-                                <div class="evento-detalle">
-                                    📍 San Salvador - Parque de pelota Saturnino Bengoa
-                                </div>
-                                <div class="evento-detalle">
-                                    📅 9 de octubre de 2025
-                                </div>
-                            </div>
-                            <div class="evento-precio">
-                                🔥 $45 - $120
-                            </div>
-                            <button class="evento-btn">Comprar Boleto</button>
-                        </div>
-                    </div>
-
-                    <!-- Card 4: Coldplay -->
-                    <div class="evento-card">
-                        <img src="img/coldplay.jpg" alt="Coldplay" class="evento-imagen">
-                        <div class="evento-info">
-                            <h3 class="evento-titulo">Coldplay</h3>
-                            <div class="evento-detalles">
-                                <div class="evento-detalle">
-                                    📍 San Salvador - Estadio Cuscatlán
-                                </div>
-                                <div class="evento-detalle">
-                                    📅 20 de noviembre de 2025
-                                </div>
-                            </div>
-                            <div class="evento-precio">
-                                🔥 $100 - $350
-                            </div>
-                            <button class="evento-btn">Comprar Boleto</button>
-                        </div>
-                    </div>
-
-                    <!-- Card 5: Karol G -->
-                    <div class="evento-card">
-                        <img src="img/KarolG.png" alt="Karol G" class="evento-imagen">
-                        <div class="evento-info">
-                            <h3 class="evento-titulo">Karol G</h3>
-                            <div class="evento-detalles">
-                                <div class="evento-detalle">
-                                    📍 San Salvador - Estadio Cuscatlán
-                                </div>
-                                <div class="evento-detalle">
-                                    📅 15 de marzo de 2026
-                                </div>
-                            </div>
-                            <div class="evento-precio">
-                                🔥 $80 - $280
-                            </div>
-                            <button class="evento-btn">Comprar Boleto</button>
-                        </div>
-                    </div>
-
-                    <!-- Card 6: Maná -->
-                    <div class="evento-card">
-                        <img src="img/Mana.png" alt="Maná" class="evento-imagen">
-                        <div class="evento-info">
-                            <h3 class="evento-titulo">Maná</h3>
-                            <div class="evento-detalles">
-                                <div class="evento-detalle">
-                                    📍 San Salvador - Estadio Cuscatlán
-                                </div>
-                                <div class="evento-detalle">
-                                    📅 5 de abril de 2026
-                                </div>
-                            </div>
-                            <div class="evento-precio">
-                                🔥 $70 - $220
-                            </div>
-                            <button class="evento-btn">Comprar Boleto</button>
-                        </div>
-                    </div>
-
+                    <!-- Las tarjetas se generarán dinámicamente con JavaScript -->
+                    <div class="cargando">Cargando eventos desde la base de datos...</div>
                 </div>
             </div>
         </section>
     </div>
-     <section class="promo-carrusel">
-  <div class="container">
-    <div class="iciel-carrusel-grid">
-      <a href="#" class="iciel-carrusel-grid__item iciel-carrusel-grid__item--1"
-         style="background-image: url('img/imaArte4.webp');"
-         role="img" aria-label="Promoción ICI izquierda">
-      </a>
 
-      <a href="#" class="iciel-carrusel-grid__item iciel-carrusel-grid__item--2"
-         style="background-image: url('img/imaArte5.webp');"
-         role="img" aria-label="Promoción ICI centro">
-      </a>
+    <section class="promo-carrusel">
+        <div class="container">
+            <div class="iciel-carrusel-grid">
+                <a href="#" class="iciel-carrusel-grid__item iciel-carrusel-grid__item--1"
+                   style="background-image: url('img/imaArte4.webp');"
+                   role="img" aria-label="Promoción ICI izquierda">
+                </a>
 
-      <a href="#" class="iciel-carrusel-grid__item iciel-carrusel-grid__item--3"
-         style="background-image: url('img/imaArte3.png');"
-         role="img" aria-label="Promoción ICI derecha">
-      </a>
-    </div>
-  </div>
-</section>
+                <a href="#" class="iciel-carrusel-grid__item iciel-carrusel-grid__item--2"
+                   style="background-image: url('img/imaArte5.webp');"
+                   role="img" aria-label="Promoción ICI centro">
+                </a>
+
+                <a href="#" class="iciel-carrusel-grid__item iciel-carrusel-grid__item--3"
+                   style="background-image: url('img/imaArte3.png');"
+                   role="img" aria-label="Promoción ICI derecha">
+                </a>
+            </div>
+        </div>
+    </section>
+
     <footer class="site-footer">
-  <div class="container footer-grid">
+        <div class="container footer-grid">
+            <div class="footer-brand">
+                <div class="footer-brand__row">
+                    <img src="img/Ticket_icon.png" alt="UTCKET" class="footer-brand__icon">
+                    <span class="footer-brand__name">UTCKET</span>
+                </div>
+                <p class="footer-brand__desc">
+                    Los mejores conciertos de la ciudad a tu alcance, más sencillo y fácil.
+                    UTCKET es el e-commerce de conciertos que conecta a los fans con los
+                    mejores eventos de centroamérica.
+                </p>
+                <div class="footer-social">
+                    <a href="#" aria-label="Facebook" class="footer-social__link">
+                        <img src="img/facebook.png" alt="" class="footer-social__icon">
+                    </a>
+                    <a href="#" aria-label="Twitter" class="footer-social__link">
+                        <img src="img/twitter.png" alt="" class="footer-social__icon">
+                    </a>
+                    <a href="#" aria-label="LinkedIn" class="footer-social__link">
+                        <img src="img/linkedin.png" alt="" class="footer-social__icon">
+                    </a>
+                </div>
+            </div>
 
-    <div class="footer-brand">
-      <div class="footer-brand__row">
-        <img src="img/Ticket_icon.png" alt="UTCKET" class="footer-brand__icon">
-        <span class="footer-brand__name">UTCKET</span>
-      </div>
-      <p class="footer-brand__desc">
-        Los mejores conciertos de la ciudad a tu alcance, más sencillo y fácil.
-        UTCKET es el e-commerce de conciertos que conecta a los fans con los
-        mejores eventos de centroamérica.
-      </p>
-      <div class="footer-social">
-        <a href="#" aria-label="Facebook" class="footer-social__link">
-          <img src="img/facebook.png" alt="" class="footer-social__icon">
-        </a>
-        <a href="#" aria-label="Twitter" class="footer-social__link">
-          <img src="img/twitter.png" alt="" class="footer-social__icon">
-        </a>
-        <a href="#" aria-label="LinkedIn" class="footer-social__link">
-          <img src="img/linkedin.png" alt="" class="footer-social__icon">
-        </a>
-      </div>
-    </div>
+            <div class="footer-col">
+                <h4 class="footer-col__title">Nosotros</h4>
+                <p class="footer-col__text">
+                    Calle a Comasagua,<br>
+                    Carretera al Puerto de la LL, Santa Tecla,<br>
+                    La Libertad Sur, El Salvador.
+                </p>
+            </div>
 
-    <div class="footer-col">
-      <h4 class="footer-col__title">Nosotros</h4>
-      <p class="footer-col__text">
-        Calle a Comasagua,<br>
-        Carretera al Puerto de la LL, Santa Tecla,<br>
-        La Libertad Sur, El Salvador.
-      </p>
-    </div>
+            <div class="footer-col">
+                <h4 class="footer-col__title">Contacto</h4>
+                <p class="footer-col__text">
+                    <a href="tel:+50376152883" class="footer-link">+(503) 7615 2883</a><br>
+                    <a href="mailto:info@utcket.com" class="footer-link">info@utcket.com</a><br>
+                    <a href="mailto:ventas@utcket.com" class="footer-link">ventas@utcket.com</a><br><br>
+                    NIT: 0614 170306-108-2<br>
+                    NRC: 171703-2
+                </p>
+            </div>
 
-    <div class="footer-col">
-      <h4 class="footer-col__title">Contacto</h4>
-      <p class="footer-col__text">
-        <a href="tel:+50376152883" class="footer-link">+(503) 7615 2883</a><br>
-        <a href="mailto:info@utcket.com" class="footer-link">info@utcket.com</a><br>
-        <a href="mailto:ventas@utcket.com" class="footer-link">ventas@utcket.com</a><br><br>
-        NIT: 0614 170306-108-2<br>
-        NRC: 171703-2
-      </p>
-    </div>
+            <div class="footer-subscribe">
+                <h4 class="footer-col__title">Suscríbete Y Sé Cliente Preferencial</h4>
+                <p class="footer-col__text">
+                    Recibe los mejores descuentos para los próximos conciertos o eventos de la región.
+                </p>
+                <form class="subscribe-form" action="#" method="post" novalidate>
+                    <input type="email" name="email" class="subscribe-input" placeholder="Ingresa tu correo" required>
+                    <button type="submit" class="subscribe-btn">Suscríbete ahora</button>
+                </form>
+            </div>
+        </div>
 
-    <div class="footer-subscribe">
-      <h4 class="footer-col__title">Suscríbete Y Sé Cliente Preferencial</h4>
-      <p class="footer-col__text">
-        Recibe los mejores descuentos para los próximos conciertos o eventos de la región.
-      </p>
-      <form class="subscribe-form" action="#" method="post" novalidate>
-        <input type="email" name="email" class="subscribe-input" placeholder="Ingresa tu correo" required>
-        <button type="submit" class="subscribe-btn">Suscríbete ahora</button>
-      </form>
-    </div>
-
-  </div>
-
-  <hr class="footer-sep">
-  <div class="container">
-    <p class="footer-copy">Copyright © 2025 UTCKET EL SALVADOR, S.A. DE C.V.</p>
-  </div>
-  </footer>
-
-  <!-- Firebase SDK -->
-<script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-firestore.js"></script>
-
-
-<script src="JS/firebaseConfig.js"></script>
-
-<!-- Lógica del menú -->
-<script src="JS/menu.js"></script>
-
-
-<script src="JS/calendario.js"></script>
-
-
+        <hr class="footer-sep">
+        <div class="container">
+            <p class="footer-copy">Copyright © 2025 UTCKET EL SALVADOR, S.A. DE C.V.</p>
+        </div>
+    </footer>
+    <script type="module" src="JS/calendario.js"></script>
+    <script src="JS/menu.js"></script>
 </body>
 </html>

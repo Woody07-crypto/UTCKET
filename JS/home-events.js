@@ -51,14 +51,14 @@ function crearTarjetaEvento(id, concierto) {
   concierto.imagenUrl ||
   'img/concierto_fondo.jpeg';
 
-  
+  const imgSrc = concierto.imagen || 'img/Danny_Ocean_tour.png';
 
   const fechaFormateada = formatearFecha(concierto.Fecha);
 
   card.innerHTML = `
     <img src="${imgSrc}" alt="${concierto.Artista || 'Concierto'}">
     <h3>${concierto.Artista || 'Concierto sin nombre'}</h3>
-    <p>📍 ${concierto.Lugar || ''}</p>
+    <p>${concierto.Lugar || ''}</p>
     <p>Fecha: ${fechaFormateada}</p>
     <button onclick="window.location.href='comprar_boleto.html'">Comprar Boleto</button>
   `;

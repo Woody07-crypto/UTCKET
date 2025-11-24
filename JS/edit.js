@@ -1,4 +1,4 @@
-// edit.js - Usando firebase-config.js existente
+// edit.js - Con manejo de errores para el campo de imagen
 import { db } from './firebase-config.js';
 import { doc, getDoc, updateDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
@@ -30,6 +30,14 @@ window.cargarConciertoParaEditar = async function(id) {
             document.getElementById('edit-artist-name').value = concierto.Artista || '';
             document.getElementById('edit-concert-date').value = formatearFechaParaInput(concierto.Fecha);
             document.getElementById('edit-concert-venue').value = concierto.Lugar || '';
+            
+            // AGREGAR ESTA LÍNEA CON MANEJO DE ERRORES
+            const imagenInput = document.getElementById('edit-concert-image');
+            if (imagenInput) {
+                imagenInput.value = concierto.Imagen || '';
+            } else {
+                console.warn('⚠️ Campo edit-concert-image no encontrado en el HTML');
+            }
             
             // Procesar localidades, cantidades y precios
             if (concierto.Localidades && Array.isArray(concierto.Localidades)) {
@@ -93,13 +101,21 @@ window.cargarEmpleadoParaEditar = async function(id) {
     }
 }
 
-// Actualizar concierto
+// Actualizar concierto - CON MANEJO DE CAMPO IMAGEN
 async function actualizarConcierto() {
     try {
         // Obtener valores del formulario
         const artista = document.getElementById('edit-artist-name').value.trim();
         const fecha = document.getElementById('edit-concert-date').value;
         const lugar = document.getElementById('edit-concert-venue').value.trim();
+        
+        // OBTENER IMAGEN CON MANEJO DE ERRORES
+        let imagen = '';
+        const imagenInput = document.getElementById('edit-concert-image');
+        if (imagenInput) {
+            imagen = imagenInput.value.trim();
+        }
+        
         const localidadesRaw = document.getElementById('edit-venue-seats').value;
         const cantidadesRaw = document.getElementById('edit-ticket-quantity').value;
         const preciosRaw = document.getElementById('edit-ticket-prices').value;
@@ -135,6 +151,11 @@ async function actualizarConcierto() {
             Precios: precios,
             fechaActualizacion: serverTimestamp()
         };
+        
+        // Agregar imagen solo si se proporcionó y el campo existe
+        if (imagen) {
+            conciertoData.Imagen = imagen;
+        }
         
         console.log("Actualizando concierto:", documentoActualId, conciertoData);
         
