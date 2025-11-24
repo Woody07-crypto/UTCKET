@@ -15,12 +15,14 @@ import {
 const auth = window.auth;
 const db = window.db;
 
+// ---------- PROTECCIÓN DE RUTA ----------
 onAuthStateChanged(auth, (user) => {
     if (!user) {
         window.location.href = "login.html";
     }
 });
 
+// ---------- BOTÓN CERRAR SESIÓN ----------
 const logoutBtn = document.getElementById("logoutBtn");
 if (logoutBtn) {
     logoutBtn.addEventListener("click", async () => {
@@ -33,6 +35,7 @@ if (logoutBtn) {
     });
 }
 
+// ---------- ELEMENTOS DEL DOM ----------
 const seccionLista  = document.getElementById("seccion-lista");
 const seccionForm   = document.getElementById("seccion-form");
 const listaConciertos = document.getElementById("lista-conciertos");
@@ -48,9 +51,10 @@ const inputLocalidades  = document.getElementById("localidades");
 const inputPrecio       = document.getElementById("precio");
 const inputImagen       = document.getElementById("imagen");
 
-let idEditando = null;  
-let modoActual = "lista"; 
+let idEditando = null;   // null = agregando
+let modoActual = "lista"; // "lista" | "agregar" | "editar"
 
+// ---------- HELPERS DE VISTA ----------
 function mostrarLista() {
     modoActual = "lista";
     seccionLista.style.display = "block";
@@ -71,6 +75,7 @@ function mostrarFormulario(modo, nombreConcierto = "") {
     seccionForm.scrollIntoView({ behavior: "smooth" });
 }
 
+// ---------- FORMATEO DE FECHA ----------
 function formatearFechaMostrar(fecha) {
     if (!fecha) return "Sin fecha";
 
@@ -110,6 +115,7 @@ function formatearFechaInput(fecha) {
     }
 }
 
+// ---------- CARGA EN TIEMPO REAL ----------
 onSnapshot(collection(db, "Conciertos"), (snapshot) => {
     if (!listaConciertos) return;
 
@@ -147,6 +153,7 @@ onSnapshot(collection(db, "Conciertos"), (snapshot) => {
     activarBotonesEditar();
 });
 
+// ---------- BOTONES EDITAR ----------
 function activarBotonesEditar() {
     const botones = document.querySelectorAll(".btn-editar");
 
@@ -158,6 +165,7 @@ function activarBotonesEditar() {
     });
 }
 
+// Cargar datos reales del concierto desde Firestore
 async function cargarConciertoDesdeFirestore(id) {
     try {
         const ref = doc(db, "Conciertos", id);
@@ -176,6 +184,7 @@ async function cargarConciertoDesdeFirestore(id) {
         inputLugar.value   = c.Lugar  || c.lugar  || "";
         inputFecha.value   = formatearFechaInput(c.Fecha || c.fecha);
 
+        // Pasamos arrays -> texto separado por comas
         if (Array.isArray(c.Localidades)) {
             inputLocalidades.value = c.Localidades.join(", ");
         } else {
@@ -198,14 +207,16 @@ async function cargarConciertoDesdeFirestore(id) {
     }
 }
 
+// ---------- BOTÓN AGREGAR ----------
 if (btnAgregar) {
     btnAgregar.addEventListener("click", () => {
-        idEditando = null; 
+        idEditando = null;  // nuevo
         form.reset();
         mostrarFormulario("agregar");
     });
 }
 
+// ---------- BOTÓN CANCELAR ----------
 if (btnCancelar) {
     btnCancelar.addEventListener("click", () => {
         idEditando = null;
@@ -214,15 +225,17 @@ if (btnCancelar) {
     });
 }
 
+// ---------- SUBMIT DEL FORMULARIO ----------
 if (form) {
     form.addEventListener("submit", async (e) => {
         e.preventDefault();
 
         const artista = inputArtista.value.trim();
         const lugar   = inputLugar.value.trim();
-        const fecha   = inputFecha.value;   
+        const fecha   = inputFecha.value;     // YYYY-MM-DD
         const imagen  = inputImagen.value.trim();
 
+        // textos de listas
         const localidadesTexto = inputLocalidades.value.trim();
         const preciosTexto     = inputPrecio.value.trim();
 
@@ -231,6 +244,7 @@ if (form) {
             return;
         }
 
+        // Convertir a arrays
         let localidades = [];
         let precios = [];
 
@@ -269,10 +283,12 @@ if (form) {
 
         try {
             if (idEditando) {
+                // EDITAR
                 const ref = doc(db, "Conciertos", idEditando);
                 await updateDoc(ref, data);
                 alert("Concierto actualizado correctamente ✅");
             } else {
+                // AGREGAR
                 await addDoc(collection(db, "Conciertos"), data);
                 alert("Concierto agregado correctamente ✅");
             }
@@ -287,4 +303,6 @@ if (form) {
         }
     });
 }
+
+// Mostrar lista al cargar
 mostrarLista();

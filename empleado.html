@@ -13,6 +13,7 @@
 <body>
     <header class="site-header">
         <nav class="nav">
+            <!-- IMPORTANTE: paths sin ../ para evitar el 404 -->
             <a href="index.html" class="brand">
                 <img src="img/Ticket_icon.png" alt="UTCKET" class="brand__icon">
                 <span class="brand__name">UTCKET</span>
@@ -39,9 +40,11 @@
         <div class="menu-overlay" id="menuOverlay"></div>
     </header>
 
+    <!-- SECCIÓN LISTA: vista principal -->
     <section class="contenedor" id="seccion-lista">
         <h3>Conciertos Registrados</h3>
         <div class="eventos_container" id="lista-conciertos">
+            <!-- Aquí se cargan las tarjetas desde empleado.js -->
         </div>
 
         <div class="acciones-empleado">
@@ -51,8 +54,9 @@
         </div>
     </section>
 
+    <!-- SECCIÓN FORMULARIO: solo se muestra en agregar/editar -->
     <section class="contenedor form-card" id="seccion-form" style="display: none;">
-        <h3 class="form-title" id="titulo-form">Editar Concierto</h3>
+        <h3 class="form-title" id="titulo-form">Agregar / Editar Concierto</h3>
 
         <form id="formConcierto" class="form-grid">
 
@@ -71,6 +75,7 @@
                 <input type="text" id="lugar" required>
             </div>
 
+            <!-- AHORA TEXTO, NO NUMBER -->
             <div class="form-group">
                 <label for="localidades">Localidades
                     <small>(ej: VIP, General, Butaca)</small>
@@ -101,6 +106,7 @@
         </form>
     </section>
 
+    <!-- Firebase para este módulo -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
         import { getAuth } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
@@ -112,10 +118,12 @@
         const auth = getAuth(app);
         const db = getFirestore(app);
 
+        // Exponer para empleado.js
         window.auth = auth;
         window.db = db;
     </script>
 
+    <!-- Menú hamburguesa -->
     <script>
         const menuToggle = document.getElementById("menuToggle");
         const menu = document.getElementById("menu");
@@ -132,8 +140,10 @@
         });
     </script>
 
+    <!-- LÓGICA DEL PANEL DE EMPLEADO -->
     <script type="module" src="empleado.js"></script>
 
+    <!-- OJO: quitamos JS/edit.js y JS/add.js aquí para evitar errores -->
 
     <footer class="site-footer">
         <div class="container footer-grid">
