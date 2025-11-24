@@ -4,47 +4,100 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="CSS/admin.css">
-    <title>Administrador</title>
+    <title>Dashboard Admin - UTCKET</title>
 </head>
-<body class="admin-page">
-    <header class="site-header">
-        <nav class="nav">
-            <div class="brand">
-                <div class="brand-logo-container">
-                    <img src="img/Ticket_icon.png" alt="UTCKET" class="brand__icon">
-                    <span class="brand__name">UTCKET</span>
-                </div>
-                <div class="brand-admin-container">
-                    <span class="brand__name">Administrador</span>
-                </div>
-            </div>
-        </nav>
-    </header>
+<body>
+    <!--Header-->
+<header class="site-header">
+    <nav class="nav">
+        <a href="index.html" class="brand brand--link">
+            <img src="img/Ticket_icon.png" alt="Logo Utcket" class="brand__logo-img">
+            <span>UTCKET</span>
+        </a>
+        <div class="admin-badge">Administrador</div>
+    </nav>
+</header>
 
+
+
+    <!--Stats Dashboard-->
+    <div class="stats-container">
+        <div class="stat-card">
+            <div class="stat-label">Total Conciertos</div>
+            <div class="stat-value" id="total-conciertos">0</div>
+            <div class="stat-trend" id="trend-conciertos">Cargando...</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-label">Empleados Activos</div>
+            <div class="stat-value" id="total-empleados">0</div>
+            <div class="stat-trend" id="trend-empleados">Cargando...</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-label">Próximos Eventos</div>
+            <div class="stat-value" id="proximos-eventos">0</div>
+            <div class="stat-trend" id="trend-eventos">Cargando...</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-label">Tickets Vendidos</div>
+            <div class="stat-value" id="tickets-vendidos">0</div>
+            <div class="stat-trend" id="trend-tickets">Cargando...</div>
+        </div>
+    </div>
+
+    <!--Main Content - Resumen-->
     <div class="admin-container">
         <div class="content-wrapper">
-            <div class="section section-left">
-                <h2 class="section-title">Conciertos Actuales</h2>
-                <div id="conciertos-lista" class="content-placeholder">
-                    <p class="loading-message">Cargando conciertos...</p>
+            <!--Conciertos Section-->
+            <div class="section">
+                <div class="section-card">
+                    <div class="section-header">
+                        <div class="section-title">
+                            Conciertos Recientes
+                        </div>
+                        <span class="section-count" id="count-conciertos">0</span>
+                    </div>
+                    
+                    <div class="section-body" id="conciertos-lista">
+                        <!--Los conciertos se cargarán aquí dinámicamente-->
+                        <div class="loading-message">Cargando conciertos...</div>
+                    </div>
+
+                    <div class="section-footer">
+                        <button class="btn-view-all" onclick="window.location.href='add_conciertos.html'">
+                            Ver Todos los Conciertos
+                            <span>→</span>
+                        </button>
+
+                    </div>
                 </div>
-                <button class="btn-agregar" onclick="window.location.href='add_conciertos.html'">
-                    Agregar
-                </button>
             </div>
 
-            <div class="section section-right">
-                <h2 class="section-title">Empleados Actuales</h2>
-                <div id="empleados-lista" class="content-placeholder">
-                    <p class="loading-message">Cargando empleados...</p>
+            <!--Empleados Section-->
+            <div class="section">
+                <div class="section-card">
+                    <div class="section-header">
+                        <div class="section-title">
+                            Empleados Activos
+                        </div>
+                        <span class="section-count" id="count-empleados">0</span>
+                    </div>
+                    
+                    <div class="section-body" id="empleados-lista">
+                        <!--Los empleados se cargarán aquí dinámicamente-->
+                        <div class="loading-message">Cargando empleados...</div>
+                    </div>
+
+                    <div class="section-footer">
+                        <button class="btn-view-all" onclick="window.location.href='add_empleados.html'">
+                            Ver Todos los Empleados
+                            <span>→</span>
+                        </button>
+                    </div>
                 </div>
-                <button class="btn-agregar" onclick="window.location.href='add_empleados.html'">
-                    Agregar
-                </button>
             </div>
         </div>
     </div>
-    
+
     <script type="module" src="JS/admin.js"></script>
 </body>
 </html>
