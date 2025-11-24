@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Panel de Empleado</title>
+    <title>Editar concierto</title>
 
     <link rel="stylesheet" href="CSS/empleado.css" />
     <link rel="stylesheet" href="CSS/nav.css" />
@@ -18,37 +18,71 @@
                 <span class="brand__name">UTCKET</span>
             </a>
 
-            <span class="panel-title">Panel de Empleado</span>
+            <span class="panel-title">Editar concierto</span>
 
             <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">
                 <span></span><span></span><span></span>
             </button>
 
             <div class="menu" id="menu">
-                <a href="index.html" class="menu__link">Inicio</a>
-                <a href="calendario.html" class="menu__link">Conciertos</a>
+                <a href="empleado.html" class="menu__link">Volver al panel</a>
                 <button id="logoutBtn" class="menu__link btn-salir">Cerrar sesión</button>
             </div>
         </nav>
-
         <div class="menu-overlay" id="menuOverlay"></div>
     </header>
 
-    <section class="contenedor">
-        <h3>Conciertos Registrados</h3>
+    <section class="contenedor form-card">
+        <h3 class="form-title">Editar Concierto</h3>
 
-        <div class="eventos_container" id="lista-conciertos">
-        </div>
+        <form id="formConcierto" class="form-grid">
+            <div class="form-group">
+                <label for="artista">Artista</label>
+                <input type="text" id="artista" required />
+            </div>
 
-        <div class="acciones-empleado">
-            <button id="btnIrAgregar" class="btn-primario">
-                Agregar concierto
-            </button>
-        </div>
+            <div class="form-group">
+                <label for="fecha">Fecha</label>
+                <input type="date" id="fecha" required />
+            </div>
+
+            <div class="form-group">
+                <label for="lugar">Lugar</label>
+                <input type="text" id="lugar" required />
+            </div>
+
+            <div class="form-group">
+                <label for="localidades">Localidades
+                    <small>(ej: VIP, General, Butaca)</small>
+                </label>
+                <input type="text" id="localidades" placeholder="VIP, General, Butaca" />
+            </div>
+
+            <div class="form-group">
+                <label for="precio">Precios ($)
+                    <small>(ej: 160, 140, 120)</small>
+                </label>
+                <input type="text" id="precio" placeholder="160, 140, 120" />
+            </div>
+
+            <div class="form-group full">
+                <label for="imagen">URL de Imagen</label>
+                <input type="text" id="imagen" placeholder="https://..." />
+            </div>
+
+            <div class="form-actions full">
+                <button type="button" id="btnCancelar" class="btn-cancelar">
+                    Cancelar
+                </button>
+                <button type="submit" class="btn-guardar">
+                    Guardar cambios
+                </button>
+            </div>
+        </form>
     </section>
 
     <footer class="site-footer">
-        <div class="container footer-grid">
+        <div class="container footer-grid"></div>
             <div class="footer-brand">
                 <div class="footer-brand__row">
                     <img src="img/Ticket_icon.png" alt="UTCKET" class="footer-brand__icon" />
@@ -117,7 +151,7 @@
         import { getAuth } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
         import { getFirestore } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-        import firebaseConfig from "../firebase/firebase-config.js"; /* deja la misma ruta que ya te funcionaba */
+        import firebaseConfig from "../firebase/firebase-config.js";
 
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
@@ -147,6 +181,6 @@
         }
     </script>
 
-    <script type="module" src="JS/empleado.js"></script>
+    <script type="module" src="JS/empleado-editar.js"></script>
 </body>
 </html>
