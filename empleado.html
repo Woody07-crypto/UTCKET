@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -29,7 +28,7 @@
 
             <div class="menu" id="menu">
                 <a href="index.html" class="menu__link">Inicio</a>
-                <a href="empleado.html" class="menu__link">Conciertos</a>
+                <a href="calendario.html" class="menu__link">Conciertos</a>
 
                 <button id="logoutBtn" class="menu__link btn-salir">
                     Cerrar sesión
@@ -40,13 +39,20 @@
         <div class="menu-overlay" id="menuOverlay"></div>
     </header>
 
-    <section class="contenedor">
+    <section class="contenedor" id="seccion-lista">
         <h3>Conciertos Registrados</h3>
-        <div class="eventos_container" id="lista-conciertos"></div>
+        <div class="eventos_container" id="lista-conciertos">
+        </div>
+
+        <div class="acciones-empleado">
+            <button id="btnAgregar" class="btn-agregar">
+                Agregar concierto
+            </button>
+        </div>
     </section>
 
-    <section class="contenedor form-card">
-        <h3 class="form-title">Agregar / Editar Concierto</h3>
+    <section class="contenedor form-card" id="seccion-form" style="display: none;">
+        <h3 class="form-title" id="titulo-form">Agregar / Editar Concierto</h3>
 
         <form id="formConcierto" class="form-grid">
 
@@ -57,7 +63,7 @@
 
             <div class="form-group">
                 <label for="fecha">Fecha</label>
-                <input type="date" id="fecha">
+                <input type="date" id="fecha" required>
             </div>
 
             <div class="form-group">
@@ -66,13 +72,17 @@
             </div>
 
             <div class="form-group">
-                <label for="localidades">Localidades</label>
-                <input type="number" id="localidades" disabled placeholder="(solo lectura por ahora)">
+                <label for="localidades">Localidades
+                    <small>(ej: VIP, General, Butaca)</small>
+                </label>
+                <input type="text" id="localidades" placeholder="VIP, General, Butaca">
             </div>
 
             <div class="form-group">
-                <label for="precio">Precio ($)</label>
-                <input type="number" id="precio" disabled placeholder="(solo lectura por ahora)">
+                <label for="precio">Precios ($)
+                    <small>(ej: 160, 140, 120)</small>
+                </label>
+                <input type="text" id="precio" placeholder="160, 140, 120">
             </div>
 
             <div class="form-group full">
@@ -80,9 +90,31 @@
                 <input type="text" id="imagen" placeholder="https://...">
             </div>
 
-            <button type="submit" class="btn-guardar full">Guardar</button>
+            <div class="form-actions full">
+                <button type="button" id="btnCancelar" class="btn-cancelar">
+                    Cancelar
+                </button>
+                <button type="submit" class="btn-guardar">
+                    Guardar
+                </button>
+            </div>
         </form>
     </section>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+        import { getAuth } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+        import { getFirestore } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+        import firebaseConfig from "../firebase/firebase-config.js";
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        window.auth = auth;
+        window.db = db;
+    </script>
 
     <script>
         const menuToggle = document.getElementById("menuToggle");
@@ -100,7 +132,8 @@
         });
     </script>
 
-    <script type="module" src="JS/empleado.js"></script>
+    <script type="module" src="empleado.js"></script>
+
 
     <footer class="site-footer">
         <div class="container footer-grid">
@@ -166,9 +199,5 @@
             <p class="footer-copy">Copyright © 2025 UTCKET EL SALVADOR, S.A. DE C.V.</p>
         </div>
     </footer>
-
-    <script type="module" src="JS/edit.js"></script>
-    <script type="module" src="JS/add.js"></script>
 </body>
-
 </html>
