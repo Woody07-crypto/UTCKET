@@ -10,7 +10,7 @@ let totalEmpleados = 0;
 let proximosEventos = 0;
 let ticketsVendidos = 0;
 
-// ========== FUNCIONES PARA CONCIERTOS ==========
+// FUNCIONES PARA CONCIERTOS 
 
 // Cargar conciertos al iniciar la página
 async function cargarConciertos() {
@@ -81,15 +81,15 @@ function crearTarjetaConciertoDashboard(id, concierto) {
     card.innerHTML = `
         <div class="quick-card-title">${concierto.Artista || 'Sin nombre'}</div>
         <div class="quick-card-info">
-            📍 ${concierto.Lugar || 'N/A'}<br>
-            📅 <span>${formatearFecha(concierto.Fecha)}</span>
+            ${concierto.Lugar || 'N/A'}<br>
+            <span>${formatearFecha(concierto.Fecha)}</span>
         </div>
     `;
     
     return card;
 }
 
-// ========== FUNCIONES PARA EMPLEADOS ==========
+// FUNCIONES PARA EMPLEADOS
 
 // Cargar empleados al iniciar la página
 async function cargarEmpleados() {
@@ -147,8 +147,8 @@ function crearTarjetaEmpleadoDashboard(id, empleado) {
     card.innerHTML = `
         <div class="quick-card-title">${empleado.Nombre || 'Sin nombre'} ${empleado.Apellido || ''}</div>
         <div class="quick-card-info">
-            👤 Usuario: <span>${empleado.Usuario || empleado.Carnet || 'N/A'}</span><br>
-            🏢 Puesto: <span>${empleado.Puesto || 'N/A'}</span>
+            Usuario: <span>${empleado.Usuario || empleado.Carnet || 'N/A'}</span><br>
+            Contraseña: <span>${empleado.Contraseña || 'N/A'}</span>
         </div>
     `;
     
@@ -189,7 +189,7 @@ function formatearFecha(fecha) {
     }
 }
 
-// ========== FUNCIONES DE ELIMINACIÓN ==========
+// FUNCIONES DE ELIMINACIÓN 
 
 // Eliminar concierto
 window.eliminarConcierto = async function(id) {
@@ -219,7 +219,7 @@ window.eliminarEmpleado = async function(id) {
     }
 }
 
-// ========== FUNCIONES DE EDICIÓN ==========
+// FUNCIONES DE EDICIÓN 
 
 // Editar concierto (redirige a la página de edición)
 window.editarConcierto = function(id) {
@@ -231,7 +231,7 @@ window.editarEmpleado = function(id) {
     window.location.href = `add_empleados.html?edit=${id}`;
 }
 
-// ========== FUNCIONES DE ESTADÍSTICAS ==========
+// FUNCIONES DE ESTADÍSTICAS 
 
 // Cargar estadísticas adicionales
 async function cargarEstadisticas() {
@@ -254,7 +254,7 @@ async function cargarEstadisticas() {
     }
 }
 
-// ========== INICIALIZACIÓN ==========
+// INICIALIZACIÓN
 
 // Inicializar dashboard
 console.log("⏳ Esperando DOMContentLoaded...");

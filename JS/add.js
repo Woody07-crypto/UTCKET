@@ -89,41 +89,40 @@ function crearTarjetaEmpleado(id, empleado) {
             <div class="avatar">${iniciales}</div>
             <div class="card-header-info">
                 <div class="card-title">${empleado.Nombre || 'Sin nombre'} ${empleado.Apellido || ''}</div>
-                <div class="card-subtitle">${empleado.Puesto || 'N/A'}</div>
             </div>
         </div>
         <div class="card-body">
             <div class="card-info">
-                <div class="info-icon">👤</div>
+                <div class="info-icon"></div>
                 <div class="info-content">
                     <div class="info-label">Usuario</div>
-                    <div class="info-value">${empleado.Usuario || empleado.Carnet || 'N/A'}</div>
+                    <div class="info-value">${empleado.Correo || empleado.Carnet || 'N/A'}</div>
                 </div>
             </div>
             <div class="card-info">
-                <div class="info-icon">🆔</div>
+                <div class="info-icon"></div>
                 <div class="info-content">
                     <div class="info-label">Carnet</div>
                     <div class="info-value">${empleado.Carnet || 'N/A'}</div>
                 </div>
             </div>
             <div class="card-info">
-                <div class="info-icon">📧</div>
+                <div class="info-icon"></div>
                 <div class="info-content">
                     <div class="info-label">Email</div>
-                    <div class="info-value">${empleado.Email || 'N/A'}</div>
+                    <div class="info-value">${empleado.Correo || 'N/A'}</div>
                 </div>
             </div>
             <div class="card-info">
-                <div class="info-icon">✅</div>
+                <div class="info-icon"></div>
                 <div class="info-content">
                     <div class="info-label">Estado</div>
                     <span class="status-badge status-active">Activo</span>
                 </div>
             </div>
             <div class="card-actions">
-                <button class="btn-editar" onclick="cargarEmpleadoParaEditar('${id}')">✏️ Editar</button>
-                <button class="btn-eliminar" onclick="eliminarEmpleado('${id}')">🗑️ Eliminar</button>
+                <button class="btn-editar" onclick="cargarEmpleadoParaEditar('${id}')">Editar</button>
+                <button class="btn-eliminar" onclick="eliminarEmpleado('${id}')">Eliminar</button>
             </div>
         </div>
     `;
@@ -161,22 +160,22 @@ function crearTarjetaConcierto(id, concierto) {
         </div>
         <div class="card-body">
             <div class="card-info">
-                <div class="info-label">📍 Lugar</div>
+                <div class="info-label">Lugar</div>
                 <div class="info-value">${concierto.Lugar || 'N/A'}</div>
             </div>
             <div class="card-info">
-                <div class="info-label">📅 Fecha</div>
+                <div class="info-label">Fecha</div>
                 <div class="info-value">${formatearFecha(concierto.Fecha)}</div>
             </div>
             <div class="card-info">
-                <div class="info-label">🎫 Localidades</div>
+                <div class="info-label">Localidades</div>
                 <div class="localidades-grid">
                     ${localidadesHTML || '<p style="color: #999;">No hay localidades disponibles</p>'}
                 </div>
             </div>
             <div class="card-actions">
-                <button class="btn-editar" onclick="cargarConciertoParaEditar('${id}')">✏️ Editar</button>
-                <button class="btn-eliminar" onclick="eliminarConcierto('${id}')">🗑️ Eliminar</button>
+                <button class="btn-editar" onclick="cargarConciertoParaEditar('${id}')">Editar</button>
+                <button class="btn-eliminar" onclick="eliminarConcierto('${id}')">Eliminar</button>
             </div>
         </div>
     `;
@@ -184,7 +183,7 @@ function crearTarjetaConcierto(id, concierto) {
     return card;
 }
 
-// ========== FUNCIONES UTILITARIAS ==========
+//  FUNCIONES UTILITARIAS 
 
 // Formatear fecha
 function formatearFecha(fecha) {
@@ -218,7 +217,7 @@ function formatearFecha(fecha) {
     }
 }
 
-// ========== FUNCIONES DE ELIMINACIÓN ==========
+//  FUNCIONES DE ELIMINACIÓN 
 
 // Eliminar concierto
 window.eliminarConcierto = async function(id) {
@@ -248,7 +247,7 @@ window.eliminarEmpleado = async function(id) {
     }
 }
 
-// ========== FORMULARIO DE CONCIERTO ==========
+// FORMULARIO DE CONCIERTO
 
 const formConcierto = document.getElementById('form-concierto');
 
@@ -321,7 +320,7 @@ if (formConcierto) {
     });
 }
 
-// ========== FORMULARIO DE EMPLEADO ==========
+// FORMULARIO DE EMPLEADO 
 
 const formEmpleado = document.getElementById('form-empleado');
 
@@ -385,7 +384,6 @@ if (formEmpleado) {
     });
 }
 
-// ========== INICIALIZACIÓN ==========
 
 // Inicializar
 document.addEventListener('DOMContentLoaded', () => {
