@@ -77,6 +77,17 @@ if (listaConciertos) {
             const fecha = c.Fecha || c.fecha;
             const fechaTexto = formatearFechaMostrar(fecha);
 
+            let textoLocalidades = "";
+            let textoPrecios = "";
+
+            if (Array.isArray(c.Localidades)) {
+                textoLocalidades = c.Localidades.join(", ");
+            }
+
+            if (Array.isArray(c.Precios)) {
+                textoPrecios = c.Precios.join(", ");
+            }
+
             const imagen =
                 c.Imagen ||
                 c.imagen ||
@@ -91,7 +102,16 @@ if (listaConciertos) {
                 <h3>${artista}</h3>
                 <p>📍 ${lugar}</p>
                 <p>Fecha: ${fechaTexto}</p>
-                <button class="btn-editar" data-id="${id}">Editar</button>
+                <p>Localidades: ${textoLocalidades || "N/D"}</p>
+                <p>Precios: ${textoPrecios || "N/D"}</p>
+                <button 
+                    class="btn-editar" 
+                    data-id="${id}"
+                    data-localidades="${textoLocalidades}"
+                    data-precios="${textoPrecios}"
+                >
+                    Editar
+                </button>
             `;
 
             listaConciertos.appendChild(card);
@@ -108,13 +128,15 @@ function activarBotonesEditar() {
         btn.addEventListener("click", (e) => {
             const card = e.target.closest(".evento");
             const id = e.target.dataset.id;
+            const localidades = e.target.dataset.localidades || "";
+            const precios = e.target.dataset.precios || "";
 
-            cargarConciertoDesdeTarjeta(id, card);
+            cargarConciertoDesdeTarjeta(id, card, localidades, precios);
         });
     });
 }
 
-function cargarConciertoDesdeTarjeta(id, card) {
+function cargarConciertoDesdeTarjeta(id, card, localidades, precios) {
     idEditando = id;
 
     const nombre = card.querySelector("h3")?.textContent || "";
@@ -124,8 +146,8 @@ function cargarConciertoDesdeTarjeta(id, card) {
     inputArtista.value = nombre;
     inputLugar.value = lugarTexto.replace("📍", "").trim();
     inputFecha.value = "";
-    inputLocalidades.value = "";
-    inputPrecio.value = "";
+    inputLocalidades.value = localidades;
+    inputPrecio.value = precios;
     inputImagen.value = imgSrc;
 
     form.scrollIntoView({ behavior: "smooth" });
