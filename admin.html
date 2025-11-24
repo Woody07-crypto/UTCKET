@@ -1,22 +1,29 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="CSS/admin.css">
     <title>Dashboard Admin - UTCKET</title>
 </head>
+
 <body>
     <!--Header-->
-<header class="site-header">
-    <nav class="nav">
-        <a href="index.html" class="brand brand--link">
-            <img src="img/Ticket_icon.png" alt="Logo Utcket" class="brand__logo-img">
-            <span>UTCKET</span>
-        </a>
-        <div class="admin-badge">Administrador</div>
-    </nav>
-</header>
+    <header class="site-header">
+        <nav class="nav">
+            <a href="index.html" class="brand brand--link">
+                <img src="img/Ticket_icon.png" alt="Logo Utcket" class="brand__logo-img">
+                <span>UTCKET</span>
+            </a>
+            <div class="admin-badge">Administrador</div>
+
+            <button id="logoutBtn" class="btn-logout">
+                Cerrar sesión
+            </button>
+
+        </nav>
+    </header>
 
 
 
@@ -56,7 +63,7 @@
                         </div>
                         <span class="section-count" id="count-conciertos">0</span>
                     </div>
-                    
+
                     <div class="section-body" id="conciertos-lista">
                         <!--Los conciertos se cargarán aquí dinámicamente-->
                         <div class="loading-message">Cargando conciertos...</div>
@@ -81,7 +88,7 @@
                         </div>
                         <span class="section-count" id="count-empleados">0</span>
                     </div>
-                    
+
                     <div class="section-body" id="empleados-lista">
                         <!--Los empleados se cargarán aquí dinámicamente-->
                         <div class="loading-message">Cargando empleados...</div>
@@ -100,4 +107,5 @@
 
     <script type="module" src="JS/admin.js"></script>
 </body>
+
 </html>

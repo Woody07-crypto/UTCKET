@@ -1,6 +1,9 @@
 // admin.js - Usando firebase-config.js existente
 import { db } from './firebase-config.js';
 import { collection, getDocs, deleteDoc, doc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+import { auth } from './firebase-config.js';
+import { signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
 
 console.log("Iniciando admin.js...");
 
@@ -263,4 +266,22 @@ document.addEventListener('DOMContentLoaded', () => {
     cargarConciertos();
     cargarEmpleados();
     cargarEstadisticas();
+});
+
+//  LOGOUT 
+document.addEventListener('DOMContentLoaded', () => {
+    const logoutBtn = document.getElementById('logoutBtn');
+
+    if (logoutBtn) {
+        logoutBtn.addEventListener('click', () => {
+            signOut(auth)
+                .then(() => {
+                    console.log("Sesión cerrada correctamente.");
+                    window.location.href = "index.html"; 
+                })
+                .catch((error) => {
+                    console.error("Error al cerrar sesión:", error);
+                });
+        });
+    }
 });
