@@ -952,3 +952,10 @@ body {
     margin-top: 15px;
     flex-wrap: wrap;
 }
+
+.brand__logo-img {
+    height: 35px; /* Define el tamaño visual del logo */
+    width: auto;
+    margin-right: 5px; /* Espacio entre la imagen y el texto "UTCKET" */
+    /* Asegúrate de que el fondo de tu logo sea transparente */
+}
