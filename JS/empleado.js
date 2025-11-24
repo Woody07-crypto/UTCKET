@@ -1,6 +1,3 @@
-// JS/empleado.js
-
-// Firestore (misma versión que usan en add.js / edit.js)
 import {
     collection,
     onSnapshot,
@@ -8,10 +5,8 @@ import {
     updateDoc
 } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
-// Traemos auth y db desde el firebase-config.js compartido
 import { auth, db } from "./firebase-config.js";
 
-// ================== AUTENTICACIÓN ==================
 import {
     onAuthStateChanged,
     signOut
@@ -19,7 +14,6 @@ import {
 
 onAuthStateChanged(auth, (user) => {
     if (!user) {
-        // IMPORTANTE: sin ../ para no salir de /UTCKET
         window.location.href = "login.html";
     }
 });
@@ -36,7 +30,6 @@ if (logoutBtn) {
     });
 }
 
-// ================== REFERENCIAS DOM ==================
 const listaConciertos = document.getElementById("lista-conciertos");
 const form = document.getElementById("formConcierto");
 
@@ -49,7 +42,6 @@ const inputImagen = document.getElementById("imagen");
 
 let idEditando = null;
 
-// ================== FORMATOS DE FECHA ==================
 function formatearFechaMostrar(fecha) {
     if (!fecha) return "Sin fecha";
 
@@ -72,7 +64,6 @@ function formatearFechaMostrar(fecha) {
     }
 }
 
-// ================== ESCUCHAR CAMBIOS EN CONCIERTOS ==================
 if (listaConciertos) {
     onSnapshot(collection(db, "Conciertos"), (snapshot) => {
         listaConciertos.innerHTML = "";
@@ -110,7 +101,6 @@ if (listaConciertos) {
     });
 }
 
-// ================== BOTONES EDITAR ==================
 function activarBotonesEditar() {
     const botones = document.querySelectorAll(".btn-editar");
 
@@ -141,7 +131,6 @@ function cargarConciertoDesdeTarjeta(id, card) {
     form.scrollIntoView({ behavior: "smooth" });
 }
 
-// ================== ENVÍO DEL FORMULARIO ==================
 if (form) {
     form.addEventListener("submit", async (e) => {
         e.preventDefault();
@@ -153,8 +142,10 @@ if (form) {
 
         const artista = inputArtista.value.trim();
         const lugar = inputLugar.value.trim();
-        const fecha = inputFecha.value; // YYYY-MM-DD
+        const fecha = inputFecha.value;
         const imagen = inputImagen.value.trim();
+        const localidadesRaw = inputLocalidades.value.trim();
+        const preciosRaw = inputPrecio.value.trim();
 
         if (!artista || !lugar) {
             alert("Por favor completa al menos Artista y Lugar.");
@@ -175,6 +166,20 @@ if (form) {
 
             if (imagen) {
                 dataActualizada.Imagen = imagen;
+            }
+
+            if (localidadesRaw) {
+                dataActualizada.Localidades = localidadesRaw
+                    .split(",")
+                    .map((s) => s.trim())
+                    .filter((s) => s.length > 0);
+            }
+
+            if (preciosRaw) {
+                dataActualizada.Precios = preciosRaw
+                    .split(",")
+                    .map((s) => s.trim())
+                    .filter((s) => s.length > 0);
             }
 
             await updateDoc(docRef, dataActualizada);
