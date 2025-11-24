@@ -977,3 +977,18 @@ body {
 .logout-btn:hover {
     opacity: 0.9;
 }
+
+/* Agregar al final de admin.css */
+.section-subtitle {
+    color: var(--c-teal);
+    margin: 1.5rem 0 1rem 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.mt-4 {
+    margin-top: 1.5rem;
+}

@@ -4,21 +4,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro de Cliente - UTCKET</title>
-    <link rel="stylesheet" href="CSS/admin.css">
+    <link rel="stylesheet" href="CSS/nav.css">
+    <link rel="stylesheet" href="CSS/footer.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="CSS/client.css"> </head>
+    <link rel="stylesheet" href="CSS/client.css"> 
+    <link rel="stylesheet" href="CSS/base.css">
+</head>
 <body>
-    <header class="site-header">
-        <nav class="nav">
-            <a href="index.html" class="brand brand--link">
-                <img src="img/Ticket_icon.png" alt="Logo Utcket" class="brand__logo-img">
-                <span>UTCKET</span>
-            </a>
-            <button class="btn-back" onclick="window.location.href='index.html'">
-                ← Volver a Inicio
-            </button>
-        </nav>
-    </header>
+<header class="site-header">
+    <nav class="nav">
+        <a href="index.html" class="brand">
+            <img src="img/Ticket_icon.png" alt="UTCKET" class="brand__icon">
+            <span class="brand__name">UTCKET</span>
+        </a>
+        
+        <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <div class="menu" id="menu">
+            <a href="home.html" class="menu__link">Home</a>
+            <a href="nosotros.html" class="menu__link">Nosotros</a>
+            <a href="contacto.html" class="menu__link">Contacto</a>
+            <a href="calendario.html" class="btn-nav menu__link">Eventos</a>
+        </div>
+    </nav>
+    
+    <div class="menu-overlay" id="menuOverlay"></div>
+</header>
 
     <div class="page-header">
         <h1 class="page-title">Registro de Clientes</h1>
@@ -85,6 +100,69 @@
             </form>
         </div>
     </div>
+    <footer class="site-footer">
+    <div class="container footer-grid">
 
+        <div class="footer-brand">
+        <div class="footer-brand__row">
+            <img src="img/Ticket_icon.png" alt="UTCKET" class="footer-brand__icon">
+            <span class="footer-brand__name">UTCKET</span>
+        </div>
+        <p class="footer-brand__desc">
+            Los mejores conciertos de la ciudad a tu alcance, más sencillo y fácil.
+            UTCKET es el e-commerce de conciertos que conecta a los fans con los
+            mejores eventos de centroamérica.
+        </p>
+        <div class="footer-social">
+            <a href="#" aria-label="Facebook" class="footer-social__link">
+            <img src="img/facebook.png" alt="" class="footer-social__icon">
+            </a>
+            <a href="#" aria-label="Twitter" class="footer-social__link">
+            <img src="img/twitter.png" alt="" class="footer-social__icon">
+            </a>
+            <a href="#" aria-label="LinkedIn" class="footer-social__link">
+            <img src="img/linkedin.png" alt="" class="footer-social__icon">
+            </a>
+        </div>
+        </div>
+
+        <div class="footer-col">
+        <h4 class="footer-col__title">Nosotros</h4>
+        <p class="footer-col__text">
+            Calle a Comasagua,<br>
+            Carretera al Puerto de la LL, Santa Tecla,<br>
+            La Libertad Sur, El Salvador.
+        </p>
+        </div>
+
+        <div class="footer-col">
+        <h4 class="footer-col__title">Contacto</h4>
+        <p class="footer-col__text">
+            <a href="tel:+50376152883" class="footer-link">+(503) 7615 2883</a><br>
+            <a href="mailto:info@utcket.com" class="footer-link">info@utcket.com</a><br>
+            <a href="mailto:ventas@utcket.com" class="footer-link">ventas@utcket.com</a><br><br>
+            NIT: 0614 170306-108-2<br>
+            NRC: 171703-2
+        </p>
+        </div>
+
+        <div class="footer-subscribe">
+        <h4 class="footer-col__title">Suscríbete Y Sé Cliente Preferencial</h4>
+        <p class="footer-col__text">
+            Recibe los mejores descuentos para los próximos conciertos o eventos de la región.
+        </p>
+        <form class="subscribe-form" action="#" method="post" novalidate>
+            <input type="email" name="email" class="subscribe-input" placeholder="Ingresa tu correo" required>
+            <button type="submit" class="subscribe-btn">Suscríbete ahora</button>
+        </form>
+        </div>
+
+    </div>
+
+    <hr class="footer-sep">
+    <div class="container">
+        <p class="footer-copy">Copyright © 2025 UTCKET EL SALVADOR, S.A. DE C.V.</p>
+    </div>
+    </footer>
 </body>
 </html>

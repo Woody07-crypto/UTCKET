@@ -1,111 +1,350 @@
+/* client.css - Estilos para formularios de cliente */
+:root {
+    --c-teal: #00a8a8;
+    --c-teal-dark: #007d7d;
+    --c-indigo: #2230cc;
+    --c-indigo-dark: #1a1f99;
+    --c-white: #ffffff;
+    --c-gray-light: #f5f7fa;
+    --c-gray: #e8e8e8;
+    --c-dark: #1a3a5c;
+    --c-text: #333;
+    --c-text-light: #666;
+    --c-success: #10b981;
+    --c-error: #ef4444;
+    --c-warning: #f59e0b;
+    
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
+    --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 8px 32px rgba(0, 168, 168, 0.15);
+    
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-fast: all 0.2s ease;
+}
 
-
+/* Contenedor principal para formularios de cliente */
+.client-container {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
 
 .client-form-container {
-    max-width: 800px;
-    margin: 40px auto;
-    padding: 0 20px;
+    background: white;
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow: var(--shadow-md);
+    margin-top: 20px;
 }
 
+/* Header del formulario */
+.client-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
 
+.client-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--c-dark);
+    margin-bottom: 0.5rem;
+}
+
+.client-subtitle {
+    font-size: 1rem;
+    color: var(--c-text-light);
+    line-height: 1.5;
+}
+
+/* Secciones del formulario */
 .form-section {
-    background-color: #ffffff;
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
-    border: 1px solid #e0e0e0;
+    margin-bottom: 2rem;
 }
 
-.form-title {
-    color: var(--color-text-dark, #2c3e50);
-    font-size: 1.8em;
-    margin-bottom: 25px;
-    border-bottom: 2px solid #f0f0f0;
-    padding-bottom: 10px;
+.section-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--c-dark);
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--c-teal);
 }
-
 
 .section-subtitle {
-    color: var(--color-primary, #1abc9c);
-    font-size: 1.1em;
+    color: var(--c-teal);
+    margin: 1.5rem 0 1rem 0;
+    font-size: 1.1rem;
     font-weight: 600;
-    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
-.section-subtitle i {
-    margin-right: 8px;
-}
 
-
-
+/* Grid para formularios */
 .form-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 20px;
-    margin-bottom: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 1rem;
 }
 
-
+/* Grupos de formulario */
 .form-group {
-    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.25rem;
 }
 
 .form-label {
-    display: block;
     font-weight: 600;
-    margin-bottom: 5px;
+    margin-bottom: 0.5rem;
+    color: var(--c-dark);
+    font-size: 0.95rem;
 }
 
 .form-input {
-    width: 100%;
-    padding: 10px 15px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    transition: border-color 0.2s;
+    padding: 0.75rem 1rem;
+    border: 2px solid var(--c-gray);
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: var(--transition-fast);
+    font-family: inherit;
 }
 
 .form-input:focus {
-    border-color: var(--color-primary, #1abc9c);
     outline: none;
-    box-shadow: 0 0 5px rgba(26, 188, 156, 0.3);
+    border-color: var(--c-teal);
+    box-shadow: 0 0 0 3px rgba(0, 168, 168, 0.1);
 }
 
+.form-input::placeholder {
+    color: #9ca3af;
+}
+
+/* Textarea específico */
+textarea.form-input {
+    resize: vertical;
+    min-height: 80px;
+    font-family: inherit;
+}
+
+/* Texto de ayuda */
 .form-hint {
-    font-size: 0.8em;
-    color: #95a5a6;
-    margin-top: 5px;
+    font-size: 0.85rem;
+    color: var(--c-text-light);
+    margin-top: 0.5rem;
 }
 
-
+/* Acciones del formulario */
 .form-actions {
     display: flex;
-    justify-content: flex-end;
-    gap: 15px;
-    padding-top: 20px;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 2rem;
+    flex-wrap: wrap;
 }
 
-.btn-submit, .btn-cancel {
-    padding: 10px 20px;
+/* Botones */
+.btn-submit {
+    background: linear-gradient(135deg, var(--c-teal) 0%, var(--c-indigo) 100%);
+    color: white;
     border: none;
-    border-radius: 6px;
+    padding: 0.875rem 2rem;
+    border-radius: 10px;
+    font-size: 1rem;
     font-weight: 600;
     cursor: pointer;
-    transition: background-color 0.2s;
-}
-
-.btn-submit {
-    background-color: var(--color-primary, #1abc9c);
-    color: white;
+    transition: var(--transition-smooth);
+    box-shadow: 0 4px 12px rgba(0, 168, 168, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-width: 160px;
 }
 
 .btn-submit:hover {
-    background-color: #16a085;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 168, 168, 0.4);
+}
+
+.btn-submit:active {
+    transform: translateY(0);
 }
 
 .btn-cancel {
-    background-color: #bdc3c7; 
-    color: var(--color-text-dark, #2c3e50);
+    background: var(--c-gray);
+    color: var(--c-dark);
+    border: none;
+    padding: 0.875rem 2rem;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition-fast);
+    min-width: 160px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
 }
 
 .btn-cancel:hover {
-    background-color: #95a5a6;
+    background: #d0d0d0;
+}
+
+/* Mensajes de autenticación */
+.auth-messages {
+    margin: 1rem 0;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+.auth-messages.success {
+    background-color: #d1fae5;
+    color: #065f46;
+    border: 1px solid #a7f3d0;
+}
+
+.auth-messages.error {
+    background-color: #fee2e2;
+    color: #991b1b;
+    border: 1px solid #fecaca;
+}
+
+.auth-messages.warning {
+    background-color: #fef3c7;
+    color: #92400e;
+    border: 1px solid #fde68a;
+}
+
+/* Enlaces de autenticación */
+.auth-links {
+    margin-top: 1.5rem;
+    text-align: center;
+}
+
+.auth-links a {
+    color: var(--c-teal);
+    text-decoration: none;
+    font-weight: 500;
+    transition: var(--transition-fast);
+}
+
+.auth-links a:hover {
+    text-decoration: underline;
+    color: var(--c-teal-dark);
+}
+
+/* Estados de validación */
+.form-input:invalid:not(:focus):not(:placeholder-shown) {
+    border-color: var(--c-error);
+}
+
+.form-input:valid:not(:focus):not(:placeholder-shown) {
+    border-color: var(--c-success);
+}
+
+/* Utilidades de espaciado */
+.mt-1 { margin-top: 0.5rem; }
+.mt-2 { margin-top: 1rem; }
+.mt-3 { margin-top: 1.5rem; }
+.mt-4 { margin-top: 2rem; }
+.mt-5 { margin-top: 3rem; }
+
+.mb-1 { margin-bottom: 0.5rem; }
+.mb-2 { margin-bottom: 1rem; }
+.mb-3 { margin-bottom: 1.5rem; }
+.mb-4 { margin-bottom: 2rem; }
+.mb-5 { margin-bottom: 3rem; }
+
+/* Responsive */
+@media (max-width: 768px) {
+    .client-container {
+        margin: 1rem auto;
+        padding: 0 0.5rem;
+    }
+    
+    .client-form-container {
+        padding: 1.5rem;
+        border-radius: 12px;
+    }
+    
+    .client-title {
+        font-size: 1.75rem;
+    }
+    
+    .form-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .form-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .btn-submit,
+    .btn-cancel {
+        width: 100%;
+        min-width: auto;
+    }
+    
+    .section-title {
+        font-size: 1.25rem;
+    }
+    
+    .section-subtitle {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .client-form-container {
+        padding: 1rem;
+        border-radius: 10px;
+    }
+    
+    .client-title {
+        font-size: 1.5rem;
+    }
+    
+    .form-input {
+        padding: 0.625rem 0.875rem;
+    }
+    
+    .btn-submit,
+    .btn-cancel {
+        padding: 0.75rem 1.5rem;
+    }
+}
+
+/* Estados de carga */
+.btn-submit.loading {
+    position: relative;
+    color: transparent;
+}
+
+.btn-submit.loading::after {
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border: 2px solid transparent;
+    border-top: 2px solid white;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Iconos de Bootstrap */
+.bi {
+    font-size: 1.1em;
 }
