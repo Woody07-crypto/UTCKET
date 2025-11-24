@@ -45,6 +45,7 @@ body {
     z-index: 100;
 }
 
+
 .nav {
     display: flex;
     align-items: center;
@@ -960,3 +961,19 @@ body {
     
 }
 
+.logout-btn {
+    background: linear-gradient(90deg, #00a8a8, #2230cc);
+    color: white !important;
+    border: none;
+    font-weight: 600;
+    padding: 8px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.logout-btn:hover {
+    opacity: 0.9;
+}

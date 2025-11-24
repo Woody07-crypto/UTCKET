@@ -12,18 +12,20 @@ import {
     signOut
 } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
+// Si no hay sesión activa, enviar al login
 onAuthStateChanged(auth, (user) => {
     if (!user) {
         window.location.href = "index.html";
     }
 });
 
+// Botón de cerrar sesión
 const logoutBtn = document.getElementById("logoutBtn");
 if (logoutBtn) {
     logoutBtn.addEventListener("click", async () => {
         try {
             await signOut(auth);
-            window.location.href = "index.html";
+            window.location.href = "index.html"; 
         } catch (error) {
             console.error("Error al cerrar sesión:", error);
         }

@@ -14,31 +14,20 @@
 <body>
     <header class="site-header">
         <nav class="nav">
-            <a href="index.html" class="brand">
-                <img src="img/Ticket_icon.png" alt="UTCKET" class="brand__icon">
-                <span class="brand__name">UTCKET</span>
+            <a href="index.html" class="brand brand--link">
+                <img src="img/Ticket_icon.png" alt="Logo Utcket" class="brand__logo-img">
+                <span>UTCKET</span>
             </a>
 
-            <span class="panel-title">Panel de Empleado</span>
+            <div class="admin-badge">Empleado</div>
 
-            <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">
-                <span></span>
-                <span></span>
-                <span></span>
+            <button id="logoutBtn" class="btn-view-all logout-btn">
+                Cerrar sesión
+                <span>→</span>
             </button>
-
-            <div class="menu" id="menu">
-                <a href="index.html" class="menu__link">Inicio</a>
-                <a href="empleado.html" class="menu__link">Conciertos</a>
-
-                <button id="logoutBtn" class="menu__link btn-salir">
-                    Cerrar sesión
-                </button>
-            </div>
         </nav>
-
-        <div class="menu-overlay" id="menuOverlay"></div>
     </header>
+
 
     <section class="contenedor">
         <h3>Conciertos Registrados</h3>
@@ -70,7 +59,7 @@
                 </label>
                 <input type="text" id="localidades" placeholder="VIP, General, Butaca">
             </div>
-    
+
             <div class="form-group">
                 <label for="precio">Precios ($)
                 </label>

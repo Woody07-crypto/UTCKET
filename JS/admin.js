@@ -1,6 +1,8 @@
 // admin.js - Usando firebase-config.js existente
 import { db } from './firebase-config.js';
+import { auth } from './firebase-config.js';
 import { collection, getDocs, deleteDoc, doc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+import { signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
 console.log("Iniciando admin.js...");
 
@@ -91,7 +93,6 @@ function crearTarjetaConciertoDashboard(id, concierto) {
 
 // FUNCIONES PARA EMPLEADOS
 
-// Cargar empleados al iniciar la página
 async function cargarEmpleados() {
     const container = document.getElementById('empleados-lista');
     console.log("Cargando empleados...");
@@ -120,7 +121,7 @@ async function cargarEmpleados() {
         if (container) {
             container.innerHTML = ''; 
             
-            // Mostrar solo los primeros 2 empleados en el dashboard
+            // Mostrar solo los primeros 2 empleados
             let contador = 0;
             querySnapshot.forEach((docSnapshot) => {
                 if (contador < 2) {
@@ -139,7 +140,6 @@ async function cargarEmpleados() {
     }
 }
 
-// Crear tarjeta de empleado para dashboard
 function crearTarjetaEmpleadoDashboard(id, empleado) {
     const card = document.createElement('div');
     card.className = 'quick-card';
@@ -155,14 +155,12 @@ function crearTarjetaEmpleadoDashboard(id, empleado) {
     return card;
 }
 
-// ========== FUNCIONES UTILITARIAS ==========
+// UTILIDADES 
 
-// Formatear fecha
 function formatearFecha(fecha) {
     if (!fecha) return 'N/A';
     
     try {
-        // Si es un timestamp de Firestore
         if (fecha.seconds) {
             const date = new Date(fecha.seconds * 1000);
             return date.toLocaleDateString('es-ES', { 
@@ -174,7 +172,6 @@ function formatearFecha(fecha) {
             });
         }
         
-        // Si es una cadena de fecha
         const date = new Date(fecha);
         return date.toLocaleDateString('es-ES', { 
             year: 'numeric', 
@@ -189,23 +186,21 @@ function formatearFecha(fecha) {
     }
 }
 
-// FUNCIONES DE ELIMINACIÓN 
+// ELIMINAR
 
-// Eliminar concierto
 window.eliminarConcierto = async function(id) {
     if (!confirm('¿Estás seguro de eliminar este concierto?')) return;
     
     try {
         await deleteDoc(doc(db, 'Conciertos', id));
         alert('Concierto eliminado exitosamente');
-        cargarConciertos(); // Recargar lista
+        cargarConciertos();
     } catch (error) {
         console.error('Error al eliminar concierto:', error);
         alert('❌ Error al eliminar concierto: ' + error.message);
     }
 }
 
-// Eliminar empleado
 window.eliminarEmpleado = async function(id) {
     if (!confirm('¿Estás seguro de eliminar este empleado?')) return;
     
@@ -219,32 +214,26 @@ window.eliminarEmpleado = async function(id) {
     }
 }
 
-// FUNCIONES DE EDICIÓN 
+// EDITAR
 
-// Editar concierto (redirige a la página de edición)
 window.editarConcierto = function(id) {
     window.location.href = `add_conciertos.html?edit=${id}`;
 }
 
-// Editar empleado (redirige a la página de edición)
 window.editarEmpleado = function(id) {
     window.location.href = `add_empleados.html?edit=${id}`;
 }
 
-// FUNCIONES DE ESTADÍSTICAS 
+// ESTADÍSTICAS 
 
-// Cargar estadísticas adicionales
 async function cargarEstadisticas() {
     try {
-        // Aquí puedes agregar lógica para calcular tickets vendidos
-        // Por ahora, usaremos valores de ejemplo
         ticketsVendidos = 1200;
         if (document.getElementById('tickets-vendidos')) {
             document.getElementById('tickets-vendidos').textContent = '1.2K';
             document.getElementById('trend-tickets').textContent = '↑ 15% vs mes anterior';
         }
         
-        // Actualizar tendencia de conciertos
         if (document.getElementById('trend-conciertos')) {
             document.getElementById('trend-conciertos').textContent = '↑ 3 este mes';
         }
@@ -256,11 +245,24 @@ async function cargarEstadisticas() {
 
 // INICIALIZACIÓN
 
-// Inicializar dashboard
-console.log("⏳ Esperando DOMContentLoaded...");
 document.addEventListener('DOMContentLoaded', () => {
     console.log("DOM cargado, iniciando carga de datos...");
     cargarConciertos();
     cargarEmpleados();
     cargarEstadisticas();
+
+    // LOGOUT
+    const logoutBtn = document.getElementById('logoutBtn');
+    if (logoutBtn) {
+        logoutBtn.addEventListener('click', () => {
+            signOut(auth)
+                .then(() => {
+                    console.log("Sesión cerrada correctamente.");
+                    window.location.href = "index.html";
+                })
+                .catch((error) => {
+                    console.error("Error al cerrar sesión:", error);
+                });
+        });
+    }
 });
