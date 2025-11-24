@@ -4,35 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Panel de Empleado</title>
-
     <link rel="stylesheet" href="CSS/empleado.css">
     <link rel="stylesheet" href="CSS/nav.css">
     <link rel="stylesheet" href="CSS/footer.css">
 </head>
-
 <body>
     <header class="site-header">
         <nav class="nav">
-            <a href="index.html" class="brand">
+            <a href="home.html" class="brand">
                 <img src="img/Ticket_icon.png" alt="UTCKET" class="brand__icon">
                 <span class="brand__name">UTCKET</span>
             </a>
-
             <span class="panel-title">Panel de Empleado</span>
-
             <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">
                 <span></span>
                 <span></span>
                 <span></span>
             </button>
-
             <div class="menu" id="menu">
-                <a href="index.html" class="menu__link">Inicio</a>
+                <a href="home.html" class="menu__link">Inicio</a>
                 <a href="calendario.html" class="menu__link">Conciertos</a>
                 <button id="logoutBtn" class="menu__link btn-salir">Cerrar sesión</button>
             </div>
         </nav>
-
         <div class="menu-overlay" id="menuOverlay"></div>
     </header>
 
@@ -41,9 +35,7 @@
             <h3>Conciertos Registrados</h3>
             <button id="btnAgregarConcierto" class="btn-agregar">Agregar concierto</button>
         </div>
-
-        <div class="eventos_container" id="lista-conciertos">
-        </div>
+        <div class="eventos_container" id="lista-conciertos"></div>
     </section>
 
     <footer class="site-footer">
@@ -70,7 +62,6 @@
                     </a>
                 </div>
             </div>
-
             <div class="footer-col">
                 <h4 class="footer-col__title">Nosotros</h4>
                 <p class="footer-col__text">
@@ -79,7 +70,6 @@
                     La Libertad Sur, El Salvador.
                 </p>
             </div>
-
             <div class="footer-col">
                 <h4 class="footer-col__title">Contacto</h4>
                 <p class="footer-col__text">
@@ -90,7 +80,6 @@
                     NRC: 171703-2
                 </p>
             </div>
-
             <div class="footer-subscribe">
                 <h4 class="footer-col__title">Suscríbete Y Sé Cliente Preferencial</h4>
                 <p class="footer-col__text">
@@ -102,12 +91,31 @@
                 </form>
             </div>
         </div>
-
         <hr class="footer-sep">
         <div class="container">
             <p class="footer-copy">Copyright © 2025 UTCKET EL SALVADOR, S.A. DE C.V.</p>
         </div>
     </footer>
+
+    <script>
+        const menuToggle = document.getElementById("menuToggle");
+        const menu = document.getElementById("menu");
+        const overlay = document.getElementById("menuOverlay");
+
+        if (menuToggle) {
+            menuToggle.addEventListener("click", () => {
+                menu.classList.toggle("open");
+                overlay.classList.toggle("active");
+            });
+        }
+
+        if (overlay) {
+            overlay.addEventListener("click", () => {
+                menu.classList.remove("open");
+                overlay.classList.remove("active");
+            });
+        }
+    </script>
 
     <script type="module" src="JS/empleado.js"></script>
 </body>
