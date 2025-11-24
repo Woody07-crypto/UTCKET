@@ -1,186 +1,89 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Agregar concierto</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Agregar Concierto - Empleado</title>
 
-    <link rel="stylesheet" href="CSS/empleado.css" />
-    <link rel="stylesheet" href="CSS/nav.css" />
-    <link rel="stylesheet" href="CSS/footer.css" />
+  <link rel="stylesheet" href="CSS/empleado.css" />
+  <link rel="stylesheet" href="CSS/nav.css" />
+  <link rel="stylesheet" href="CSS/footer.css" />
 </head>
 
 <body>
-    <header class="site-header">
-        <nav class="nav">
-            <a href="index.html" class="brand">
-                <img src="img/Ticket_icon.png" alt="UTCKET" class="brand__icon" />
-                <span class="brand__name">UTCKET</span>
-            </a>
+  <header class="site-header">
+    <nav class="nav">
+      <a href="index.html" class="brand">
+        <img src="img/Ticket_icon.png" alt="UTCKET" class="brand__icon" />
+        <span class="brand__name">UTCKET</span>
+      </a>
 
-            <span class="panel-title">Agregar concierto</span>
+      <span class="panel-title">Agregar Concierto</span>
 
-            <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">
-                <span></span><span></span><span></span>
-            </button>
+      <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
 
-            <div class="menu" id="menu">
-                <a href="empleado.html" class="menu__link">Volver al panel</a>
-                <button id="logoutBtn" class="menu__link btn-salir">Cerrar sesión</button>
-            </div>
-        </nav>
-        <div class="menu-overlay" id="menuOverlay"></div>
-    </header>
+      <div class="menu" id="menu">
+        <a href="index.html" class="menu__link">Inicio</a>
+        <a href="calendario.html" class="menu__link">Conciertos</a>
+        <button id="logoutBtn" class="menu__link btn-salir">Cerrar sesión</button>
+      </div>
+    </nav>
 
-    <section class="contenedor form-card">
-        <h3 class="form-title">Agregar Nuevo Concierto</h3>
+    <div class="menu-overlay" id="menuOverlay"></div>
+  </header>
 
-        <form id="formConcierto" class="form-grid">
-            <div class="form-group">
-                <label for="artista">Artista</label>
-                <input type="text" id="artista" required />
-            </div>
+  <section class="contenedor form-card">
+    <h3 class="form-title">Agregar Concierto</h3>
 
-            <div class="form-group">
-                <label for="fecha">Fecha</label>
-                <input type="date" id="fecha" required />
-            </div>
+    <form id="formAgregar" class="form-grid">
+      <div class="form-group">
+        <label for="artista">Artista</label>
+        <input type="text" id="artista" required />
+      </div>
 
-            <div class="form-group">
-                <label for="lugar">Lugar</label>
-                <input type="text" id="lugar" required />
-            </div>
+      <div class="form-group">
+        <label for="fecha">Fecha</label>
+        <input type="date" id="fecha" required />
+      </div>
 
-            <div class="form-group">
-                <label for="localidades">Localidades
-                    <small>(ej: VIP, General, Butaca)</small>
-                </label>
-                <input type="text" id="localidades" placeholder="VIP, General, Butaca" />
-            </div>
+      <div class="form-group">
+        <label for="lugar">Lugar</label>
+        <input type="text" id="lugar" required />
+      </div>
 
-            <div class="form-group">
-                <label for="precio">Precios ($)
-                    <small>(ej: 160, 140, 120)</small>
-                </label>
-                <input type="text" id="precio" placeholder="160, 140, 120" />
-            </div>
+      <div class="form-group">
+        <label for="localidades">Localidades
+          <small>(ej: VIP, General, Butaca)</small>
+        </label>
+        <input type="text" id="localidades" placeholder="VIP, General, Butaca" />
+      </div>
 
-            <div class="form-group full">
-                <label for="imagen">URL de Imagen</label>
-                <input type="text" id="imagen" placeholder="https://..." />
-            </div>
+      <div class="form-group">
+        <label for="precios">Precios ($)
+          <small>(ej: 160, 140, 120)</small>
+        </label>
+        <input type="text" id="precios" placeholder="160, 140, 120" />
+      </div>
 
-            <div class="form-actions full">
-                <button type="button" id="btnCancelar" class="btn-cancelar">
-                    Cancelar
-                </button>
-                <button type="submit" class="btn-guardar">
-                    Guardar
-                </button>
-            </div>
-        </form>
-    </section>
+      <div class="form-group full">
+        <label for="imagen">URL de Imagen</label>
+        <input type="text" id="imagen" placeholder="https://..." />
+      </div>
 
-    <footer class="site-footer">
-        <div class="container footer-grid"></div>
-            <div class="footer-brand">
-                <div class="footer-brand__row">
-                    <img src="img/Ticket_icon.png" alt="UTCKET" class="footer-brand__icon" />
-                    <span class="footer-brand__name">UTCKET</span>
-                </div>
-                <p class="footer-brand__desc">
-                    Los mejores conciertos de la ciudad a tu alcance, más sencillo y fácil.
-                    UTCKET es el e-commerce de conciertos que conecta a los fans con los
-                    mejores eventos de centroamérica.
-                </p>
-                <div class="footer-social">
-                    <a href="#" aria-label="Facebook" class="footer-social__link">
-                        <img src="img/facebook.png" alt="" class="footer-social__icon" />
-                    </a>
-                    <a href="#" aria-label="Twitter" class="footer-social__link">
-                        <img src="img/twitter.png" alt="" class="footer-social__icon" />
-                    </a>
-                    <a href="#" aria-label="LinkedIn" class="footer-social__link">
-                        <img src="img/linkedin.png" alt="" class="footer-social__icon" />
-                    </a>
-                </div>
-            </div>
+      <div class="form-actions full">
+        <button type="button" id="btnVolver" class="btn-cancelar">Volver</button>
+        <button type="submit" class="btn-guardar">Guardar concierto</button>
+      </div>
+    </form>
+  </section>
 
-            <div class="footer-col">
-                <h4 class="footer-col__title">Nosotros</h4>
-                <p class="footer-col__text">
-                    Calle a Comasagua,<br />
-                    Carretera al Puerto de la LL, Santa Tecla,<br />
-                    La Libertad Sur, El Salvador.
-                </p>
-            </div>
+  <footer class="site-footer">
+  </footer>
 
-            <div class="footer-col">
-                <h4 class="footer-col__title">Contacto</h4>
-                <p class="footer-col__text">
-                    <a href="tel:+50376152883" class="footer-link">+(503) 7615 2883</a><br />
-                    <a href="mailto:info@utcket.com" class="footer-link">info@utcket.com</a><br />
-                    <a href="mailto:ventas@utcket.com" class="footer-link">ventas@utcket.com</a><br /><br />
-                    NIT: 0614 170306-108-2<br />
-                    NRC: 171703-2
-                </p>
-            </div>
-
-            <div class="footer-subscribe">
-                <h4 class="footer-col__title">Suscríbete Y Sé Cliente Preferencial</h4>
-                <p class="footer-col__text">
-                    Recibe los mejores descuentos para los próximos conciertos o eventos de la región.
-                </p>
-                <form class="subscribe-form" action="#" method="post" novalidate>
-                    <input type="email" name="email" class="subscribe-input" placeholder="Ingresa tu correo" required />
-                    <button type="submit" class="subscribe-btn">Suscríbete ahora</button>
-                </form>
-            </div>
-        </div>
-
-        <hr class="footer-sep" />
-        <div class="container">
-            <p class="footer-copy">
-                Copyright © 2025 UTCKET EL SALVADOR, S.A. DE C.V.
-            </p>
-        </div>  
-    </footer>
-
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-        import { getAuth } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-        import { getFirestore } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-
-        import firebaseConfig from "../firebase/firebase-config.js";
-
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
-        const db = getFirestore(app);
-
-        window.auth = auth;
-        window.db = db;
-    </script>
-
-    <script>
-        const menuToggle = document.getElementById("menuToggle");
-        const menu = document.getElementById("menu");
-        const overlay = document.getElementById("menuOverlay");
-
-        if (menuToggle) {
-            menuToggle.addEventListener("click", () => {
-                menu.classList.toggle("open");
-                overlay.classList.toggle("active");
-            });
-        }
-
-        if (overlay) {
-            overlay.addEventListener("click", () => {
-                menu.classList.remove("open");
-                overlay.classList.remove("active");
-            });
-        }
-    </script>
-
-    <script type="module" src="JS/empleado-agregar.js"></script>
+  <script type="module" src="JS/empleado-agregar.js"></script>
 </body>
 </html>

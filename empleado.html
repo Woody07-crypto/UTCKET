@@ -1,27 +1,29 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Panel de Empleado</title>
 
-    <link rel="stylesheet" href="CSS/empleado.css" />
-    <link rel="stylesheet" href="CSS/nav.css" />
-    <link rel="stylesheet" href="CSS/footer.css" />
+    <link rel="stylesheet" href="CSS/empleado.css">
+    <link rel="stylesheet" href="CSS/nav.css">
+    <link rel="stylesheet" href="CSS/footer.css">
 </head>
 
 <body>
     <header class="site-header">
         <nav class="nav">
             <a href="index.html" class="brand">
-                <img src="img/Ticket_icon.png" alt="UTCKET" class="brand__icon" />
+                <img src="img/Ticket_icon.png" alt="UTCKET" class="brand__icon">
                 <span class="brand__name">UTCKET</span>
             </a>
 
             <span class="panel-title">Panel de Empleado</span>
 
             <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">
-                <span></span><span></span><span></span>
+                <span></span>
+                <span></span>
+                <span></span>
             </button>
 
             <div class="menu" id="menu">
@@ -35,15 +37,12 @@
     </header>
 
     <section class="contenedor">
-        <h3>Conciertos Registrados</h3>
-
-        <div class="eventos_container" id="lista-conciertos">
+        <div class="header-conciertos">
+            <h3>Conciertos Registrados</h3>
+            <button id="btnAgregarConcierto" class="btn-agregar">Agregar concierto</button>
         </div>
 
-        <div class="acciones-empleado">
-            <button id="btnIrAgregar" class="btn-primario">
-                Agregar concierto
-            </button>
+        <div class="eventos_container" id="lista-conciertos">
         </div>
     </section>
 
@@ -51,7 +50,7 @@
         <div class="container footer-grid">
             <div class="footer-brand">
                 <div class="footer-brand__row">
-                    <img src="img/Ticket_icon.png" alt="UTCKET" class="footer-brand__icon" />
+                    <img src="img/Ticket_icon.png" alt="UTCKET" class="footer-brand__icon">
                     <span class="footer-brand__name">UTCKET</span>
                 </div>
                 <p class="footer-brand__desc">
@@ -61,13 +60,13 @@
                 </p>
                 <div class="footer-social">
                     <a href="#" aria-label="Facebook" class="footer-social__link">
-                        <img src="img/facebook.png" alt="" class="footer-social__icon" />
+                        <img src="img/facebook.png" alt="" class="footer-social__icon">
                     </a>
                     <a href="#" aria-label="Twitter" class="footer-social__link">
-                        <img src="img/twitter.png" alt="" class="footer-social__icon" />
+                        <img src="img/twitter.png" alt="" class="footer-social__icon">
                     </a>
                     <a href="#" aria-label="LinkedIn" class="footer-social__link">
-                        <img src="img/linkedin.png" alt="" class="footer-social__icon" />
+                        <img src="img/linkedin.png" alt="" class="footer-social__icon">
                     </a>
                 </div>
             </div>
@@ -75,8 +74,8 @@
             <div class="footer-col">
                 <h4 class="footer-col__title">Nosotros</h4>
                 <p class="footer-col__text">
-                    Calle a Comasagua,<br />
-                    Carretera al Puerto de la LL, Santa Tecla,<br />
+                    Calle a Comasagua,<br>
+                    Carretera al Puerto de la LL, Santa Tecla,<br>
                     La Libertad Sur, El Salvador.
                 </p>
             </div>
@@ -84,10 +83,10 @@
             <div class="footer-col">
                 <h4 class="footer-col__title">Contacto</h4>
                 <p class="footer-col__text">
-                    <a href="tel:+50376152883" class="footer-link">+(503) 7615 2883</a><br />
-                    <a href="mailto:info@utcket.com" class="footer-link">info@utcket.com</a><br />
-                    <a href="mailto:ventas@utcket.com" class="footer-link">ventas@utcket.com</a><br /><br />
-                    NIT: 0614 170306-108-2<br />
+                    <a href="tel:+50376152883" class="footer-link">+(503) 7615 2883</a><br>
+                    <a href="mailto:info@utcket.com" class="footer-link">info@utcket.com</a><br>
+                    <a href="mailto:ventas@utcket.com" class="footer-link">ventas@utcket.com</a><br><br>
+                    NIT: 0614 170306-108-2<br>
                     NRC: 171703-2
                 </p>
             </div>
@@ -98,54 +97,17 @@
                     Recibe los mejores descuentos para los próximos conciertos o eventos de la región.
                 </p>
                 <form class="subscribe-form" action="#" method="post" novalidate>
-                    <input type="email" name="email" class="subscribe-input" placeholder="Ingresa tu correo" required />
+                    <input type="email" name="email" class="subscribe-input" placeholder="Ingresa tu correo" required>
                     <button type="submit" class="subscribe-btn">Suscríbete ahora</button>
                 </form>
             </div>
         </div>
 
-        <hr class="footer-sep" />
+        <hr class="footer-sep">
         <div class="container">
-            <p class="footer-copy">
-                Copyright © 2025 UTCKET EL SALVADOR, S.A. DE C.V.
-            </p>
+            <p class="footer-copy">Copyright © 2025 UTCKET EL SALVADOR, S.A. DE C.V.</p>
         </div>
     </footer>
-
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-        import { getAuth } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-        import { getFirestore } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-
-        import firebaseConfig from "../firebase/firebase-config.js"; /* deja la misma ruta que ya te funcionaba */
-
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
-        const db = getFirestore(app);
-
-        window.auth = auth;
-        window.db = db;
-    </script>
-
-    <script>
-        const menuToggle = document.getElementById("menuToggle");
-        const menu = document.getElementById("menu");
-        const overlay = document.getElementById("menuOverlay");
-
-        if (menuToggle) {
-            menuToggle.addEventListener("click", () => {
-                menu.classList.toggle("open");
-                overlay.classList.toggle("active");
-            });
-        }
-
-        if (overlay) {
-            overlay.addEventListener("click", () => {
-                menu.classList.remove("open");
-                overlay.classList.remove("active");
-            });
-        }
-    </script>
 
     <script type="module" src="JS/empleado.js"></script>
 </body>
