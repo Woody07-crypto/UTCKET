@@ -45,8 +45,13 @@ function crearTarjetaEvento(id, concierto) {
   const card = document.createElement('div');
   card.className = 'evento';
 
+   const imagen =
+  concierto.Imagen ||
+  concierto.imagen ||
+  concierto.imagenUrl ||
+  'img/concierto_fondo.jpeg';
 
-  const imgSrc = concierto.ImagenURL || 'img/Danny_Ocean_tour.png';
+  
 
   const fechaFormateada = formatearFecha(concierto.Fecha);
 

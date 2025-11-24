@@ -247,7 +247,7 @@ window.eliminarEmpleado = async function(id) {
     }
 }
 
-// FORMULARIO DE CONCIERTO
+// FORMULARIO DE CONCIERTO - actualizado IVAN HASTA CONSOLE.LOG
 
 const formConcierto = document.getElementById('form-concierto');
 
@@ -258,7 +258,7 @@ if (formConcierto) {
         e.preventDefault();
         console.log("Intentando agregar concierto...");
         
-        try {
+               try {
             // Obtener valores del formulario
             const artista = document.getElementById('artist-name').value.trim();
             const fecha = document.getElementById('concert-date').value;
@@ -266,38 +266,43 @@ if (formConcierto) {
             const localidadesRaw = document.getElementById('venue-seats').value;
             const cantidadesRaw = document.getElementById('ticket-quantity').value;
             const preciosRaw = document.getElementById('ticket-prices').value;
-            
-            // Procesar arrays (separados por coma)
-            const localidades = localidadesRaw.split(',').map(s => s.trim()).filter(s => s);
-            const cantidades = cantidadesRaw.split(',').map(s => parseInt(s.trim())).filter(n => !isNaN(n));
-            const precios = preciosRaw.split(',').map(s => parseFloat(s.trim())).filter(n => !isNaN(n));
-            
-            // Validaciones
-            if (!artista || !fecha || !lugar) {
-                alert('❌ Por favor completa todos los campos obligatorios');
+            const imagen = document.getElementById('concert-image').value.trim(); // 👈 NUEVO
+
+            // Validaciones básicas
+            if (!artista || !fecha || !lugar || !localidadesRaw || !cantidadesRaw || !preciosRaw || !imagen) {
+                alert('❌ Por favor completa todos los campos, incluida la URL de la imagen');
                 return;
             }
-            
+
+            // Convertir cadenas separadas por coma en arrays
+            const localidades = localidadesRaw.split(',').map(s => s.trim()).filter(s => s.length > 0);
+            const cantidades = cantidadesRaw.split(',').map(s => s.trim()).filter(s => s.length > 0);
+            const precios = preciosRaw.split(',').map(s => s.trim()).filter(s => s.length > 0);
+
             if (localidades.length === 0 || cantidades.length === 0 || precios.length === 0) {
-                alert('❌ Por favor ingresa al menos una localidad, cantidad y precio');
+                alert('❌ Debes ingresar al menos una localidad, cantidad y precio');
                 return;
             }
-            
+
             if (localidades.length !== cantidades.length || localidades.length !== precios.length) {
                 alert('❌ El número de localidades, cantidades y precios debe coincidir');
                 return;
             }
-            
-            // Crear objeto de datos
+
+            // Objeto de datos del concierto
             const conciertoData = {
                 Artista: artista,
                 Fecha: fecha,
                 Lugar: lugar,
                 Localidades: localidades,
-                'Cantidad': cantidades,
+                Cantidad: cantidades,
                 Precios: precios,
+                Imagen: imagen,                 // 👈 aquí guardamos la ruta/URL
                 fechaCreacion: serverTimestamp()
             };
+
+            console.log("Datos a enviar:", conciertoData);
+
             
             console.log("Datos a enviar:", conciertoData);
             
