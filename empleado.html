@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Panel de Empleado</title>
 
-
     <link rel="stylesheet" href="CSS/empleado.css">
     <link rel="stylesheet" href="CSS/nav.css">
     <link rel="stylesheet" href="CSS/footer.css">
@@ -15,14 +14,13 @@
 <body>
     <header class="site-header">
         <nav class="nav">
-            <a href="../index.html" class="brand">
+            <!-- OJO: sin ../ para que no salga de /UTCKET -->
+            <a href="index.html" class="brand">
                 <img src="img/Ticket_icon.png" alt="UTCKET" class="brand__icon">
                 <span class="brand__name">UTCKET</span>
             </a>
 
-
             <span class="panel-title">Panel de Empleado</span>
-
 
             <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">
                 <span></span>
@@ -30,11 +28,9 @@
                 <span></span>
             </button>
 
-
             <div class="menu" id="menu">
-                <a href="../index.html" class="menu__link">Inicio</a>
-                <a href="admin-empleado.html" class="menu__link">Conciertos</a>
-
+                <a href="index.html" class="menu__link">Inicio</a>
+                <a href="empleado.html" class="menu__link">Conciertos</a>
 
                 <button id="logoutBtn" class="menu__link btn-salir">
                     Cerrar sesión
@@ -42,94 +38,56 @@
             </div>
         </nav>
 
-
         <div class="menu-overlay" id="menuOverlay"></div>
     </header>
 
-
-
+    <!-- LISTA DE CONCIERTOS DESDE FIRESTORE -->
     <section class="contenedor">
         <h3>Conciertos Registrados</h3>
-      
-        <div id="conciertos-lista" class="eventos_container">
-        </div>
-      </section>
-      
+        <div class="eventos_container" id="lista-conciertos"></div>
+    </section>
 
-      <section class="contenedor form-card">
+    <!-- FORMULARIO PARA EDITAR CONCIERTO SELECCIONADO -->
+    <section class="contenedor form-card">
         <h3 class="form-title">Agregar / Editar Concierto</h3>
-      
-        <form id="form-concierto" class="form-grid">
-          <div class="form-group">
-            <label for="artist-name">Nombre del Artista</label>
-            <input type="text" id="artist-name" required>
-          </div>
-      
-          <div class="form-group">
-            <label for="concert-date">Fecha y Hora</label>
-            <input type="datetime-local" id="concert-date" required>
-          </div>
-      
-          <div class="form-group">
-            <label for="concert-venue">Lugar</label>
-            <input type="text" id="concert-venue" required>
-          </div>
-      
-          <div class="form-group full">
-            <label for="venue-seats">Localidades</label>
-            <input
-              type="text"
-              id="venue-seats"
-              placeholder="Ultra Platinum, Platinum, General, Butaca"
-              required
-            >
-          </div>
-      
-          <div class="form-group full">
-            <label for="ticket-quantity">Cantidad de Tickets por localidad</label>
-            <input
-              type="text"
-              id="ticket-quantity"
-              placeholder="300, 300, 150, 100"
-              required
-            >
-          </div>
-      
-          <div class="form-group full">
-            <label for="ticket-prices">Precios por localidad ($)</label>
-            <input
-              type="text"
-              id="ticket-prices"
-              placeholder="160, 140, 120, 80"
-              required
-            >
-          </div>
-      
-          <button type="submit" class="btn-guardar full">Guardar concierto</button>
+
+        <form id="formConcierto" class="form-grid">
+
+            <div class="form-group">
+                <label for="artista">Artista</label>
+                <input type="text" id="artista" required>
+            </div>
+
+            <div class="form-group">
+                <label for="fecha">Fecha</label>
+                <input type="date" id="fecha">
+            </div>
+
+            <div class="form-group">
+                <label for="lugar">Lugar</label>
+                <input type="text" id="lugar" required>
+            </div>
+
+            <div class="form-group">
+                <label for="localidades">Localidades</label>
+                <input type="number" id="localidades" disabled placeholder="(solo lectura por ahora)">
+            </div>
+
+            <div class="form-group">
+                <label for="precio">Precio ($)</label>
+                <input type="number" id="precio" disabled placeholder="(solo lectura por ahora)">
+            </div>
+
+            <div class="form-group full">
+                <label for="imagen">URL de Imagen</label>
+                <input type="text" id="imagen" placeholder="https://...">
+            </div>
+
+            <button type="submit" class="btn-guardar full">Guardar</button>
         </form>
-      </section>      
+    </section>
 
-
-
-    <script type="module">
-
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-        import { getAuth } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-        import { getFirestore } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-
-
-        import firebaseConfig from "../firebase/firebase-config.js";
-
-
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
-        const db = getFirestore(app);
-
-
-        window.auth = auth;
-        window.db = db;
-    </script>
-
+    <!-- MENÚ RESPONSIVE -->
     <script>
         const menuToggle = document.getElementById("menuToggle");
         const menu = document.getElementById("menu");
@@ -146,98 +104,8 @@
         });
     </script>
 
-
-    <script type="module" src="empleado.js"></script>
-
-
-<div id="editModal" class="modal" style="display:none;">
-    <div class="modal-content">
-      <span class="close-modal">&times;</span>
-      <h2 id="modal-title">Editar</h2>
-  
-      <form id="edit-form">
-        <div id="concierto-fields">
-          <div class="form-group">
-            <label for="edit-artist-name">Nombre del Artista</label>
-            <input type="text" id="edit-artist-name" required>
-          </div>
-  
-          <div class="form-group">
-            <label for="edit-concert-date">Fecha y Hora</label>
-            <input type="datetime-local" id="edit-concert-date" required>
-          </div>
-  
-          <div class="form-group">
-            <label for="edit-concert-venue">Lugar</label>
-            <input type="text" id="edit-concert-venue" required>
-          </div>
-  
-          <div class="form-group full">
-            <label for="edit-venue-seats">Localidades</label>
-            <input
-              type="text"
-              id="edit-venue-seats"
-              placeholder="Ultra Platinum, Platinum, General, Butaca"
-              required
-            >
-          </div>
-  
-          <div class="form-group full">
-            <label for="edit-ticket-quantity">Cantidad de Tickets por localidad</label>
-            <input
-              type="text"
-              id="edit-ticket-quantity"
-              placeholder="300, 300, 150, 100"
-              required
-            >
-          </div>
-  
-          <div class="form-group full">
-            <label for="edit-ticket-prices">Precios por localidad ($)</label>
-            <input
-              type="text"
-              id="edit-ticket-prices"
-              placeholder="160, 140, 120, 80"
-              required
-            >
-          </div>
-        </div>
-  
-        <div id="empleado-fields" style="display:none;">
-          <div class="form-group">
-            <label for="edit-emp-first">Nombre</label>
-            <input type="text" id="edit-emp-first">
-          </div>
-          <div class="form-group">
-            <label for="edit-emp-last">Apellido</label>
-            <input type="text" id="edit-emp-last">
-          </div>
-          <div class="form-group">
-            <label for="edit-emp-carnet">Carnet</label>
-            <input type="text" id="edit-emp-carnet">
-          </div>
-          <div class="form-group">
-            <label for="edit-emp-puesto">Puesto</label>
-            <input type="text" id="edit-emp-puesto">
-          </div>
-          <div class="form-group">
-            <label for="edit-emp-email">Email</label>
-            <input type="email" id="edit-emp-email">
-          </div>
-          <div class="form-group">
-            <label for="edit-emp-password">Nueva contraseña (opcional)</label>
-            <input type="password" id="edit-emp-password">
-          </div>
-        </div>
-  
-        <div class="modal-actions">
-          <button type="button" onclick="cancelarEdicion()">Cancelar</button>
-          <button type="submit">Actualizar</button>
-        </div>
-      </form>
-    </div>
-  </div>
-  
+    <!-- AQUÍ SÍ APUNTAMOS A LA CARPETA JS -->
+    <script type="module" src="JS/empleado.js"></script>
 
     <footer class="site-footer">
         <div class="container footer-grid">
@@ -304,8 +172,9 @@
         </div>
     </footer>
 
+    <!-- Estos scripts siguen como están porque los usa el admin -->
     <script type="module" src="JS/edit.js"></script>
-    <script type="module" src="JS/add.js"></script> 
+    <script type="module" src="JS/add.js"></script>
 </body>
 
 </html>
